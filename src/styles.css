@@ -1,3 +1,33 @@
-/* You can add global styles to this file, and also import other style files */
+@import 'tailwindcss';
 
-@import "tailwindcss";
+/* 1. Definición de variables base y lógica de Modo Oscuro */
+:root {
+  /* Color de fondo por defecto (Light Mode) */
+  --bg-app: #f6f7f8;
+}
+
+/* Cuando la clase "dark" está presente en el HTML */
+.dark {
+  /* El mismo valor cambia automáticamente al color oscuro */
+  --bg-app: #101922;
+}
+
+/* 2. Configuración del Tema de Tailwind */
+@theme {
+  /* --- COLORES --- */
+  /* Creamos una utilidad 'bg-background' que se adapta sola */
+  --color-background: var(--bg-app);
+
+  /* Tu color primario */
+  --color-primary: #137fec;
+
+  /* --- FUENTES --- */
+  /* Genera la clase 'font-display' */
+  --font-display: 'Inter', sans-serif;
+
+  /* --- BORDES (Radius) --- */
+  --radius: 0.25rem; /* rounded */
+  --radius-lg: 0.5rem; /* rounded-lg */
+  --radius-xl: 0.75rem; /* rounded-xl */
+  --radius-full: 9999px; /* rounded-full */
+}
