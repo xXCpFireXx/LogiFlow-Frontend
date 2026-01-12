@@ -1,11 +1,10 @@
-<!-- <button data-drawer-target="default-sidebar" data-drawer-toggle="default-sidebar" aria-controls="default-sidebar" type="button" class="inline-flex items-center p-2 mt-2 ml-3 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600">
-   <span class="sr-only">Open sidebar</span>
-   <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-      <path clip-rule="evenodd" fill-rule="evenodd" d="M2 4.75A.75.75 0 012.75 4h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 4.75zm0 10.5a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5a.75.75 0 01-.75-.75zM2 10a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 10z"></path>
-   </svg>
-</button> -->
+<div 
+  *ngIf="isOpen" 
+  (click)="closeSideBar.emit()" 
+  class="fixed inset-0 z-40 bg-gray-900/50 backdrop-blur-sm sm:hidden transition-opacity">
+</div>
 
-<aside id="default-sidebar" class="fixed top-0 left-0 z-50 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0" aria-label="Sidenav">
+<aside id="default-sidebar" [class.translate-x-0]="isOpen" class="fixed top-0 left-0 z-50 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0" aria-label="Sidenav">
   <div class="overflow-y-auto py-5 px-3 h-full bg-white border-r border-gray-200 bg-white flex flex-col">
 
     <div class="flex items-center gap-3 mb-8 px-2">
@@ -28,6 +27,12 @@
               </a>
           </li>
           <li>
+              <a routerLink="#" class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-[#e7f2fd] group">
+                  <svg aria-hidden="true" class="w-6 h-6 text-gray-400 transition-colors group-hover:text-[#137fec]" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M5 21q-.825 0-1.412-.587T3 19V6.525q0-.35.113-.675t.337-.6L4.7 3.725q.275-.35.687-.538T6.25 3h11.5q.45 0 .863.188t.687.537l1.25 1.525q.225.275.338.6t.112.675V19q0 .825-.587 1.413T19 21zm.4-15h13.2l-.85-1H6.25zM16 8H8v8l4-2l4 2z"></path></svg>
+                  <span class="flex-1 ml-3 text-gray-500 transition-colors group-hover:text-[#137fec] text-left whitespace-nowrap font-medium">Shipment</span>
+              </a>
+          </li>
+          <li>
               <a routerLink="/tracking" class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-[#e7f2fd] group">
                   <svg aria-hidden="true" class="w-6 h-6 text-gray-400 transition-colors group-hover:text-[#137fec]" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M14.35 20.775L9 18.9l-4.65 1.8q-.25.1-.488.063t-.437-.163t-.312-.337T3 19.775V5.75q0-.325.188-.575T3.7 4.8l4.65-1.575q.15-.05.313-.075T9 3.125t.338.025t.312.075L15 5.1l4.65-1.8q.25-.1.488-.062t.437.162t.313.338t.112.487V18.25q0 .325-.187.575t-.513.375l-4.65 1.575q-.15.05-.312.075t-.338.025t-.337-.025t-.313-.075M14 18.55V6.85l-4-1.4v11.7z"></path></svg>
                   <span class="flex-1 ml-3 text-gray-500 transition-colors group-hover:text-[#137fec] text-left whitespace-nowrap font-medium">Tracking</span>
@@ -35,20 +40,8 @@
           </li>
           <li>
               <a routerLink="#" class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-[#e7f2fd] group">
-                  <svg aria-hidden="true" class="w-6 h-6 text-gray-400 transition-colors group-hover:text-[#137fec]" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M5 21q-.825 0-1.412-.587T3 19V6.525q0-.35.113-.675t.337-.6L4.7 3.725q.275-.35.687-.538T6.25 3h11.5q.45 0 .863.188t.687.537l1.25 1.525q.225.275.338.6t.112.675V19q0 .825-.587 1.413T19 21zm.4-15h13.2l-.85-1H6.25zM16 8H8v8l4-2l4 2z"></path></svg>
-                  <span class="flex-1 ml-3 text-gray-500 transition-colors group-hover:text-[#137fec] text-left whitespace-nowrap font-medium">Shipment</span>
-              </a>
-          </li>
-          <li>
-              <a routerLink="#" class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-[#e7f2fd] group">
-                  <svg aria-hidden="true" class="w-6 h-6 text-gray-400 transition-colors group-hover:text-[#137fec]" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M3.5 13v-3H1l3.5-5v3H7zm3.3 7q-1.25 0-2.125-.875T3.8 17q0-.625.288-1.175t.787-.95L10.85 6h-4.3l.425-2H18l-.925 4H20l3 4l-1 5h-2q0 1.25-.875 2.125T17 20t-2.125-.875T14 17H9.8q0 1.25-.875 2.125T6.8 20m.2-2q.425 0 .713-.288T8 17t-.288-.712T7 16t-.712.288T6 17t.288.713T7 18m10 0q.425 0 .713-.288T18 17t-.288-.712T17 16t-.712.288T16 17t.288.713T17 18m-1.075-5h4.825l.1-.525L19 10h-2.375z"></path></svg>
-                  <span class="flex-1 ml-3 text-gray-500 transition-colors group-hover:text-[#137fec] text-left whitespace-nowrap font-medium">Fleet</span>
-              </a>
-          </li>
-          <li>
-              <a routerLink="#" class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-[#e7f2fd] group">
-                  <svg aria-hidden="true" class="w-6 h-6 text-gray-400 transition-colors group-hover:text-[#137fec]" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9 6h2v14H9zm4 2h2v12h-2zm4-4h2v16h-2zM5 12h2v8H5z"></path></svg>
-                  <span class="flex-1 ml-3 text-gray-500 transition-colors group-hover:text-[#137fec] text-left whitespace-nowrap font-medium">Analytics</span>
+                  <svg aria-hidden="true" class="w-6 h-6 text-gray-400 transition-colors group-hover:text-[#137fec]" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 12q-1.65 0-2.825-1.175T8 8t1.175-2.825T12 4t2.825 1.175T16 8t-1.175 2.825T12 12m-8 8v-2.8q0-.85.438-1.562T5.6 14.55q1.55-.775 3.15-1.162T12 13t3.25.388t3.15 1.162q.725.375 1.163 1.088T20 17.2V20z"></path></svg>
+                  <span class="flex-1 ml-3 text-gray-500 transition-colors group-hover:text-[#137fec] text-left whitespace-nowrap font-medium">Clients</span>
               </a>
           </li>
           <li>

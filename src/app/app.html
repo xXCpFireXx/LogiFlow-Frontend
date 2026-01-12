@@ -1,6 +1,9 @@
-<app-header></app-header>
+<app-header (toggleMenu)="toggleSidebar()"></app-header>
 
-<app-side-bar></app-side-bar>
+<app-side-bar 
+  [isOpen]="isSidebarOpen" 
+  (closeSideBar)="isSidebarOpen = false">
+</app-side-bar>
 
 <main class="p-4 sm:ml-64 pt-20 min-h-screen bg-gray-50">
    <router-outlet></router-outlet>
