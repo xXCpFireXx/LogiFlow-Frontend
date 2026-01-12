@@ -12,4 +12,8 @@ import { CommonModule } from '@angular/common';
 export class SideBar {
   @Input() isOpen: boolean = false; // Recibe el estado del padre
   @Output() closeSideBar = new EventEmitter<void>(); // Avisa al padre para cerrar
+
+  onNavigate() {
+    this.closeSideBar.emit();
+  }
 }
