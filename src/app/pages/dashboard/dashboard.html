@@ -32,7 +32,9 @@
       <app-card-dashboard 
         [titulo]="item.titulo" 
         [valor]="item.valor" 
-        [porcentaje]="item.porcentaje">
+        [porcentaje]="item.porcentaje"
+        [icon]="item.icon"
+        [isNegative]="item.isNegative ?? false">
       </app-card-dashboard>
     }
   </div>
