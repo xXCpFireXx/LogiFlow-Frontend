@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, input } from '@angular/core';
 
 @Component({
   selector: 'app-card-dashboard',
@@ -7,5 +7,9 @@ import { Component } from '@angular/core';
   styleUrl: './card-dashboard.css',
 })
 export class CardDashboard {
+  titulo = input<string>();
+  valor = input<string>();
+
+  porcentaje = input<string>();
 
 }
