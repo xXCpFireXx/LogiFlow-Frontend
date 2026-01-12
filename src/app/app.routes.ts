@@ -2,15 +2,20 @@ import { Routes } from '@angular/router';
 import { Header } from './components/header/header';
 import { SideBar } from './components/side-bar/side-bar';
 import { Tracking } from './pages/tracking/tracking'
+import { Dashboard } from './pages/dashboard/dashboard';
 
 export const routes: Routes = [
-  {
-    path: 'header',
-    component: Header,
-  },
+  // {
+  //   path: 'header',
+  //   component: Header,
+  // },
+  // {
+  //   path: '',
+  //   component: SideBar,
+  // },
   {
     path: '',
-    component: SideBar,
+    component: Dashboard,
   },
   {
     path: 'tracking',
