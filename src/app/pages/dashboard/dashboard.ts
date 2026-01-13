@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { CardDashboard } from '../../components/card-dashboard/card-dashboard';
+import { Card as CardGeneric} from '../../components/card/card';
 
 type Card = {
   titulo : string,
@@ -11,7 +12,7 @@ type Card = {
 
 @Component({
   selector: 'app-dashboard',
-  imports: [CardDashboard],
+  imports: [CardDashboard, CardGeneric],
   templateUrl: './dashboard.html',
   styleUrl: './dashboard.css',
 })

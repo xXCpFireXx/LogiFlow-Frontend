@@ -1,5 +1,5 @@
 <!--Contenedor header-->
-<div class="flex items-end justify-between w-full p-5">
+<div class="flex items-end justify-between w-full pb-5">
     <div class="flex flex-col gap-0.5">
         <div>
             <h1 class="text-4xl font-medium">
@@ -26,16 +26,18 @@
 </div>
 
 <!--Cards-->
-<div class="p-6">
-  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+<div class="py-6 ">
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 ">
     @for (item of cards; track item.titulo) {
-      <app-card-dashboard 
-        [titulo]="item.titulo" 
-        [valor]="item.valor" 
-        [porcentaje]="item.porcentaje"
-        [icon]="item.icon"
-        [isNegative]="item.isNegative ?? false">
-      </app-card-dashboard>
+        <app-card>
+            <app-card-dashboard 
+                [titulo]="item.titulo" 
+                [valor]="item.valor" 
+                [porcentaje]="item.porcentaje"
+                [icon]="item.icon"
+                [isNegative]="item.isNegative ?? false">
+            </app-card-dashboard>
+        </app-card>
     }
   </div>
 </div>
