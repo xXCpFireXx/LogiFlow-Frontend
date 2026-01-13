@@ -1,5 +1,16 @@
 <div class="flex items-end justify-between w-full pb-5">
-    <app-header-main-content [title]="header.title" [description]="header.description"></app-header-main-content>
+    <app-header-main-content [title]="header.title" [description]="header.description">
+
+      <div class="flex items-center gap-3 ml-2">
+            <span class="text-2xl text-slate-800 font-light">#LGF-8923</span>
+
+            <!-- <span class="px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-blue-50 text-[#137fec] border border-[#137fec]/10">
+                In Transit
+            </span> -->
+            <app-status-badge [status]="shipmentStatus"></app-status-badge>
+      </div>
+
+    </app-header-main-content>
 
     <div class="flex items-center gap-3">
         <button (click)="onExport()" class="group flex items-center gap-2 px-4 py-2 bg-white text-gray-700 border border-gray-200 rounded-lg font-medium hover:bg-[#e7f2fd] hover:border-[#137fec]/20 transition-all cursor-pointer shadow-sm">

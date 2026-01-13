@@ -4,6 +4,7 @@ import { TitleCasePipe } from '@angular/common';
 import { Card as CardGeneric } from '../../components/card/card';
 import { HeaderMainContent } from '../../components/header-main-content/header-main-content';
 import { TitleHeaderMain } from '../../models/TitleHeaderMain';
+import { StatusBadge } from '../../components/status-badge/status-badge';
 
 type TrackingDetail = {
   type: 'origin' | 'destination' | 'carrier' | 'weight';
@@ -15,14 +16,16 @@ type TrackingDetail = {
 @Component({
   selector: 'app-tracking',
   standalone: true,
-  imports: [CardGeneric, HeaderMainContent, TitleCasePipe],
+  imports: [CardGeneric, HeaderMainContent, TitleCasePipe, StatusBadge],
   templateUrl: './tracking.html',
   styleUrl: './tracking.css',
 })
 export class Tracking {
+  shipmentStatus = 'In Transit';
+
   header: TitleHeaderMain = {
     title: 'Tracking',
-    description: 'Detailed information for tracking ID: #TRK-882910',
+    description: 'Real-time delivery monitoring',
   };
 
   details: TrackingDetail[] = [
