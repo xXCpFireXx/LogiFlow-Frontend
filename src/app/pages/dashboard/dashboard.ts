@@ -26,30 +26,30 @@ export class Dashboard {
   }
 
   cards = <Card[]>([
-    { 
-      titulo: 'Total Active Shipments', 
-      valor: '1,240', 
-      porcentaje: '5', 
-      icon: 'shipment' 
+    {
+      titulo: 'Total Active Shipments',
+      valor: '1,240',
+      porcentaje: '5',
+      icon: 'shipment'
     },
-    { 
-      titulo: 'In Transit', 
-      valor: '850', 
-      porcentaje: '12', 
-      icon: 'transit' 
+    {
+      titulo: 'In Transit',
+      valor: '850',
+      porcentaje: '12',
+      icon: 'transit'
     },
-    { 
-      titulo: 'Exceptions', 
-      valor: '12', 
-      porcentaje: '2', 
-      icon: 'exception', 
-      isNegative: true 
+    {
+      titulo: 'Exceptions',
+      valor: '12',
+      porcentaje: '2',
+      icon: 'exception',
+      isNegative: true
     },
-    { 
-      titulo: 'Revenue MTD', 
-      valor: '$450k', 
-      porcentaje: '8', 
-      icon: 'revenue' 
+    {
+      titulo: 'Revenue MTD',
+      valor: '$450k',
+      porcentaje: '8',
+      icon: 'revenue'
     }
   ])
 }

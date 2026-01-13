@@ -1,5 +1,55 @@
-<p>tracking works!</p>
-<hr>
-<h3>holiiiii</h3>
+<div class="flex items-end justify-between w-full pb-5">
+    <app-header-main-content [title]="header.title" [description]="header.description"></app-header-main-content>
 
-<app-side-bar></app-side-bar>
+    <div class="flex items-center gap-3">
+        <button (click)="onExport()" class="group flex items-center gap-2 px-4 py-2 bg-white text-gray-700 border border-gray-200 rounded-lg font-medium hover:bg-[#e7f2fd] hover:border-[#137fec]/20 transition-all cursor-pointer shadow-sm">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="transition-colors group-hover:text-[#137fec]"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+            <span class="transition-colors group-hover:text-[#137fec]">Download</span>
+        </button>
+        <button (click)="shareTracking()" class="group flex items-center gap-2 px-4 py-2 bg-white text-gray-700 border border-gray-200 rounded-lg font-medium transition-all cursor-pointer shadow-sm hover:bg-[#137fec] hover:border-[#137fec]/20">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="transition-colors group-hover:text-white"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line></svg>
+            <span class="transition-colors group-hover:text-white">Share Tracking</span>
+        </button>
+    </div>
+</div>
+
+<div class="py-6 w-full">
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 w-full">
+    @for (item of details; track item.label) {
+      <app-card>
+        <div class="flex flex-col gap-4">
+
+          <div class="flex items-center gap-3">
+            <div class="rounded-xl text-[#828fa1]">
+              @switch (item.type) {
+                @case ('origin') {
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.2 11.825L6.2 15.6q-.65.175-1.263-.075t-.962-.825L1.7 10.9q-.275-.425-.087-.9t.687-.6l.575-.15q.25-.05.488-.012t.437.212l2.4 2l3.5-.925l-4.075-5.45q-.4-.525-.2-1.137t.85-.788l.525-.125q.275-.075.588-.025t.537.25L14.9 9.125l4.25-1.15q.8-.225 1.513.188t.937 1.212t-.187 1.513t-1.213.937M4 21q-.425 0-.712-.288T3 20t.288-.712T4 19h16q.425 0 .713.288T21 20t-.288.713T20 21z"/></svg>
+                }
+                @case ('destination') {
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M4 21q-.425 0-.712-.288T3 20t.288-.712T4 19h16q.425 0 .713.288T21 20t-.288.713T20 21zm14.55-5.05l-14.1-4q-.65-.2-1.05-.725t-.4-1.2V5.6q0-.5.4-.8t.9-.175l.575.15q.25.075.438.238t.262.412L6.6 8.4l3.45.975l-.7-6.775q-.075-.65.438-1.063t1.137-.212l.525.15q.275.075.488.288t.312.487l3 8.625l4.3 1.225q.625.2 1.038.725t.412 1.2q0 .875-.712 1.537t-1.738.388"/></svg>
+                }
+                @case ('carrier') {
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M7 20q-1.25 0-2.125-.875T4 17H1.5l.45-2h2.825q.425-.475 1-.737T7 14t1.225.263t1 .737H13.4l2.1-9H6.55l.425-2H18l-.925 4H20l3 4l-1 5h-2q0 1.25-.875 2.125T17 20t-2.125-.875T14 17h-4q0 1.25-.875 2.125T7 20m8.925-7h4.825l.1-.525L19 10h-2.375zM15.5 6l-2.1 9l.05-.175zm-12 7v-3H1l3.5-5v3H7zM7 18q.425 0 .713-.288T8 17t-.288-.712T7 16t-.712.288T6 17t.288.713T7 18m10 0q.425 0 .713-.288T18 17t-.288-.712T17 16t-.712.288T16 17t.288.713T17 18"/></svg>
+                }
+                @case ('weight') {
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M2 22q0-2.775.738-4.737T4.624 14T7.2 11.987T10 11V8q-3.425-.425-5.712-2.113T2 2h20q0 2.2-2.287 3.888T14 8v3q1.375.275 2.8.988T19.375 14t1.888 3.263T22 22h-6v-2h3.875q-.45-3.8-2.838-5.5T12 12.8t-5.038 1.7T4.125 20H8v2zm10 0q-.825 0-1.412-.587T10 20q0-.425.163-.775t.437-.625q.6-.6 2.025-1.263T16 16q-.7 1.95-1.35 3.375T13.4 21.4q-.275.275-.625.438T12 22"/></svg>
+                }
+              }
+            </div>
+            <span class="text-[15px] font-bold text-slate-400 tracking-widest">{{ item.label | titlecase }}</span>
+          </div>
+
+          <div class="flex flex-col">
+            <h2 class="text-2xl font-bold text-slate-800 tracking-tight">
+              {{item.value}}
+            </h2>
+            <span class="text-xs font-medium text-slate-400 mt-1">
+              {{item.subtext}}
+            </span>
+          </div>
+
+        </div>
+      </app-card>
+    }
+  </div>
+</div>
