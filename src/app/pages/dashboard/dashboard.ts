@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { CardDashboard } from '../../components/card-dashboard/card-dashboard';
 import { Card as CardGeneric} from '../../components/card/card';
+import { HeaderMainContent } from '../../components/header-main-content/header-main-content';
 
 type Card = {
   titulo : string,
@@ -10,13 +11,25 @@ type Card = {
   isNegative?: boolean
 }
 
+type HeaderMain = {
+  title : string,
+  description : string
+}
+
+
 @Component({
   selector: 'app-dashboard',
-  imports: [CardDashboard, CardGeneric],
+  imports: [CardDashboard, CardGeneric, HeaderMainContent],
   templateUrl: './dashboard.html',
   styleUrl: './dashboard.css',
 })
 export class Dashboard {
+
+  header : HeaderMain = {
+    title: 'Dashboard Overview',
+    description: 'Real-time logistic metrics and fleet status'
+  }
+
   cards = <Card[]>([
     { 
       titulo: 'Total Active Shipments', 
