@@ -1,0 +1,19 @@
+<app-card>
+  <!-- Header que aprovecha el padding del card -->
+  <div class="flex justify-between items-center pb-4">
+    <h3 class="text-xl font-bold text-slate-800 tracking-tight">
+      Live Fleet Overview
+    </h3>
+
+    <div class="relative flex h-2.5 w-2.5">
+      <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+      <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
+    </div>
+  </div>
+
+  <!-- Mapa con márgenes negativos para llegar a los bordes del card -->
+  <div
+    class="relative w-[calc(100%+2.50rem)] h-[400px] -mx-5 -mb-5 border-t border-gray-100 overflow-hidden rounded-b-2xl">
+    <div #mapContainer class="w-full h-full min-h-[400px]"></div>
+  </div>
+</app-card>
