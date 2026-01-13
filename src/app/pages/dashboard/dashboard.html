@@ -1,14 +1,13 @@
 <!--Contenedor header-->
 <div class="flex items-end justify-between w-full pb-5">
-    <app-header-main-content
-    [title]="header.title"
-    [description]="header.description"
-    ></app-header-main-content>
+    <app-header-main-content [title]="header.title" [description]="header.description"></app-header-main-content>
 
     <!--calendario-->
     <div class="flex items-center gap-1 ">
         <div class="text-gray-500">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M17 22v-3h-3v-2h3v-3h2v3h3v2h-3v3zM5 20q-.825 0-1.412-.587T3 18V6q0-.825.588-1.412T5 4h1V2h2v2h6V2h2v2h1q.825 0 1.413.588T19 6v6.1q-.5-.075-1-.075t-1 .075V10H5v8h7q0 .5.075 1t.275 1z"/>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                <path fill="currentColor"
+                    d="M17 22v-3h-3v-2h3v-3h2v3h3v2h-3v3zM5 20q-.825 0-1.412-.587T3 18V6q0-.825.588-1.412T5 4h1V2h2v2h6V2h2v2h1q.825 0 1.413.588T19 6v6.1q-.5-.075-1-.075t-1 .075V10H5v8h7q0 .5.075 1t.275 1z" />
             </svg>
         </div>
         <div>
@@ -19,17 +18,55 @@
 
 <!--Cards-->
 <div class="py-6 w-full">
-  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 w-full">
-    @for (item of cards; track item.titulo) {
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 w-full">
+        @for (item of cards; track item.titulo) {
         <app-card class="w-full">
-            <app-card-dashboard 
-                [titulo]="item.titulo" 
-                [valor]="item.valor" 
-                [porcentaje]="item.porcentaje"
-                [icon]="item.icon"
-                [isNegative]="item.isNegative ?? false">
+            <app-card-dashboard [titulo]="item.titulo" [valor]="item.valor" [porcentaje]="item.porcentaje"
+                [icon]="item.icon" [isNegative]="item.isNegative ?? false">
             </app-card-dashboard>
         </app-card>
-    }
-  </div>
+        }
+    </div>
+
+</div>
+
+<!--Contenido-->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+    <!--Region-->
+    <div class="lg:col-span-2">
+        <app-card>
+            <div class="flex justify-between items-start pb-8">
+                <div>
+                    <h5 class="text-lg font-bold text-gray-800">
+                        Shipment Volume by Region
+                    </h5>
+                    <span class="text-gray-400 text-sm">
+                        Last 30 Days Performance
+                    </span>
+                </div>
+                <div class="text-gray-400">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="1"></circle>
+                        <circle cx="19" cy="12" r="1"></circle>
+                        <circle cx="5" cy="12" r="1"></circle>
+                    </svg>
+                </div>
+            </div>
+
+            <!--Componente azules-->
+            <div class="flex justify-around items-end h-56 px-6">
+                @for (data of regionData; track data.region) {
+                <app-bard-chart-item class="flex-1" [region]="data.region" [porcentaje]="data.valor">
+                </app-bard-chart-item>
+                }
+            </div>
+        </app-card>
+    </div>
+
+    <!--Mapa-->
+    <div class="lg:col-span-1">
+        <app-live-fleet [truckBlue]="truckPositions.blue" [truckOrange]="truckPositions.orange">
+        </app-live-fleet>
+    </div>
 </div>

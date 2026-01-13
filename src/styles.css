@@ -1,4 +1,5 @@
 @import 'tailwindcss';
+@import 'leaflet/dist/leaflet.css';
 
 /* 1. Definición de variables base y lógica de Modo Oscuro */
 :root {
