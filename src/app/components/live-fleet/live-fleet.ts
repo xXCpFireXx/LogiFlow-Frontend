@@ -62,6 +62,11 @@ export class LiveFleet implements AfterViewInit, OnDestroy {
 
         L.marker([39.08, -106.52], { icon: blueIcon }).addTo(this.map);
         L.marker([39.05, -106.45], { icon: orangeIcon }).addTo(this.map);
+
+        // Asegurar que el mapa detecte el tamaño correcto del contenedor
+        setTimeout(() => {
+            this.map?.invalidateSize();
+        }, 100);
     }
 
     ngOnDestroy() {

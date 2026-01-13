@@ -55,7 +55,7 @@
             </div>
 
             <!--Componente azules-->
-            <div class="flex justify-around items-end h-96 px-6">
+            <div class="flex justify-around items-end h-86 px-6">
                 @for (data of regionData; track data.region) {
                 <app-bard-chart-item class="flex-1" [region]="data.region" [porcentaje]="data.valor">
                 </app-bard-chart-item>
@@ -65,7 +65,7 @@
     </div>
 
     <!--Mapa-->
-    <div class="lg:col-span-1">
+    <div class="lg:col-span-1 ">
         <app-live-fleet [truckBlue]="truckPositions.blue" [truckOrange]="truckPositions.orange">
         </app-live-fleet>
     </div>
