@@ -26,16 +26,29 @@ export class Report {
 
 cards = <CardReports[]>([
     {
-      titulo: 'Total Active Shipments',
+      titulo: 'Total Volume',
       valor: '1,240',
-      description: '5',
+      description: '+12% vs last month',
       icon: 'shipment'
     },
     {
       titulo: 'In Transit',
-      valor: '850',
-      description: '12',
+      valor: '450',
+      description: 'Active shipments',
       icon: 'transit'
+    },
+    {
+      titulo: 'On-Time Rate',
+      valor: '98.2%',
+      description: 'Withing delivery window',
+      icon: 'ontime'
+    },
+
+    {
+      titulo: 'Exceptions',
+      valor: '15',
+      description: 'Requieres Attention',
+      icon: 'exception'
     }
 
 ]);
