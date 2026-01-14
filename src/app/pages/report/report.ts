@@ -4,6 +4,13 @@ import { TitleHeaderMain } from '../../models/TitleHeaderMain';
 import { Card } from '../../components/card/card';
 import { CardReport } from "../../components/card-report/card-report";
 
+type CardReports = {
+  titulo: string,
+  valor: string,
+  description: string,
+  icon: string
+}
+
 @Component({
   selector: 'app-report',
   imports: [HeaderMainContent, Card, CardReport],
@@ -17,6 +24,20 @@ export class Report {
       description: 'Detailed insights into logistics operations',
     }
 
+cards = <CardReports[]>([
+    {
+      titulo: 'Total Active Shipments',
+      valor: '1,240',
+      description: '5',
+      icon: 'shipment'
+    },
+    {
+      titulo: 'In Transit',
+      valor: '850',
+      description: '12',
+      icon: 'transit'
+    }
 
+]);
 
 }
