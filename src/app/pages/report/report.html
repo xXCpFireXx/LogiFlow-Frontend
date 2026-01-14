@@ -29,13 +29,18 @@
 <div class="py-6 w-full">
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 w-full">
 
+        @for (item of cards; track item.titulo) {
         <app-card class="w-full">
             
             <app-card-report 
-
+                [titulo]="item.titulo"
+                [valor]="item.valor"
+                [description]="item.description"
+                [icon]="item.icon"
             >
             </app-card-report>
         </app-card>
+    }
         
     </div>
 
