@@ -3,6 +3,8 @@ import { HeaderMainContent } from '../../components/header-main-content/header-m
 import { TitleHeaderMain } from '../../models/TitleHeaderMain';
 import { Card } from '../../components/card/card';
 import { CardReport } from "../../components/card-report/card-report";
+import { BardChartItem } from "../../components/bard-chart-item/bard-chart-item";
+import { region } from '../../models/Region';
 
 type CardReports = {
   titulo: string,
@@ -13,7 +15,7 @@ type CardReports = {
 
 @Component({
   selector: 'app-report',
-  imports: [HeaderMainContent, Card, CardReport],
+  imports: [HeaderMainContent, Card, CardReport, BardChartItem],
   templateUrl: './report.html',
   styleUrl: './report.css',
 })
@@ -23,6 +25,13 @@ export class Report {
       title: 'Operacional Report',
       description: 'Detailed insights into logistics operations',
     }
+
+      regionData: region[] = [
+        { region: 'North', valor: 64 },
+        { region: 'South', valor: 85 },
+        { region: 'East', valor: 45 },
+        { region: 'West', valor: 55 }
+      ];
 
 cards = <CardReports[]>([
     {
