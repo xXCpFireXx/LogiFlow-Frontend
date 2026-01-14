@@ -3,6 +3,7 @@ import { Header } from './components/header/header';
 import { SideBar } from './components/side-bar/side-bar';
 import { Tracking } from './pages/tracking/tracking'
 import { Dashboard } from './pages/dashboard/dashboard';
+import { Report } from './pages/report/report';
 
 export const routes: Routes = [
   // {
@@ -22,6 +23,10 @@ export const routes: Routes = [
     component: Tracking,
   },
   {
+    path: 'report',
+    component: Report,
+  },
+    {
     path: '**',
     redirectTo: '',
   },
