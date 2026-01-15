@@ -26,42 +26,10 @@ export class Tracking {
 
   shipmentStatus = 'In Transit';
 
-  truckPositions = { blue: { x: 39.08, y: -106.52 }, orange: { x: 39.05, y: -106.45 } };
-
-  history = [
-    {
-      date: 'Oct 24, 2025',
-      time: '14:30',
-      status: 'Delivered',
-      location: 'Lyon, FR',
-      description: 'Package delivered to recipient',
-      active: false,
-    },
-    {
-      date: 'Oct 23, 2025',
-      time: '09:15',
-      status: 'Out for Delivery',
-      location: 'Lyon, FR',
-      description: 'Package is with the local courier',
-      active: true,
-    },
-    {
-      date: 'Oct 22, 2025',
-      time: '18:45',
-      status: 'In Transit',
-      location: 'Paris, FR',
-      description: 'Arrived at sorting center',
-      active: false,
-    },
-    {
-      date: 'Oct 21, 2025',
-      time: '10:00',
-      status: 'Processed',
-      location: 'Hamburg, DE',
-      description: 'Shipment picked up by carrier',
-      active: false,
-    },
-  ];
+  truckPositions = {
+    blue: { x: 45.7597, y: 4.8422 },
+    orange: { x: 45.7238, y: 4.8931 },
+  };
 
   header: TitleHeaderMain = {
     title: 'Tracking',
@@ -95,12 +63,52 @@ export class Tracking {
     },
   ];
 
+  history = [
+    {
+      date: 'Oct 24, 2025',
+      time: '14:30',
+      status: 'Delivered',
+      location: 'Lyon, FR',
+      description: 'Package delivered',
+      active: true,
+      completed: true,
+    },
+    {
+      date: 'Oct 23, 2025',
+      time: '09:15',
+      status: 'Out for Delivery',
+      location: 'Lyon, FR',
+      active: false,
+      completed: true,
+    },
+    {
+      date: 'Oct 22, 2025',
+      time: '18:45',
+      status: 'In Transit',
+      location: 'Paris, FR',
+      active: false,
+      completed: true,
+    },
+    {
+      date: 'Oct 21, 2025',
+      time: '10:00',
+      status: 'Processed',
+      location: 'Hamburg, DE',
+      active: false,
+      completed: true, // Esta listo -> false -> PENDIENTE (se marca gris)
+    },
+  ];
+
   onExport() {
     console.log('Exporting tracking data...');
   }
 
   shareTracking() {
     console.log('Opening new tracking modal...');
+  }
+
+  get currentStep() {
+    return this.history.find((step) => step.active) || this.history[0];
   }
 
   zoomIn() {

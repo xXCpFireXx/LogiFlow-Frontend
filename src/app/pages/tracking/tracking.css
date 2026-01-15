@@ -1,36 +1,29 @@
-/* Obligamos al componente a ser un bloque completo */
+/* tracking.css */
+
+/* 1. Forzamos al componente de tu compañero a usar el 100% real */
 .component-mapDashboard {
   display: block;
   height: 100%;
   width: 100%;
 }
 
-/* Entro al componente de card y matamos el padding de su Card */
-.component-mapDashboard ::ng-deep .app-card-content {
-  padding: 0 !important;
-  height: 100% !important;
-}
-
-/* Reseteo su contenedor de mapa */
+/* 2. Reseteamos el contenedor interno que tenía los cálculos raros */
 .component-mapDashboard ::ng-deep .relative.w-\[calc\(100\%\+2\.50rem\)\] {
-  margin: 0 !important;
-  width: 100% !important;
-  height: 100% !important;
+  margin: 0 !important;      /* Quitamos el -mx-5 y -mb-5 */
+  width: 100% !important;    /* Ancho exacto al contenedor */
+  height: 100% !important;   /* Alto exacto */
   position: absolute !important;
   top: 0;
   left: 0;
-  border: none !important;
 }
 
-/* Ocultamos su cabecera */
-.component-mapDashboard ::ng-deep div.flex.justify-between.items-center.pb-4 {
-  display: none !important;
+/* 3. Matamos el padding de la Card base para que el mapa toque los bordes */
+.component-mapDashboard ::ng-deep .app-card-content {
+  padding: 0 !important;
 }
 
-/* Aseguramos que el div del mapa (Leaflet) ocupe todo */
-.component-mapDashboard ::ng-deep #mapContainer,
-.component-mapDashboard ::ng-deep .leaflet-container {
-  height: 500px !important;
-  width: 100% !important;
-  border-radius: 1rem;
+/* 4. Aseguramos que el mapa de Leaflet rellene todo */
+.component-mapDashboard ::ng-deep #mapContainer {
+  height: 500px !important; /* O el alto que le diste a tu contenedor en el HTML */
+  border-radius: 0 0 1rem 1rem; /* Mantiene las esquinas de abajo redondeadas */
 }
