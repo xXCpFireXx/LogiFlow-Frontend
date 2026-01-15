@@ -13,8 +13,8 @@
 
   <div class="flex flex-wrap items-center gap-3 w-full min-[1048px]:w-auto justify-start min-[1048px]:justify-end">
     <button (click)="onExport()" class="group flex items-center gap-2 px-4 py-2 bg-white text-gray-700 border border-gray-200 rounded-lg font-medium hover:bg-[#e7f2fd] hover:border-[#137fec]/20 transition-all cursor-pointer shadow-sm">
-        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="transition-colors group-hover:text-[#137fec]"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
-        <span class="transition-colors group-hover:text-[#137fec]">Download</span>
+      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="transition-colors group-hover:text-[#137fec]"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+      <span class="transition-colors group-hover:text-[#137fec]">Download</span>
     </button>
     <button (click)="shareTracking()" class="group flex items-center gap-2 px-4 py-2 bg-white text-gray-700 border border-gray-200 rounded-lg font-medium transition-all cursor-pointer shadow-sm hover:bg-[#137fec] hover:border-[#137fec]/20">
         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="transition-colors group-hover:text-white"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line></svg>
@@ -23,7 +23,7 @@
   </div>
 </section>
 
-<div class="py-6 w-full">
+<section class="py-6 w-full">
   <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 w-full">
     @for (item of details; track item.label) {
       <app-card>
@@ -57,63 +57,66 @@
               {{item.subtext}}
             </span>
           </div>
-
         </div>
       </app-card>
     }
   </div>
-</div>
+</section>
 
 
 <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 w-full mt-6">
 
-    <div class="lg:col-span-1">
+  <div class="lg:col-span-1">
     <app-card class="h-full">
-
+      <div class="p-2">
         <div class="flex items-center gap-2 mb-8">
-            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1e293b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
-            <h3 class="text-xl font-bold text-slate-800 tracking-tight">Shipment History</h3>
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8V12L15 15" /><circle cx="12" cy="12" r="10" /></svg>
+          <h3 class="text-lg font-bold text-slate-800 tracking-tight">Shipment History</h3>
         </div>
 
-          <div class="absolute left-[19px] top-2 bottom-2 w-0.5 bg-slate-100"></div>
+        <div class="relative pl-0.5">
+          @for (step of history; track step.status; let i = $index) {
+            <div class="relative flex gap-5 mb-8 last:mb-0">
 
-          @for (step of history; track step.status) {
-            <div class="relative flex gap-6 mb-10 last:mb-0">
+              <div class="relative flex flex-col items-center min-w-[32px]">
 
-              <div class="relative z-10 flex flex-col items-center">
                 <div [class]="step.active ?
-                  'h-10 w-10 rounded-full bg-white border-[6px] border-blue-500 shadow-sm flex items-center justify-center' :
+                  'h-8 w-8 rounded-full bg-white border-[3px] border-blue-500 shadow-lg shadow-blue-300 flex items-center justify-center z-20 animate-pulse-slow' :
                   (step.completed ?
-                    'h-10 w-10 rounded-full bg-blue-500 text-white flex items-center justify-center shadow-md' :
-                    'h-10 w-10 rounded-full bg-white border-2 border-slate-200 text-slate-300 flex items-center justify-center')">
+                    'h-8 w-8 rounded-full bg-blue-500 text-white flex items-center justify-center z-10 shadow-sm' :
+                    'h-8 w-8 rounded-full bg-white border-2 border-slate-200 text-slate-300 flex items-center justify-center z-10')">
 
                   @if (step.active) {
-                    <div class="h-2 w-2 rounded-full bg-blue-500"></div>
-                  } @else {
-                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-                      <polyline points="20 6 9 17 4 12"></polyline>
-                    </svg>
+                    <div class="h-2 w-2 rounded-full bg-blue-500 shadow-[0_0_8px_rgba(59,130,246,0.6)]"></div>
+                  } @else if (step.completed) {
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
                   }
                 </div>
-                @if (history.indexOf(step) < history.length - 1) {
-                  <div class="absolute top-10 w-0.5 h-10"
+
+                @if (i < history.length - 1) {
+                  <div class="absolute top-9 bottom-[-28px] w-[2px] rounded-full"
                     [class]="step.completed ? 'bg-blue-500' : 'bg-slate-100'">
                   </div>
                 }
               </div>
 
-              <div class="flex-1 pt-1">
-                <h4 [class]="step.active ? 'text-base font-bold text-slate-900' : 'text-base font-bold text-slate-700'">
+              <div class="flex flex-col pt-0.5">
+                <h4 [class]="step.active ? 'text-[15px] font-bold text-slate-900 leading-tight' : 'text-[15px] font-bold text-slate-700 leading-tight'">
                   {{ step.status }}
                 </h4>
-                <p class="text-sm text-slate-500 font-medium">{{ step.location }}</p>
-                <p class="text-xs text-blue-500 font-semibold mt-1">{{ step.date }}, {{ step.time }}</p>
+                <p class="text-sm text-slate-400 font-medium mt-0.5">{{ step.location }}</p>
+
+                <p [class]="step.completed || step.active ? 'text-[11px] text-blue-500 font-semibold mt-1' : 'text-[11px] text-slate-400 mt-1'">
+                  {{ step.date }} @if(step.time){, {{ step.time }}}
+                  @if(step.active){ <span class="ml-1 opacity-70"></span> }
+                </p>
               </div>
             </div>
-          }
-
-    </app-card>
-  </div>
+            }
+          </div>
+        </div>
+      </app-card>
+    </div>
 
     <div class="lg:col-span-2 relative rounded-2xl border border-gray-100 shadow-sm overflow-hidden h-[500px]">
         <app-live-fleet
@@ -123,22 +126,22 @@
         </app-live-fleet>
 
         <div class="absolute top-6 left-6 z-[1000] bg-white px-4 py-3 rounded-xl shadow-xl border border-slate-100">
-            <span class="block text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1">Current Location</span>
-            <div class="flex items-center gap-2">
-                <div class="h-2.5 w-2.5 rounded-full bg-emerald-500 animate-pulse"></div>
-                <span class="text-sm font-bold text-slate-800">
-                  {{ currentStep.location }}
-                </span>
-            </div>
+          <span class="block text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1">Current Location</span>
+          <div class="flex items-center gap-2">
+              <div class="h-2.5 w-2.5 rounded-full bg-emerald-500 animate-pulse"></div>
+              <span class="text-sm font-bold text-slate-800">
+                {{ currentStep.location }}
+              </span>
+          </div>
         </div>
 
         <div class="absolute bottom-6 right-6 z-[1000] flex flex-col gap-2">
-            <button (click)="zoomIn()" class="w-10 h-10 bg-white rounded-xl shadow-lg flex items-center justify-center text-slate-600 hover:bg-[#e7f2fd] border border-slate-100 cursor-pointer active:scale-95 transition-all">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
-            </button>
-            <button (click)="zoomOut()" class="w-10 h-10 bg-white rounded-xl shadow-lg flex items-center justify-center text-slate-600 hover:bg-[#e7f2fd] border border-slate-100 cursor-pointer active:scale-95 transition-all">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line></svg>
-            </button>
+          <button (click)="zoomIn()" class="w-10 h-10 bg-white rounded-xl shadow-lg flex items-center justify-center text-slate-600 hover:bg-[#e7f2fd] border border-slate-100 cursor-pointer active:scale-95 transition-all">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+          </button>
+          <button (click)="zoomOut()" class="w-10 h-10 bg-white rounded-xl shadow-lg flex items-center justify-center text-slate-600 hover:bg-[#e7f2fd] border border-slate-100 cursor-pointer active:scale-95 transition-all">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+          </button>
         </div>
     </div>
 </div>
