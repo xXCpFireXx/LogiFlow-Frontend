@@ -1,0 +1,36 @@
+/* Obligamos al componente a ser un bloque completo */
+.component-mapDashboard {
+  display: block;
+  height: 100%;
+  width: 100%;
+}
+
+/* Entro al componente de card y matamos el padding de su Card */
+.component-mapDashboard ::ng-deep .app-card-content {
+  padding: 0 !important;
+  height: 100% !important;
+}
+
+/* Reseteo su contenedor de mapa */
+.component-mapDashboard ::ng-deep .relative.w-\[calc\(100\%\+2\.50rem\)\] {
+  margin: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  position: absolute !important;
+  top: 0;
+  left: 0;
+  border: none !important;
+}
+
+/* Ocultamos su cabecera */
+.component-mapDashboard ::ng-deep div.flex.justify-between.items-center.pb-4 {
+  display: none !important;
+}
+
+/* Aseguramos que el div del mapa (Leaflet) ocupe todo */
+.component-mapDashboard ::ng-deep #mapContainer,
+.component-mapDashboard ::ng-deep .leaflet-container {
+  height: 500px !important;
+  width: 100% !important;
+  border-radius: 1rem;
+}
