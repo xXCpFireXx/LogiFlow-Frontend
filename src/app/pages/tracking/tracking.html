@@ -119,10 +119,9 @@
 
     <div class="lg:col-span-2 relative rounded-2xl border border-gray-100 shadow-sm overflow-hidden h-[500px]">
         <app-live-fleet
-            #mapDashboard
-            [truckBlue]="truckPositions.blue"
-            [truckOrange]="truckPositions.orange"
-            class="component-mapDashboard">
+          #mapDashboard
+          [truckBlue]="truckPositions.blue"
+          [truckOrange]="truckPositions.orange">
         </app-live-fleet>
 
         <div class="absolute top-6 left-6 z-[1000] bg-white px-4 py-3 rounded-xl shadow-xl border border-slate-100">
@@ -145,3 +144,4 @@
         </div>
     </div>
 </div>
+
