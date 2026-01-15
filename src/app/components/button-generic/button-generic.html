@@ -1,0 +1,10 @@
+<button (click)="btnClick.emit()"
+  class="group flex items-center justify-center gap-2 px-4 py-2 border rounded-lg font-medium transition-all cursor-pointer shadow-sm w-full min-[1048px]:w-auto bg-white text-gray-700 border-gray-200"
+  [class.hover:bg-[#137fec]]="variant() === 'primary'"
+  [class.hover:text-white]="variant() === 'primary'"
+  [class.hover:bg-[#e7f2fd]]="variant() === 'secondary'"
+  [class.hover:border-[#137fec]/20]="true">
+  <ng-content select="[icon]"></ng-content>
+
+  <span>{{ label() }}</span>
+</button>

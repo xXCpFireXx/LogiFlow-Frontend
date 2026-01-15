@@ -4,6 +4,7 @@ import { TitleCasePipe, CommonModule } from '@angular/common';
 import { Card as CardGeneric } from '../../components/card/card';
 import { HeaderMainContent } from '../../components/header-main-content/header-main-content';
 import { TitleHeaderMain } from '../../models/TitleHeaderMain';
+import { ButtonGeneric } from '../../components/button-generic/button-generic';
 import { StatusBadge } from '../../components/status-badge/status-badge';
 import { LiveFleet } from '../../components/live-fleet/live-fleet';
 
@@ -17,7 +18,7 @@ type TrackingDetail = {
 @Component({
   selector: 'app-tracking',
   standalone: true,
-  imports: [CardGeneric, HeaderMainContent, TitleCasePipe, StatusBadge, LiveFleet, CommonModule],
+  imports: [CardGeneric, HeaderMainContent, TitleCasePipe, ButtonGeneric, StatusBadge, LiveFleet, CommonModule],
   templateUrl: './tracking.html',
   styleUrl: './tracking.css',
 })
