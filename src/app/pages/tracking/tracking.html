@@ -69,13 +69,12 @@
 
     <div class="lg:col-span-1">
     <app-card class="h-full">
-      <div class="p-4">
+
         <div class="flex items-center gap-2 mb-8">
             <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1e293b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
             <h3 class="text-xl font-bold text-slate-800 tracking-tight">Shipment History</h3>
         </div>
 
-        <div class="relative pl-2">
           <div class="absolute left-[19px] top-2 bottom-2 w-0.5 bg-slate-100"></div>
 
           @for (step of history; track step.status) {
@@ -112,8 +111,7 @@
               </div>
             </div>
           }
-        </div>
-      </div>
+
     </app-card>
   </div>
 
