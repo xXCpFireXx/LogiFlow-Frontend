@@ -1,12 +1,12 @@
 import { Component, input, AfterViewInit, ElementRef, ViewChild, OnDestroy, PlatformRef, inject, PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
-import { Card } from '../card/card';
+
 import * as L from 'leaflet';
 
 @Component({
     selector: 'app-live-fleet',
     standalone: true,
-    imports: [Card],
+    imports: [],
     templateUrl: './live-fleet.html',
     styleUrl: './live-fleet.css',
 })
@@ -17,7 +17,7 @@ export class LiveFleet implements AfterViewInit, OnDestroy {
     truckOrange = input<{ x: number, y: number }>({ x: 60, y: 70 });
 
     @ViewChild('mapContainer') mapContainer!: ElementRef;
-    private map?: L.Map;
+    public map?: L.Map;
 
     ngAfterViewInit() {
         if (isPlatformBrowser(this.platformId)) {
