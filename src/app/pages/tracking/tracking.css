@@ -1,0 +1,19 @@
+@keyframes pulse-soft {
+
+  0%,
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.5), 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  }
+
+  50% {
+    transform: scale(1.08);
+    /* Crece suave */
+    box-shadow: 0 0 20px 8px rgba(59, 130, 246, 0.3), 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  }
+}
+
+.animate-pulse-slow {
+  /* Duración de 2.5 seg */
+  animation: pulse-soft 2.5s infinite ease-in-out;
+}
