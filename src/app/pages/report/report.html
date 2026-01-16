@@ -37,51 +37,9 @@
 
 
 <!--Estadisticas-->
-
-
-<div class="flex justify-between mb-4">
-    <div>
-        <app-card>
-            <!--componente barras azules-->
-            <div class="flex justify-around items-end h-86 px-6">
-                @for (data of regionData; track data.region) {
-                <app-bard-chart-item class="flex-1" [region]="data.region" [porcentaje]="data.valor">
-                </app-bard-chart-item>
-                }
-            </div>
-            <!--span y logos-->
-            <div class="flex items-center justify-center h-10">
-                <div class="flex items-center ">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <circle cx="12" cy="12" r="1"></circle>
-                    </svg>
-
-                    <span>
-                        Domestic
-                    </span>
-                </div>
-                <div class="flex items-center">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <circle cx="12" cy="12" r="1"></circle>
-
-                    </svg>
-                    <span>
-                        International
-                    </span>
-
-                </div>
-            </div>
-        </app-card>
+<app-card>
+    <!--Estadistica ondulada-->
+    <div class="py-6">
+        <app-stadistics-grapic></app-stadistics-grapic>
     </div>
-
-    <div class="w-full">
-        <app-card>
-
-        </app-card>
-
-    </div>
-
-</div>
-
+</app-card>

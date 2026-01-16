@@ -1,0 +1,20 @@
+:host {
+    display: block;
+    width: 100%;
+}
+
+.bg-white {
+    background-color: #ffffff;
+}
+
+.shadow-sm {
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+}
+
+.border-slate-100 {
+    border-color: #f1f5f9;
+}
+
+.rounded-2xl {
+    border-radius: 1rem;
+}

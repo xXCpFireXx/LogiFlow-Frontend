@@ -1,0 +1,45 @@
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-6 w-full">
+    <!-- Tarjeta de Volumen de Envíos Semanales -->
+    <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
+        <div class="flex items-center justify-between mb-6">
+            <div>
+                <h3 class="text-slate-900 font-bold text-lg">Weekly Shipment Volume</h3>
+                <p class="text-slate-500 text-sm">Domestic vs International</p>
+            </div>
+            <!-- Botón de opciones (tres puntos) -->
+            <button class="text-slate-400 hover:text-slate-600 transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="1" />
+                    <circle cx="19" cy="12" r="1" />
+                    <circle cx="5" cy="12" r="1" />
+                </svg>
+            </button>
+        </div>
+        <div id="chart-volume">
+            <!-- Gráfico de barras de ApexCharts -->
+            <apx-chart [series]="volumeChartOptions.series!" [chart]="volumeChartOptions.chart!"
+                [dataLabels]="volumeChartOptions.dataLabels!"
+                [plotOptions]="{ bar: { columnWidth: '45%', borderRadius: 4 } }" [xaxis]="volumeChartOptions.xaxis!"
+                [yaxis]="volumeChartOptions.yaxis!" [colors]="volumeChartOptions.colors!"
+                [fill]="volumeChartOptions.fill!" [grid]="volumeChartOptions.grid!"
+                [legend]="volumeChartOptions.legend!"></apx-chart>
+        </div>
+    </div>
+
+    <!-- Tarjeta de Rendimiento de Entrega -->
+    <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
+        <div class="mb-6">
+            <h3 class="text-slate-900 font-bold text-lg">Delivery Performance</h3>
+            <p class="text-slate-500 text-sm">Average Transit Time (Days)</p>
+        </div>
+        <div id="chart-performance">
+            <!-- Gráfico de área/línea de ApexCharts -->
+            <apx-chart [series]="performanceChartOptions.series!" [chart]="performanceChartOptions.chart!"
+                [xaxis]="performanceChartOptions.xaxis!" [yaxis]="performanceChartOptions.yaxis!"
+                [stroke]="performanceChartOptions.stroke!" [tooltip]="performanceChartOptions.tooltip!"
+                [dataLabels]="performanceChartOptions.dataLabels!" [colors]="performanceChartOptions.colors!"
+                [fill]="performanceChartOptions.fill!" [grid]="performanceChartOptions.grid!"></apx-chart>
+        </div>
+    </div>
+</div>

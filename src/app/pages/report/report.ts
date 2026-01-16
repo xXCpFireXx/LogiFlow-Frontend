@@ -3,8 +3,9 @@ import { HeaderMainContent } from '../../components/header-main-content/header-m
 import { TitleHeaderMain } from '../../models/TitleHeaderMain';
 import { Card } from '../../components/card/card';
 import { CardReport } from "../../components/card-report/card-report";
-import { BardChartItem } from "../../components/bard-chart-item/bard-chart-item";
+import { ReportCharts } from '../../components/report-charts/report-charts';
 import { region } from '../../models/Region';
+import { StadisticsGrapic } from '../../components/stadistics-grapic/stadistics-grapic';
 
 type CardReports = {
   titulo: string,
@@ -15,25 +16,25 @@ type CardReports = {
 
 @Component({
   selector: 'app-report',
-  imports: [HeaderMainContent, Card, CardReport, BardChartItem],
+  imports: [HeaderMainContent, Card, CardReport, ReportCharts, StadisticsGrapic],
   templateUrl: './report.html',
   styleUrl: './report.css',
 })
 export class Report {
 
-    header: TitleHeaderMain = {
-      title: 'Operacional Report',
-      description: 'Detailed insights into logistics operations',
-    }
+  header: TitleHeaderMain = {
+    title: 'Operacional Report',
+    description: 'Detailed insights into logistics operations',
+  }
 
-      regionData: region[] = [
-        { region: 'North', valor: 64 },
-        { region: 'South', valor: 85 },
-        { region: 'East', valor: 45 },
-        { region: 'West', valor: 55 }
-      ];
+  regionData: region[] = [
+    { region: 'North', valor: 64 },
+    { region: 'South', valor: 85 },
+    { region: 'East', valor: 45 },
+    { region: 'West', valor: 55 }
+  ];
 
-cards = <CardReports[]>([
+  cards = <CardReports[]>([
     {
       titulo: 'Total Volume',
       valor: '1,240',
@@ -60,6 +61,6 @@ cards = <CardReports[]>([
       icon: 'exception'
     }
 
-]);
+  ]);
 
 }
