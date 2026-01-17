@@ -18,7 +18,15 @@ type TrackingDetail = {
 @Component({
   selector: 'app-tracking',
   standalone: true,
-  imports: [CardGeneric, HeaderMainContent, TitleCasePipe, ButtonGeneric, StatusBadge, LiveFleet, CommonModule],
+  imports: [
+    CardGeneric,
+    HeaderMainContent,
+    TitleCasePipe,
+    ButtonGeneric,
+    StatusBadge,
+    LiveFleet,
+    CommonModule,
+  ],
   templateUrl: './tracking.html',
   styleUrl: './tracking.css',
 })
@@ -100,6 +108,22 @@ export class Tracking {
     },
   ];
 
+  cargoDetails = [
+    { label: 'Package Type', value: 'Standard Pallet (EUR)' },
+    { label: 'Quantity', value: '12 Units' },
+    { label: 'Dimensions', value: '120 x 80 x 144 cm' },
+    { label: 'Total Volume', value: '1.38 CBM' },
+    { label: 'Commodity', value: 'General Cargo' },
+    { label: 'Stackable', value: 'No' },
+    { label: 'HS Code', value: '8517.12.00' },
+  ];
+
+  documents = [
+    { name: 'Bill of Lading (BOL)', format: 'PDF', size: '2.4 MB' },
+    { name: 'Commercial Invoice', format: 'PDF', size: '1.1 MB' },
+    { name: 'Packing List', format: 'PDF', size: '0.8 MB' },
+  ];
+
   onExport() {
     console.log('Exporting tracking data...');
   }
@@ -124,5 +148,11 @@ export class Tracking {
     if (mapInstance) {
       mapInstance.zoomOut();
     }
+  }
+
+  downloadDocument(doc: any) {
+    console.log(`Iniciando descarga de: ${doc.name}`);
+    // Lógica de descarga (ejemplo)
+    alert(`Descargando ${doc.name}...`);
   }
 }
