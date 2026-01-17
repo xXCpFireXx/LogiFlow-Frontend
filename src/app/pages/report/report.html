@@ -3,13 +3,7 @@
 
     <!--Botones Componente-->
     <div class="flex items-center gap-1 ">
-        <div class="text-gray-500">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                <path fill="currentColor"
-                    d="M17 22v-3h-3v-2h3v-3h2v3h3v2h-3v3zM5 20q-.825 0-1.412-.587T3 18V6q0-.825.588-1.412T5 4h1V2h2v2h6V2h2v2h1q.825 0 1.413.588T19 6v6.1q-.5-.075-1-.075t-1 .075V10H5v8h7q0 .5.075 1t.275 1z" />
-            </svg>
-        </div>
-        <div>
+        <div class="flex gap-20">
             <div>
                 <button>
                     hola
@@ -29,14 +23,65 @@
 <div class="py-6 w-full">
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 w-full">
 
+        @for (item of cards; track item.titulo) {
         <app-card class="w-full">
-            
-            <app-card-report 
 
-            >
+            <app-card-report [titulo]="item.titulo" [valor]="item.valor" [description]="item.description"
+                [icon]="item.icon">
             </app-card-report>
         </app-card>
-        
+        }
     </div>
 
 </div>
+
+
+<!--Estadisticas-->
+
+
+<div class="flex justify-between mb-4">
+    <div>
+        <app-card>
+            <!--componente barras azules-->
+            <div class="flex justify-around items-end h-86 px-6">
+                @for (data of regionData; track data.region) {
+                <app-bard-chart-item class="flex-1" [region]="data.region" [porcentaje]="data.valor">
+                </app-bard-chart-item>
+                }
+            </div>
+            <!--span y logos-->
+            <div class="flex items-center justify-center h-10">
+                <div class="flex items-center ">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="1"></circle>
+                    </svg>
+
+                    <span>
+                        Domestic
+                    </span>
+                </div>
+                <div class="flex items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="1"></circle>
+
+                    </svg>
+                    <span>
+                        International
+                    </span>
+
+                </div>
+            </div>
+        </app-card>
+    </div>
+
+    <div class="w-full">
+        <app-card>
+
+        </app-card>
+
+    </div>
+
+</div>
+
