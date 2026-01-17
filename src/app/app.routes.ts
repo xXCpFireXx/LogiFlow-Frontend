@@ -6,14 +6,6 @@ import { Dashboard } from './pages/dashboard/dashboard';
 import { Report } from './pages/report/report';
 
 export const routes: Routes = [
-  // {
-  //   path: 'header',
-  //   component: Header,
-  // },
-  // {
-  //   path: '',
-  //   component: SideBar,
-  // },
   {
     path: '',
     component: Dashboard,
@@ -26,7 +18,7 @@ export const routes: Routes = [
     path: 'report',
     component: Report,
   },
-    {
+  {
     path: '**',
     redirectTo: '',
   },
