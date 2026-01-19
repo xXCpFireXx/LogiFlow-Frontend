@@ -1,0 +1,44 @@
+<div class="flex items-end justify-between w-full pb-5">
+  <app-header-main-content [title]="header.title" [description]="header.description"></app-header-main-content>
+
+  <!--Botones Componente-->
+  <div class="flex items-center gap-1 ">
+    <div class="flex gap-20">
+      <div>
+        <button>
+          hola
+        </button>
+      </div>
+      <div>
+        <button>
+          Hola
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!--Card-->
+<div class="py-6 w-full">
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 w-full">
+
+    @for (item of cards; track item.titulo) {
+    <app-card class="w-full">
+
+      <app-card-report [titulo]="item.titulo" [valor]="item.valor" [description]="item.description" [icon]="item.icon">
+      </app-card-report>
+    </app-card>
+    }
+  </div>
+
+</div>
+
+
+<!--Estadisticas-->
+<app-card>
+  <!--Estadistica ondulada-->
+  <div class="py-6">
+    <app-stadistics-grapic></app-stadistics-grapic>
+  </div>
+</app-card>

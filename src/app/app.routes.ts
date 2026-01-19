@@ -1,27 +1,37 @@
 import { Routes } from '@angular/router';
-import { Header } from './components/header/header';
-import { SideBar } from './components/side-bar/side-bar';
-import { Tracking } from './pages/tracking/tracking'
-import { Dashboard } from './pages/dashboard/dashboard';
-import { Report } from './pages/report/report';
-import { Setting } from './pages/setting/setting';
+import { MainLayout } from './core/layout/main-layout/main-layout';
 
 export const routes: Routes = [
   {
     path: '',
-    component: Dashboard,
-  },
-  {
-    path: 'tracking',
-    component: Tracking,
-  },
-  {
-    path: 'report',
-    component: Report,
-  },
-  {
-    path: 'setting',
-    component: Setting,
+    component: MainLayout,
+    children: [
+      {
+        path: 'dashboard',
+        loadComponent: () =>
+          import('./dashboard/dashboard').then(m => m.Dashboard),
+      },
+      {
+        path: 'tracking',
+        loadComponent: () =>
+          import('./tracking/tracking').then(m => m.Tracking),
+      },
+      {
+        path: 'report',
+        loadComponent: () =>
+          import('./report/report').then(m => m.Report),
+      },
+      {
+        path: 'setting',
+        loadComponent: () =>
+          import('./setting/setting').then(m => m.Setting),
+      },
+      {
+        path: '',
+        redirectTo: 'dashboard',
+        pathMatch: 'full',
+      },
+    ],
   },
   {
     path: '**',
