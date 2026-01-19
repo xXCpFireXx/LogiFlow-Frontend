@@ -1,10 +1,10 @@
 import { Routes } from '@angular/router';
-import { Header } from './components/header/header';
-import { SideBar } from './components/side-bar/side-bar';
-import { Tracking } from './pages/tracking/tracking'
-import { Dashboard } from './pages/dashboard/dashboard';
-import { Report } from './pages/report/report';
-import { Setting } from './pages/setting/setting';
+import { Header } from './core/layout/header/header';
+import { SideBar } from './core/layout/side-bar/side-bar';
+import { Tracking } from './tracking/tracking'
+import { Dashboard } from './dashboard/dashboard';
+import { Report } from './report/report';
+import { Setting } from './setting/setting';
 
 export const routes: Routes = [
   {

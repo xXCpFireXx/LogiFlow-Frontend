@@ -1,11 +1,11 @@
 import { Component, HostListener, ElementRef } from '@angular/core';
-import { HeaderMainContent } from '../../components/header-main-content/header-main-content';
-import { TitleHeaderMain } from '../../models/TitleHeaderMain';
-import { Card as CardGeneric } from '../../components/card/card';
+import { HeaderMainContent } from '../shared/header-main-content/header-main-content';
+import { TitleHeaderMain } from '../models/TitleHeaderMain';
+import { Card as CardGeneric } from '../shared/card/card';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { InputSelect } from '../../components/input-select/input-select';
-import { ToggleSwitch } from '../../components/toggle-switch/toggle-switch';
+import { InputSelect } from './input-select/input-select';
+import { ToggleSwitch } from './toggle-switch/toggle-switch';
 
 @Component({
   selector: 'app-setting',

@@ -1,7 +1,7 @@
 import { Component, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { SideBar } from './components/side-bar/side-bar';
-import { Header } from './components/header/header';
+import { SideBar } from './core/layout/side-bar/side-bar';
+import { Header } from './core/layout/header/header';
 import { CommonModule } from '@angular/common';
 
 @Component({

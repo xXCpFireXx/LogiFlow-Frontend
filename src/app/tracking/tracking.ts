@@ -1,12 +1,12 @@
 import { Component, ViewChild } from '@angular/core';
 // import { SideBar } from '../../components/side-bar/side-bar';
 import { TitleCasePipe, CommonModule } from '@angular/common';
-import { Card as CardGeneric } from '../../components/card/card';
-import { HeaderMainContent } from '../../components/header-main-content/header-main-content';
-import { TitleHeaderMain } from '../../models/TitleHeaderMain';
-import { ButtonGeneric } from '../../components/button-generic/button-generic';
-import { StatusBadge } from '../../components/status-badge/status-badge';
-import { LiveFleet } from '../../components/live-fleet/live-fleet';
+import { Card as CardGeneric } from '../shared/card/card';
+import { HeaderMainContent } from '../shared/header-main-content/header-main-content';
+import { TitleHeaderMain } from '../models/TitleHeaderMain';
+import { ButtonGeneric } from '../shared/button-generic/button-generic';
+import { StatusBadge } from '../shared/status-badge/status-badge';
+import { LiveFleet } from '../shared/live-fleet/live-fleet';
 
 type TrackingDetail = {
   type: 'origin' | 'destination' | 'carrier' | 'weight';
