@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import { CardDashboard } from '../components/card-dashboard/card-dashboard';
+import { CardDashboard } from './card-dashboard/card-dashboard';
 import { Card as CardGeneric } from '../shared/card/card';
 import { HeaderMainContent } from '../shared/header-main-content/header-main-content';
 import { TitleHeaderMain } from '../models/TitleHeaderMain';
 import { region } from '../models/Region';
-import { BardChartItem } from '../components/bard-chart-item/bard-chart-item';
+import { BardChartItem } from '../shared/bard-chart-item/bard-chart-item';
 import { LiveFleet } from '../shared/live-fleet/live-fleet';
 
 

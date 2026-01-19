@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import { HeaderMainContent } from '../shared/header-main-content/header-main-content';
-import { TitleHeaderMain } from '../models/TitleHeaderMain';
 import { Card } from '../shared/card/card';
-import { CardReport } from "../components/card-report/card-report";
-import { BardChartItem } from "../components/bard-chart-item/bard-chart-item";
+import { HeaderMainContent } from '../shared/header-main-content/header-main-content';
+import { CardReport } from './card-report/card-report';
+import { TitleHeaderMain } from '../models/TitleHeaderMain';
 import { region } from '../models/Region';
+import { StadisticsGrapic } from "./stadistics-grapic/stadistics-grapic";
 
 type CardReports = {
   titulo: string,
@@ -15,7 +15,7 @@ type CardReports = {
 
 @Component({
   selector: 'app-report',
-  imports: [HeaderMainContent, Card, CardReport, BardChartItem],
+  imports: [HeaderMainContent, Card, CardReport, StadisticsGrapic],
   templateUrl: './report.html',
   styleUrl: './report.css',
 })
