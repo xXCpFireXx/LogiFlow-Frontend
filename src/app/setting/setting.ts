@@ -4,12 +4,21 @@ import { FormsModule } from '@angular/forms';
 import { HeaderMainContent } from '../shared/header-main-content/header-main-content';
 import { Card as CardGeneric } from '../shared/card/card';
 import { GeneralSettings } from './general-settings/general-settings';
-import { SETTING_HEADER, DROPDOWNS, USER_PROFILE_MOCK } from './setting.mock';
+
+import { InputGeneric } from '../shared/input-generic/input-generic';
+import { SETTING_HEADER, DROPDOWNS, USER_PROFILE_MOCK, ICONS } from './setting.mock';
 
 @Component({
   selector: 'app-setting',
   standalone: true,
-  imports: [HeaderMainContent, CardGeneric, CommonModule, FormsModule, GeneralSettings],
+  imports: [
+    HeaderMainContent,
+    CardGeneric,
+    CommonModule,
+    FormsModule,
+    GeneralSettings,
+    InputGeneric,
+  ],
   templateUrl: './setting.html',
   styleUrl: './setting.css',
 })
@@ -18,6 +27,7 @@ export class Setting {
   dropdowns = DROPDOWNS;
 
   userProfile = { ...USER_PROFILE_MOCK };
+  icons = ICONS;
 
   activeDropdown: string = '';
 

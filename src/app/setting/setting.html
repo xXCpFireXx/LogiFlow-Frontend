@@ -17,7 +17,7 @@
   </app-card>
 
   <app-card>
-    <div class="flex flex-col gap-8">
+    <div class="flex flex-col gap-6">
       <div class="flex items-center gap-3 border-b border-slate-200 pb-4">
         <div class="text-blue-500">
           <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
@@ -25,7 +25,46 @@
         <h3 class="text-lg font-bold text-slate-800">Profile Information</h3>
       </div>
 
+      <div class="flex items-center gap-5">
+        <div class="w-20 h-20 rounded-full bg-slate-100 border-white shadow-sm flex items-center justify-center overflow-hidden">
+          <img src="https://ui-avatars.com/api/?name=Cristian+Penagos&background=f1f5f9&color=64748b" alt="Avatar">
+        </div>
+        <div class="flex flex-col gap-1">
+          <button class="text-blue-500 font-medium text-sm hover:underline w-fit">Change Avatar</button>
+          <span class="text-xs text-slate-400">JPG, GIF or PNG. Max 1MB.</span>
+        </div>
       </div>
+
+      <div class="flex flex-col gap-6">
+        <app-input-generic
+          label="Full Name"
+          [(value)]="userProfile.fullName"
+          [iconPath]="icons.USER">
+        </app-input-generic>
+
+        <app-input-generic
+          label="Email Address"
+          [disabled]="true"
+          [(value)]="userProfile.email"
+          [iconPath]="icons.MAIL">
+        </app-input-generic>
+
+        <app-input-generic
+          label="Role"
+          [disabled]="true"
+          [(value)]="userProfile.role"
+          [iconPath]="icons.SHIELD">
+        </app-input-generic>
+      </div>
+
+      <div class="pt-2">
+        <button (click)="updatePassword()"
+                class="w-full flex items-center justify-center gap-2 p-3 rounded-xl border border-slate-200 text-slate-700 font-bold text-sm hover:bg-slate-50 transition-colors">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3m-3-3l-2.5-2.5"/></svg>
+          Update Password
+        </button>
+      </div>
+    </div>
   </app-card>
 
 </div>
