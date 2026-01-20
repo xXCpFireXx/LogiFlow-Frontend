@@ -4,20 +4,21 @@ import { FormsModule } from '@angular/forms';
 import { HeaderMainContent } from '../shared/header-main-content/header-main-content';
 import { Card as CardGeneric } from '../shared/card/card';
 import { GeneralSettings } from './general-settings/general-settings';
-
-import { InputGeneric } from '../shared/input-generic/input-generic';
+import { ButtonGeneric } from '../shared/button-generic/button-generic';
 import { SETTING_HEADER, DROPDOWNS, USER_PROFILE_MOCK, ICONS } from './setting.mock';
+import { ProfileInformation } from './profile-information/profile-information';
 
 @Component({
   selector: 'app-setting',
   standalone: true,
   imports: [
     HeaderMainContent,
+    ButtonGeneric,
     CardGeneric,
     CommonModule,
     FormsModule,
     GeneralSettings,
-    InputGeneric,
+    ProfileInformation,
   ],
   templateUrl: './setting.html',
   styleUrl: './setting.css',
@@ -44,7 +45,20 @@ export class Setting {
     this.activeDropdown = '';
   }
 
-  updatePassword() {
+  onCancel() {
+    this.userProfile = { ...USER_PROFILE_MOCK }; // Resetea los cambios
+    console.log('Changes cancelled');
+  }
+
+  onSave() {
+    console.log('Profile saved successfully:', this.userProfile);
+  }
+
+  onChangeAvatar() {
+    console.log('Change avatar clicked');
+  }
+
+  onUpdatePassword() {
     console.log('Opening password change modal :D');
   }
 }

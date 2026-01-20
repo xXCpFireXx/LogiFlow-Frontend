@@ -5,7 +5,7 @@
 
   <div class="relative flex items-center">
     @if (iconPath) {
-      <div class="absolute left-3.5 text-slate-400" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <div class="absolute left-3.5 text-slate-400 flex items-center pointer-events-none">
         <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
           <path [attr.d]="iconPath"></path>
         </svg>
@@ -21,7 +21,7 @@
       [disabled]="disabled"
       [ngModel]="value"
       (ngModelChange)="onModelChange($event)"
-      class="w-full p-3 rounded-xl border border-slate-200 bg-slate-50 text-slate-600 text-sm outline-none transition-all focus:border-blue-400 disabled:opacity-60 disabled:cursor-not-allowed"
+      class="w-full p-3 rounded-xl border border-slate-200 bg-slate-50 text-slate-600 text-sm outline-none transition-all focus:border-blue-400 disabled:bg-slate-100 disabled:text-slate-500 disabled:border-slate-200 disabled:cursor-not-allowed"
       [class.pl-11]="iconPath"
       [class.px-4]="!iconPath"
     >
