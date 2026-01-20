@@ -1,4 +1,4 @@
-import { describe, it, expect, vi, beforeEach } from 'vitest'; // <--- IMPORTANTE PARA VITEST
+import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { TrackingDocuments } from './tracking-documents';
 import { By } from '@angular/platform-browser';

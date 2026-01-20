@@ -1,5 +1,5 @@
+import { describe, it, expect, beforeEach } from 'vitest';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { TrackingMap } from './tracking-map';
 
 describe('TrackingMap', () => {
@@ -8,13 +8,20 @@ describe('TrackingMap', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [TrackingMap]
-    })
-    .compileComponents();
+      imports: [TrackingMap],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(TrackingMap);
     component = fixture.componentInstance;
-    await fixture.whenStable();
+
+    // Mock del objeto truckPositions
+    component.truckPositions = {
+      blue: { x: 45.75, y: 4.84 },
+      orange: { x: 45.72, y: 4.89 },
+    };
+    component.currentLocation = 'Lyon, FR';
+
+    fixture.detectChanges();
   });
 
   it('should create', () => {
