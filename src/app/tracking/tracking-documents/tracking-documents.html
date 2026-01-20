@@ -1,0 +1,33 @@
+<app-card class="h-full flex flex-col [&>div]:h-full [&>div]:flex [&>div]:flex-col">
+  <div class="flex flex-col gap-6 h-full">
+    <div class="flex items-center gap-3">
+      <div class="text-[#828fa1] rounded-lg">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path fill="currentColor" d="M4 20q-.825 0-1.412-.587T2 18V6q0-.825.588-1.412T4 4h6l2 2h8q.825 0 1.413.588T22 8v10q0 .825-.587 1.413T20 20z"/></svg>
+      </div>
+      <h3 class="text-lg font-bold text-slate-800">Documents</h3>
+    </div>
+
+    <div class="flex flex-col gap-3">
+      @for (doc of docs; track doc.name) {
+        <div (click)="onDownloadClick(doc)"
+          class="flex items-center justify-between p-3 rounded-xl bg-slate-100/50 hover:bg-slate-200/70 transition-all cursor-pointer group">
+
+          <div class="flex items-center gap-4">
+            <div class="w-10 h-10 rounded-lg flex items-center justify-center bg-red-100 text-red-400 shadow-sm group-hover:bg-red-400 group-hover:text-white transition-colors duration-300">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/></svg>
+            </div>
+
+            <div class="flex flex-col">
+              <span class="text-sm font-bold text-slate-800 transition-transform duration-300 group-hover:translate-x-1 origin-left">{{ doc.name }}</span>
+              <span class="text-[11px] font-medium text-slate-400 uppercase tracking-wider">{{ doc.format }} • {{ doc.size }}</span>
+            </div>
+          </div>
+
+          <div class="text-slate-400 group-hover:text-slate-700 transition-colors pr-2">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</app-card>
