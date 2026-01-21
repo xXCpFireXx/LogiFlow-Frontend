@@ -21,164 +21,26 @@
   </nav>
 </section>
 
-<section class="py-6 w-full">
-  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 w-full items-stretch">
-    @for (item of details; track item.label) {
-      <app-card class="h-full flex flex-col [&>div]:flex-grow [&>div]:flex [&>div]:flex-col">
-        <div class="flex flex-col h-full gap-4">
-          <div class="flex items-center gap-3 flex-shrink-0">
-            <div class="rounded-xl text-[#828fa1]">
-              @switch (item.type) {
-                @case ('origin') { <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.2 11.825L6.2 15.6q-.65.175-1.263-.075t-.962-.825L1.7 10.9q-.275-.425-.087-.9t.687-.6l.575-.15q.25-.05.488-.012t.437.212l2.4 2l3.5-.925l-4.075-5.45q-.4-.525-.2-1.137t.85-.788l.525-.125q.275-.075.588-.025t.537.25L14.9 9.125l4.25-1.15q.8-.225 1.513.188t.937 1.212t-.187 1.513t-1.213.937M4 21q-.425 0-.712-.288T3 20t.288-.712T4 19h16q.425 0 .713.288T21 20t-.288.713T20 21z"/></svg> }
-                @case ('destination') { <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M4 21q-.425 0-.712-.288T3 20t.288-.712T4 19h16q.425 0 .713.288T21 20t-.288.713T20 21zm14.55-5.05l-14.1-4q-.65-.2-1.05-.725t-.4-1.2V5.6q0-.5.4-.8t.9-.175l.575.15q.25.075.438.238t.262.412L6.6 8.4l3.45.975l-.7-6.775q-.075-.65.438-1.063t1.137-.212l.525.15q.275.075.488.288t.312.487l3 8.625l4.3 1.225q.625.2 1.038.725t.412 1.2q0 .875-.712 1.537t-1.738.388"/></svg> }
-                @case ('carrier') { <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M7 20q-1.25 0-2.125-.875T4 17H1.5l.45-2h2.825q.425-.475 1-.737T7 14t1.225.263t1 .737H13.4l2.1-9H6.55l.425-2H18l-.925 4H20l3 4l-1 5h-2q0 1.25-.875 2.125T17 20t-2.125-.875T14 17h-4q0 1.25-.875 2.125T7 20m8.925-7h4.825l.1-.525L19 10h-2.375zM15.5 6l-2.1 9l.05-.175zm-12 7v-3H1l3.5-5v3H7zM7 18q.425 0 .713-.288T8 17t-.288-.712T7 16t-.712.288T6 17t.288.713T7 18m10 0q.425 0 .713-.288T18 17t-.288-.712T17 16t-.712.288T16 17t.288.713T17 18"/></svg> }
-                @case ('weight') { <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M2 22q0-2.775.738-4.737T4.624 14T7.2 11.987T10 11V8q-3.425-.425-5.712-2.113T2 2h20q0 2.2-2.287 3.888T14 8v3q1.375.275 2.8.988T19.375 14t1.888 3.263T22 22h-6v-2h3.875q-.45-3.8-2.838-5.5T12 12.8t-5.038 1.7T4.125 20H8v2zm10 0q-.825 0-1.412-.587T10 20q0-.425.163-.775t.437-.625q.6-.6 2.025-1.263T16 16q-.7 1.95-1.35 3.375T13.4 21.4q-.275.275-.625.438T12 22"/></svg> }
-              }
-            </div>
-            <span class="text-[15px] font-bold text-slate-400 tracking-widest">
-              {{ item.label | titlecase }}
-            </span>
-          </div>
-          <h2 class="text-2xl font-bold text-slate-800 tracking-tight leading-tight flex-grow">
-            {{item.value}}
-          </h2>
-          <div class="flex-shrink-0">
-            <span class="text-xs font-medium text-slate-400 block first-letter:uppercase lowercase">
-              {{item.subtext}}
-            </span>
-          </div>
-        </div>
-      </app-card>
-    }
-  </div>
-</section>
+<app-tracking-summary [details]="details"></app-tracking-summary>
 
 <section class="grid grid-cols-1 min-[1048px]:grid-cols-12 gap-6 w-full mt-6 items-stretch">
-  <article class="min-[1048px]:col-span-5 xl:col-span-4 h-[500px] bg-white rounded-2xl border border-gray-100 shadow-sm p-6 flex flex-col">
-    <div class="flex items-center gap-2 mb-7 flex-shrink-0">
-      <div class="flex items-center justify-center text-blue-500 h-6">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M12 21q-3.45 0-6.012-2.287T3.05 13H5.1q.35 2.6 2.313 4.3T12 19q2.925 0 4.963-2.037T19 12t-2.037-4.962T12 5q-1.725 0-3.225.8T6.25 8H9v2H3V4h2v2.35q1.275-1.6 3.113-2.475T12 3q1.875 0 3.513.713t2.85 1.924t1.925 2.85T21 12t-.712 3.513t-1.925 2.85t-2.85 1.925T12 21m2.8-4.8L11 12.4V7h2v4.6l3.2 3.2z"/></svg>
-      </div>
-      <h3 class="text-xl font-bold text-slate-800 tracking-tight leading-none">Shipment History</h3>
-    </div>
+  <app-shipment-history
+    class="min-[1048px]:col-span-5 xl:col-span-4"
+    [history]="history">
+  </app-shipment-history>
 
-    <div class="relative flex-grow custom-scrollbar">
-      @for (step of history; track step.status; let i = $index) {
-        <div class="relative flex gap-5 mb-8 last:mb-0">
-          <div class="relative flex flex-col items-center min-w-[32px]">
-            <div [class]="step.active ?
-              'h-8 w-8 rounded-full bg-white border-[3px] border-blue-500 shadow-lg shadow-blue-300 flex items-center justify-center z-20 animate-pulse-slow' :
-              (step.completed ?
-                'h-8 w-8 rounded-full bg-blue-500 text-white flex items-center justify-center z-10 shadow-sm' :
-                'h-8 w-8 rounded-full bg-white border-2 border-slate-200 text-slate-300 flex items-center justify-center z-10')">
-
-              @if (step.active) {
-                <div class="h-2 w-2 rounded-full bg-blue-500 shadow-[0_0_8px_rgba(59,130,246,0.6)]"></div>
-              } @else if (step.completed) {
-                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-              }
-            </div>
-
-            @if (i < history.length - 1) {
-              <div class="absolute top-9 bottom-[-28px] w-[2px] rounded-full"
-                [class]="step.completed ? 'bg-blue-500' : 'bg-slate-100'">
-              </div>
-            }
-          </div>
-
-          <div class="flex flex-col pt-0.5 min-w-0">
-            <h4 [class]="step.active ? 'text-[15px] font-bold text-slate-800 leading-tight' : 'text-[15px] font-bold text-slate-400 leading-tight'">
-              {{ step.status }}
-            </h4>
-            <p class="text-sm text-slate-400 font-medium mt-0.5">{{ step.location }}</p>
-            <p [class]="step.active ? 'text-[11px] text-blue-500 font-bold mt-1' : 'text-[11px] text-slate-400 mt-1 font-medium'">
-              {{ step.date }} @if(step.time){, {{ step.time }}}
-            </p>
-          </div>
-        </div>
-      }
-    </div>
-  </article>
-
-  <aside class="min-[1048px]:col-span-7 xl:col-span-8 relative bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden h-[500px]">
-      <app-live-fleet
-        #mapDashboard
-        [truckBlue]="truckPositions.blue"
-        [truckOrange]="truckPositions.orange"
-        class="w-full h-full block">
-      </app-live-fleet>
-
-      <div class="absolute top-6 left-6 z-[1000] bg-white px-4 py-3 rounded-xl shadow-xl border border-slate-100">
-          <span class="block text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1">Current Location</span>
-          <div class="flex items-center gap-2">
-              <div class="h-2.5 w-2.5 rounded-full bg-emerald-500 animate-pulse"></div>
-              <span class="text-sm font-bold text-slate-800">{{ currentStep.location }}</span>
-          </div>
-      </div>
-
-      <div class="absolute bottom-6 right-6 z-[1000] flex flex-col gap-2">
-        <button (click)="zoomIn()" class="w-10 h-10 bg-white rounded-xl shadow-lg flex items-center justify-center text-slate-600 hover:bg-[#e7f2fd] border border-slate-100 cursor-pointer active:scale-95 transition-all">
-          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
-        </button>
-        <button (click)="zoomOut()" class="w-10 h-10 bg-white rounded-xl shadow-lg flex items-center justify-center text-slate-600 hover:bg-[#e7f2fd] border border-slate-100 cursor-pointer active:scale-95 transition-all">
-          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line></svg>
-        </button>
-      </div>
-  </aside>
+  <app-tracking-map
+    class="min-[1048px]:col-span-7 xl:col-span-8"
+    [truckPositions]="truckPositions"
+    [currentLocation]="currentStep.location">
+  </app-tracking-map>
 </section>
 
 <section class="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-6 items-stretch">
-  <app-card class="h-full flex flex-col [&>div]:h-full [&>div]:flex [&>div]:flex-col">
-    <div class="flex flex-col gap-6 h-full">
-      <div class="flex items-center gap-2">
-        <div class="text-[#828fa1] rounded-lg">
-          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="currentColor" d="M5 22q-.825 0-1.412-.587T3 20V6q0-.825.588-1.412T5 4h1V3q0-.425.288-.712T7 2t.713.288T8 3v1h8V3q0-.425.288-.712T17 2t.713.288T18 3v1h1q.825 0 1.413.588T21 6v6.375q0 .425-.288.713t-.712.287t-.712-.288t-.288-.712V10H5v10h6.225q.425 0 .7.288T12.2 21t-.287.713T11.2 22zm11.525-2.325l3.55-3.55q.3-.3.7-.3t.7.3t.3.713t-.3.712L17.25 21.8q-.3.3-.712.3t-.713-.3L13.7 19.675q-.3-.3-.3-.712t.3-.713t.713-.3t.712.3z"/></svg>
-        </div>
-        <h3 class="text-lg font-bold text-slate-800">Cargo Details</h3>
-      </div>
+  <app-cargo-details [cargoData]="cargoDetails"></app-cargo-details>
 
-      <div class="grid grid-cols-1 gap-y-1">
-        @for (detail of cargoDetails; track detail.label) {
-          <div class="flex justify-between items-start py-3 border-b border-slate-50 last:border-0 gap-4">
-            <span class="text-sm font-medium text-slate-400 flex-shrink-0">{{ detail.label }}</span>
-            <span class="text-sm font-bold text-slate-700 flex-1 text-right">{{ detail.value }}</span>
-          </div>
-        }
-      </div>
-    </div>
-  </app-card>
-
-  <app-card class="h-full flex flex-col [&>div]:h-full [&>div]:flex [&>div]:flex-col">
-    <div class="flex flex-col gap-6 h-full">
-      <div class="flex items-center gap-3">
-        <div class="text-[#828fa1] rounded-lg">
-          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path fill="currentColor" d="M4 20q-.825 0-1.412-.587T2 18V6q0-.825.588-1.412T4 4h6l2 2h8q.825 0 1.413.588T22 8v10q0 .825-.587 1.413T20 20z"/></svg>
-        </div>
-        <h3 class="text-lg font-bold text-slate-800">Documents</h3>
-      </div>
-
-      <div class="flex flex-col gap-3">
-        @for (doc of documents; track doc.name) {
-          <div (click)="downloadDocument(doc)"
-            class="flex items-center justify-between p-3 rounded-xl bg-slate-100/50 hover:bg-slate-200/70 transition-all cursor-pointer group">
-
-            <div class="flex items-center gap-4">
-              <div class="w-10 h-10 rounded-lg flex items-center justify-center bg-red-100 text-red-400 shadow-sm group-hover:bg-red-400 group-hover:text-white transition-colors duration-300">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/></svg>
-              </div>
-
-              <div class="flex flex-col">
-                <span class="text-sm font-bold text-slate-800 transition-transform duration-300 group-hover:translate-x-1 origin-left">{{ doc.name }}</span>
-                <span class="text-[11px] font-medium text-slate-400 uppercase tracking-wider">{{ doc.format }} • {{ doc.size }}</span>
-              </div>
-            </div>
-
-            <div class="text-slate-400 group-hover:text-slate-700 transition-colors pr-2">
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-            </div>
-          </div>
-        }
-      </div>
-    </div>
-  </app-card>
+  <app-tracking-documents
+    [docs]="documents"
+    (download)="downloadDocument($event)">
+  </app-tracking-documents>
 </section>

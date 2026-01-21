@@ -1,5 +1,5 @@
+import { describe, it, expect, beforeEach } from 'vitest'; // Importante para Vitest
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { ButtonGeneric } from './button-generic';
 
 describe('ButtonGeneric', () => {
@@ -8,13 +8,16 @@ describe('ButtonGeneric', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ButtonGeneric]
-    })
-    .compileComponents();
+      imports: [ButtonGeneric],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(ButtonGeneric);
     component = fixture.componentInstance;
-    await fixture.whenStable();
+
+    // ARREGLO: Asignar el input ANTES de detectar cambios
+    fixture.componentRef.setInput('label', 'Descargar');
+
+    fixture.detectChanges();
   });
 
   it('should create', () => {

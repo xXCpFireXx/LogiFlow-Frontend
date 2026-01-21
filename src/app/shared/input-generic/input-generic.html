@@ -1,0 +1,29 @@
+<div class="flex flex-col gap-2 w-full">
+  <label [for]="label" class="text-sm font-bold text-slate-700">
+    {{ label }}
+  </label>
+
+  <div class="relative flex items-center">
+    @if (iconPath) {
+      <div class="absolute left-3.5 text-slate-400 flex items-center pointer-events-none">
+        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+          <path [attr.d]="iconPath"></path>
+        </svg>
+      </div>
+    }
+
+    <input
+      [id]="label"
+      [name]="label"
+      [type]="type"
+      [title]="label"
+      [placeholder]="placeholder || label"
+      [disabled]="disabled"
+      [ngModel]="value"
+      (ngModelChange)="onModelChange($event)"
+      class="w-full p-3 rounded-xl border border-slate-200 bg-slate-50 text-slate-600 text-sm outline-none transition-all focus:border-blue-400 disabled:bg-slate-100 disabled:text-slate-500 disabled:border-slate-200 disabled:cursor-not-allowed"
+      [class.pl-11]="iconPath"
+      [class.px-4]="!iconPath"
+    >
+  </div>
+</div>

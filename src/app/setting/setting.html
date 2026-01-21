@@ -1,60 +1,39 @@
 <section class="flex flex-col min-[1048px]:flex-row min-[1048px]:items-center justify-between w-full pb-5 gap-6">
   <header class="flex flex-col min-w-0">
-    <app-header-main-content [title]="header.title" [description]="header.description"></app-header-main-content>
+    <app-header-main-content
+      [title]="header.title"
+      [description]="header.description">
+    </app-header-main-content>
   </header>
+
+  <nav class="flex flex-wrap items-center gap-3 w-full min-[1048px]:w-auto justify-start min-[1048px]:justify-end">
+    <app-button-generic label="Cancel" variant="secondary" (btnClick)="onCancel()"></app-button-generic>
+
+    <app-button-generic label="Save Changes" variant="primary" (btnClick)="onSave()">
+      <svg icon xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="transition-colors group-hover:text-white"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path><polyline points="17 21 17 13 7 13 7 21"></polyline><polyline points="7 3 7 8 15 8"></polyline></svg>
+    </app-button-generic>
+
+  </nav>
 </section>
 
-<div class="grid grid-cols-1 lg:grid-cols-2 gap-6 items-start mt-4">
+<section class="grid grid-cols-1 lg:grid-cols-5 gap-6 items-start mt-4">
 
-  <app-card>
-    <div class="flex flex-col gap-6">
-      <div class="flex items-center gap-2 border-b border-slate-200 pb-4">
-        <div class="text-blue-500">
-          <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24">
-            <path fill="currentColor" d="M12 21q-.425 0-.712-.288T11 20v-4q0-.425.288-.712T12 15t.713.288T13 16v1h7q.425 0 .713.288T21 18t-.288.713T20 19h-7v1q0 .425-.288.713T12 21m-8-2q-.425 0-.712-.288T3 18t.288-.712T4 17h4q.425 0 .713.288T9 18t-.288.713T8 19zm4-4q-.425 0-.712-.288T7 14v-1H4q-.425 0-.712-.288T3 12t.288-.712T4 11h3v-1q0-.425.288-.712T8 9t.713.288T9 10v4q0 .425-.288.713T8 15m4-2q-.425 0-.712-.288T11 12t.288-.712T12 11h8q.425 0 .713.288T21 12t-.288.713T20 13zm4-4q-.425 0-.712-.288T15 8V4q0-.425.288-.712T16 3t.713.288T17 4v1h3q.425 0 .713.288T21 6t-.288.713T20 7h-3v1q0 .425-.288.713T16 9M4 7q-.425 0-.712-.288T3 6t.288-.712T4 5h8q.425 0 .713.288T13 6t-.288.713T12 7z"/>
-          </svg>
-        </div>
-        <h3 class="text-lg font-bold text-slate-800">General Settings</h3>
-    </div>
-
-    <div class="flex flex-col gap-6">
-      @for (drop of dropdowns; track drop.key) {
-        <app-input-select
-          [label]="drop.label"
-          [value]="drop.key === 'language' ? userProfile.language : userProfile.timezone"
-          [options]="drop.options"
-          [helperText]="drop.helperText"
-          [isOpen]="activeDropdown === drop.key"
-          (toggle)="toggleDropdown(drop.key)"
-          (optionSelected)="handleSelection($event, drop.key)">
-        </app-input-select>
-  }
-
-      <app-toggle-switch
-        label="Email Notifications"
-        description="Receive daily summaries of shipment statuses."
-        [isActive]="true">
-      </app-toggle-switch>
-
-      <app-toggle-switch
-        label="Beta Features"
-        description="Enable experimental features in your dashboard."
-        [isActive]="false">
-      </app-toggle-switch>
-    </div>
-  </div>
-</app-card>
-
-  <app-card>
-    <div class="flex flex-col gap-8">
-      <div class="flex items-center gap-3 border-b border-slate-200 pb-4">
-        <div class="text-blue-500">
-          <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-        </div>
-        <h3 class="text-lg font-bold text-slate-800">Profile Information</h3>
-      </div>
-
-      </div>
+  <app-card class="lg:col-span-3">
+    <app-general-settings
+      [dropdowns]="dropdowns"
+      [userProfile]="userProfile"
+      [activeDropdown]="activeDropdown"
+      (toggle)="toggleDropdown($event)"
+      (selection)="handleSelection($event)">
+    </app-general-settings>
   </app-card>
 
-</div>
+  <app-card class="lg:col-span-2">
+    <app-profile-information
+      [userProfile]="userProfile"
+      [icons]="icons"
+      (changeAvatar)="onChangeAvatar()"
+      (updatePassword)="onUpdatePassword()">
+    </app-profile-information>
+  </app-card>
+</section>

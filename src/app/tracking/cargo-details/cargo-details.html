@@ -1,0 +1,19 @@
+<app-card class="h-full flex flex-col [&>div]:h-full [&>div]:flex [&>div]:flex-col">
+  <div class="flex flex-col gap-6 h-full">
+    <div class="flex items-center gap-2">
+      <div class="text-[#828fa1] rounded-lg">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="currentColor" d="M5 22q-.825 0-1.412-.587T3 20V6q0-.825.588-1.412T5 4h1V3q0-.425.288-.712T7 2t.713.288T8 3v1h8V3q0-.425.288-.712T17 2t.713.288T18 3v1h1q.825 0 1.413.588T21 6v6.375q0 .425-.288.713t-.712.287t-.712-.288t-.288-.712V10H5v10h6.225q.425 0 .7.288T12.2 21t-.287.713T11.2 22zm11.525-2.325l3.55-3.55q.3-.3.7-.3t.7.3t.3.713t-.3.712L17.25 21.8q-.3.3-.712.3t-.713-.3L13.7 19.675q-.3-.3-.3-.712t.3-.713t.713-.3t.712.3z"/></svg>
+      </div>
+      <h3 class="text-lg font-bold text-slate-800">Cargo Details</h3>
+    </div>
+
+    <div class="grid grid-cols-1 gap-y-1">
+      @for (detail of cargoData; track detail.label) {
+        <div class="flex justify-between items-start py-3 border-b border-slate-50 last:border-0 gap-4">
+          <span class="text-sm font-medium text-slate-400 flex-shrink-0">{{ detail.label }}</span>
+          <span class="text-sm font-bold text-slate-700 flex-1 text-right">{{ detail.value }}</span>
+        </div>
+      }
+    </div>
+  </div>
+</app-card>
