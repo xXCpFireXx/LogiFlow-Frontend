@@ -1,0 +1,51 @@
+
+<!--Titulo-->
+<div class="flex justify-between items-center mb-6">
+    <h3 class="text-slate-900 font-bold text-lg">
+        Recent Critical Alerts
+    </h3>
+    <a href="#" class="text-blue-500 text-sm font-semibold hover:underline">
+        View All
+    </a>
+</div>
+
+<!--Definimos que valores va a tener nuestra tabla-->
+<div class="overflow-x-auto">
+    <table class="w-full text-left border-collapse">
+      <thead>
+        <tr class="text-slate-400 text-xs font-bold uppercase tracking-wider border-b border-slate-50">
+          <th class="py-4 px-2">Type</th>
+          <th class="py-4 px-2">Shipment ID</th>
+          <th class="py-4 px-2">Message</th>
+          <th class="py-4 px-2">Date</th>
+          <th class="py-4 px-2">Action</th>
+        </tr>
+      </thead>
+      <tbody class="text-sm">
+        @for (alert of alerts; track alert.shipmentId) {
+          <tr class="border-b border-slate-50 last:border-0 hover:bg-slate-50 transition-colors">
+            <td class="py-4 px-2">
+              <span [class]="alert.typeClass" class="px-3 py-1 rounded-full text-xs font-bold flex items-center w-fit">
+                <span class="mr-1.5 text-[10px]">{{alert.icon}}</span>
+                {{alert.type}}
+              </span>
+            </td>
+            <td class="py-4 px-2 font-bold text-slate-700">{{alert.shipmentId}}</td>
+            <td class="py-4 px-2 text-slate-500 max-w-xs truncate">{{alert.message}}</td>
+            <td class="py-4 px-2 text-blue-400 font-medium">{{alert.date}}</td>
+            <td class="py-4 px-2">
+              <button class="text-blue-600 font-bold hover:text-blue-800 transition-colors">
+                {{alert.action}}
+              </button>
+            </td>
+          </tr>
+        } @empty {
+          <tr>
+            <td colspan="5" class="py-10 text-center text-slate-400">
+              No hay alertas críticas recientes.
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
