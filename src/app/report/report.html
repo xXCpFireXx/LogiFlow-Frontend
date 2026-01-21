@@ -37,11 +37,46 @@
 
 <!--Estadisticas-->
 <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 w-full">
+  <!--Grafica de barras-->
   <app-card>
-    <!--Estadistica ondulada-->
-    <div class="py-6">
-      <app-stadistics-grapic></app-stadistics-grapic>
-    </div>
+    <div class="flex justify-between items-start mb-6">
+      <div>
+        <h3 class="text-slate-900 font-bold text-lg">Weekly Shipment Volume</h3>
+        <p class="text-slate-500 text-sm">Domestic vs International</p>
+      </div>
+      <button class="text-slate-400 hover:text-slate-600 transition-colors">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="1" />
+          <circle cx="19" cy="12" r="1" />
+          <circle cx="5" cy="12" r="1" />
+        </svg>
+      </button>
+    </div> <app-bar-stadistic></app-bar-stadistic>
   </app-card>
-    <app-bar-stadistic></app-bar-stadistic>
+  <!--Grafica ondulada-->
+  <app-card>
+    <div class="flex justify-between items-start mb-6">
+      <div>
+        <h3 class="text-slate-900 font-bold text-lg">Delivery Performance</h3>
+        <p class="text-slate-500 text-sm">Average Transit Time (Days)</p>
+      </div>
+      <button class="text-slate-400 hover:text-slate-600 transition-colors">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="1" />
+          <circle cx="19" cy="12" r="1" />
+          <circle cx="5" cy="12" r="1" />
+        </svg>
+      </button>
+    </div>
+    <app-stadistics-grapic></app-stadistics-grapic>
+  </app-card>
+
+</div>
+
+<div>
+  <app-card>
+    <app-top-routes></app-top-routes>
+  </app-card>
 </div>

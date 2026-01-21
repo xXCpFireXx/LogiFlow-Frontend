@@ -2,6 +2,7 @@ import { Component, input } from '@angular/core';
 
 @Component({
   selector: 'app-card-report',
+  standalone: true,
   imports: [],
   templateUrl: './card-report.html',
   styleUrl: './card-report.css',
