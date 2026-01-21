@@ -8,6 +8,7 @@ import { StadisticsGrapic } from "./stadistics-grapic/stadistics-grapic";
 import { BarStadistic } from "./bar-stadistic/bar-stadistic";
 import { TopRoutes } from "./top-routes/top-routes";
 import { RecentAlerts } from "./recent-alerts/recent-alerts";
+import { ButtonGeneric } from "../shared/button-generic/button-generic";
 
 type CardReports = {
   titulo: string,
@@ -18,7 +19,7 @@ type CardReports = {
 
 @Component({
   selector: 'app-report',
-  imports: [HeaderMainContent, Card, CardReport, StadisticsGrapic, BarStadistic, TopRoutes, RecentAlerts],
+  imports: [HeaderMainContent, Card, CardReport, StadisticsGrapic, BarStadistic, TopRoutes, RecentAlerts, ButtonGeneric],
   templateUrl: './report.html',
   styleUrl: './report.css',
 })
@@ -52,14 +53,14 @@ export class Report {
     {
       titulo: 'On-Time Rate',
       valor: '98.2%',
-      description: 'Withing delivery window',
+      description: 'Within delivery window',
       icon: 'ontime'
     },
 
     {
       titulo: 'Exceptions',
       valor: '15',
-      description: 'Requieres Attention',
+      description: 'Requires Attention',
       icon: 'exception'
     }
 
