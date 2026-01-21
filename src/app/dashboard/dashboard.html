@@ -40,7 +40,8 @@
                     <span class="text-gray-400 text-sm">Last 30 Days Performance</span>
                 </div>
                 <div class="text-gray-400">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <circle cx="12" cy="12" r="1"></circle>
                         <circle cx="19" cy="12" r="1"></circle>
                         <circle cx="5" cy="12" r="1"></circle>
@@ -48,10 +49,8 @@
                 </div>
             </div>
 
-            <div class="flex justify-around items-end h-86 px-6">
-                @for (data of regionData; track data.region) {
-                    <app-bard-chart-item class="flex-1" [region]="data.region" [porcentaje]="data.valor"></app-bard-chart-item>
-                }
+            <div class="w-full h-[350px]">
+                <app-bard-chart-item [regions]="regionData"></app-bard-chart-item>
             </div>
         </app-card>
     </div>
@@ -64,15 +63,14 @@
                 </h3>
 
                 <div class="relative flex h-2.5 w-2.5">
-                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                    <span
+                        class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
                     <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
                 </div>
             </div>
 
             <div class="h-[400px] -mx-5 -mb-5 border-t border-gray-100 overflow-hidden rounded-b-2xl">
-                <app-live-fleet
-                    [truckBlue]="truckPositions.blue"
-                    [truckOrange]="truckPositions.orange">
+                <app-live-fleet [truckBlue]="truckPositions.blue" [truckOrange]="truckPositions.orange">
                 </app-live-fleet>
             </div>
         </app-card>

@@ -1,20 +1,33 @@
 import { Component } from '@angular/core';
-import { ApexAxisChartSeries, ApexChart, ApexXAxis, ApexStroke, ApexFill, ApexYAxis, ApexGrid, NgApexchartsModule } from 'ng-apexcharts';
-
-// Descargar la libreria Apexcharts
-
-// Definicion de opciones de grafico
+import {
+  NgApexchartsModule,
+  ApexAxisChartSeries,
+  ApexChart,
+  ApexXAxis,
+  ApexStroke,
+  ApexFill,
+  ApexYAxis,
+  ApexGrid,
+  ApexDataLabels,
+  ApexPlotOptions,
+  ApexLegend,
+  ApexTooltip
+} from 'ng-apexcharts';
 
 export type ChartOptions = {
-  series: ApexAxisChartSeries; // coordenadas
-  chart: ApexChart; // Configuración básica (altura, tipo, botones)
-  xaxis: ApexXAxis; // el eje horizontal
-  stroke: ApexStroke; // El estilo de la linea
-  fill: ApexFill; // El relleno (color o degradado)
-  yaxis: ApexYAxis; // El eje vertical
-  grid: ApexGrid; // Lineas de fondo
-
-}
+  series: ApexAxisChartSeries;
+  chart: ApexChart;
+  xaxis: ApexXAxis;
+  yaxis: ApexYAxis;
+  stroke: ApexStroke;
+  fill: ApexFill;
+  grid: ApexGrid;
+  dataLabels: ApexDataLabels;
+  plotOptions: ApexPlotOptions;
+  colors: string[];
+  legend: ApexLegend;
+  tooltip: ApexTooltip;
+};
 
 
 @Component({
@@ -33,7 +46,7 @@ export class StadisticsGrapic {
       series: [
         {
           name: 'Transit Time',
-          data: [10, 25, 18, 32, 21, 45, 30]
+          data: [12, 25, 18, 32, 21] // Sincronizado con las 5 categorías
         }
       ],
 
@@ -46,7 +59,7 @@ export class StadisticsGrapic {
           show: false // esto nos oculta el menu de descarga, para que se vea limpio
         },
         zoom: {
-          enabled: true // evita que el usuario haga zoom por error
+          enabled: false // evita que el usuario haga zoom por error
         }
       },
 
@@ -72,6 +85,13 @@ export class StadisticsGrapic {
         categories: ['May 01', 'May 08', 'May 15', 'May 22', 'May 30'],
         axisBorder: { show: false }, // Quia la linea gris
         axisTicks: { show: false }, // Quita las pequeñas rayitas de cada categoria
+        labels: {
+          style: {
+            colors: '#64748b',
+            fontSize: '12px'
+          },
+          offsetY: 5
+        }
       },
 
       // Estadisticas minimalistas
@@ -80,7 +100,11 @@ export class StadisticsGrapic {
         show: false
       },
       grid: {
-        show: false // Quita las linas horizontales
+        show: false, // Quita las linas horizontales
+        padding: {
+          left: 20,
+          right: 20
+        }
       }
     }
   }
