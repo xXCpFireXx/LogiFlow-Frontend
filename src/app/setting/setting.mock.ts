@@ -25,6 +25,13 @@ export const DROPDOWNS = [
   },
 ];
 
+export const SECURITY_CONFIG = {
+  key: 'sessionTimeout',
+  label: 'Automatic Session Timeout',
+  options: ['15 Minutes', '30 Minutes', '1 Hour', 'Never'],
+  helperText: 'For your security, the session will close after a period of inactivity.',
+};
+
 export const USER_PROFILE_MOCK = {
   fullName: 'Cristian Penagos',
   email: 'cris@logiflow.com',
@@ -33,6 +40,8 @@ export const USER_PROFILE_MOCK = {
   timezone: 'Eastern Time (US & Canada) (UTC-05:00)',
   emailNotifications: true,
   betaFeatures: false,
+
+  sessionTimeout: '30 Minutes',
 };
 
 export const ICONS = {

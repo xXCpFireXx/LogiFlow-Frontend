@@ -1,0 +1,11 @@
+<div class="flex flex-col">
+  <app-input-select
+    [label]="securityConfig.label"
+    [value]="userProfile.sessionTimeout"
+    [options]="securityConfig.options"
+    [helperText]="securityConfig.helperText"
+    [isOpen]="activeDropdown === securityConfig.key"
+    (toggle)="toggle.emit(securityConfig.key)"
+    (optionSelected)="selection.emit({ option: $event, key: securityConfig.key })">
+  </app-input-select>
+</div>

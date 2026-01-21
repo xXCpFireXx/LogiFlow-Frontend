@@ -5,7 +5,7 @@ import { HeaderMainContent } from '../shared/header-main-content/header-main-con
 import { Card as CardGeneric } from '../shared/card/card';
 import { GeneralSettings } from './general-settings/general-settings';
 import { ButtonGeneric } from '../shared/button-generic/button-generic';
-import { SETTING_HEADER, DROPDOWNS, USER_PROFILE_MOCK, ICONS } from './setting.mock';
+import { SETTING_HEADER, DROPDOWNS, USER_PROFILE_MOCK, ICONS, SECURITY_CONFIG } from './setting.mock';
 import { ProfileInformation } from './profile-information/profile-information';
 
 @Component({
@@ -31,6 +31,8 @@ export class Setting {
   icons = ICONS;
 
   activeDropdown: string = '';
+
+  securityConfig = SECURITY_CONFIG;
 
   toggleDropdown(name: string) {
     this.activeDropdown = this.activeDropdown === name ? '' : name;

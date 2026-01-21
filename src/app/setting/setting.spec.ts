@@ -18,11 +18,8 @@ describe('Setting (Componente Principal)', () => {
   });
 
   it('debe restaurar los valores iniciales al ejecutar onCancel', () => {
-    // Simulamos un cambio previo
     component.userProfile.fullName = 'Nombre Editado';
-
     component.onCancel();
-
     expect(component.userProfile.fullName).toBe(USER_PROFILE_MOCK.fullName);
   });
 
@@ -32,5 +29,14 @@ describe('Setting (Componente Principal)', () => {
 
     expect(component.userProfile.language).toBe('French (FR)');
     expect(component.activeDropdown).toBe(''); // Debe cerrarse
+  });
+
+  it('debe cerrar el dropdown aunque no se actualice el valor de sesión', () => {
+
+    const data = { option: 'Never', key: 'sessionTimeout' };
+    component.handleSelection(data);
+
+    expect(component.userProfile.sessionTimeout).toBe('30 Minutes');
+    expect(component.activeDropdown).toBe('');
   });
 });
