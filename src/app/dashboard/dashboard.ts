@@ -4,7 +4,7 @@ import { Card as CardGeneric } from '../shared/card/card';
 import { HeaderMainContent } from '../shared/header-main-content/header-main-content';
 import { TitleHeaderMain } from '../models/TitleHeaderMain';
 import { region } from '../models/Region';
-import { BardChartItem } from '../shared/bard-chart-item/bard-chart-item';
+import { BardChartItem } from './bard-chart-item/bard-chart-item';
 import { LiveFleet } from '../shared/live-fleet/live-fleet';
 
 
