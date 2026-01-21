@@ -7,6 +7,7 @@ import { region } from '../models/Region';
 import { StadisticsGrapic } from "./stadistics-grapic/stadistics-grapic";
 import { BarStadistic } from "./bar-stadistic/bar-stadistic";
 import { TopRoutes } from "./top-routes/top-routes";
+import { RecentAlerts } from "./recent-alerts/recent-alerts";
 
 type CardReports = {
   titulo: string,
@@ -17,7 +18,7 @@ type CardReports = {
 
 @Component({
   selector: 'app-report',
-  imports: [HeaderMainContent, Card, CardReport, StadisticsGrapic, BarStadistic, TopRoutes],
+  imports: [HeaderMainContent, Card, CardReport, StadisticsGrapic, BarStadistic, TopRoutes, RecentAlerts],
   templateUrl: './report.html',
   styleUrl: './report.css',
 })
