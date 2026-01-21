@@ -1,7 +1,7 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { GeneralSettings } from './general-settings';
-import { DROPDOWNS, USER_PROFILE_MOCK } from '../setting.mock';
+import { DROPDOWNS, USER_PROFILE_MOCK, SECURITY_CONFIG } from '../setting.mock';
 
 describe('GeneralSettings', () => {
   let component: GeneralSettings;
@@ -15,9 +15,9 @@ describe('GeneralSettings', () => {
     fixture = TestBed.createComponent(GeneralSettings);
     component = fixture.componentInstance;
 
-    // Mock de datos necesarios
     component.dropdowns = DROPDOWNS;
     component.userProfile = { ...USER_PROFILE_MOCK };
+    component.securityConfig = { ...SECURITY_CONFIG };
 
     fixture.detectChanges();
   });
@@ -30,7 +30,6 @@ describe('GeneralSettings', () => {
     const spy = vi.spyOn(component.toggle, 'emit');
     const keyToToggle = 'language';
 
-    // Llamamos al método que reacciona al evento del hijo
     component.toggle.emit(keyToToggle);
 
     expect(spy).toHaveBeenCalledWith(keyToToggle);
@@ -41,12 +40,11 @@ describe('GeneralSettings', () => {
     const mockSelection = { option: 'Spanish (ES)', key: 'language' };
 
     component.selection.emit(mockSelection);
-
     expect(spy).toHaveBeenCalledWith(mockSelection);
   });
 
-  it('debe renderizar la cantidad correcta de selectores según los dropdowns', () => {
+  it('debe renderizar la cantidad correcta de selectores (Dropdowns + Security)', () => {
     const selectors = fixture.nativeElement.querySelectorAll('app-input-select');
-    expect(selectors.length).toBe(DROPDOWNS.length);
+    expect(selectors.length).toBe(DROPDOWNS.length + 1);
   });
 });

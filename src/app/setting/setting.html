@@ -1,5 +1,5 @@
 <section class="flex flex-col min-[1048px]:flex-row min-[1048px]:items-center justify-between w-full pb-5 gap-6">
-  <header class="flex flex-col min-w-0">
+  <header class="flex flex-col min-w-0 flex-1">
     <app-header-main-content
       [title]="header.title"
       [description]="header.description">
@@ -16,20 +16,21 @@
   </nav>
 </section>
 
-<section class="grid grid-cols-1 lg:grid-cols-5 gap-6 items-start mt-4">
+<section class="grid grid-cols-1 lg:grid-cols-5 gap-6 items-stretch mt-4">
 
-  <app-card class="lg:col-span-3">
-    <app-general-settings
+  <app-card class="lg:col-span-3 h-full flex flex-col [&>div]:h-full [&>div]:flex [&>div]:flex-col">
+    <app-general-settings class="h-full block"
       [dropdowns]="dropdowns"
       [userProfile]="userProfile"
+      [securityConfig]="securityConfig"
       [activeDropdown]="activeDropdown"
       (toggle)="toggleDropdown($event)"
       (selection)="handleSelection($event)">
     </app-general-settings>
   </app-card>
 
-  <app-card class="lg:col-span-2">
-    <app-profile-information
+  <app-card class="lg:col-span-2 flex flex-col h-full">
+    <app-profile-information class="h-full block"
       [userProfile]="userProfile"
       [icons]="icons"
       (changeAvatar)="onChangeAvatar()"
