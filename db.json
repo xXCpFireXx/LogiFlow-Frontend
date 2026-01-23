@@ -1,0 +1,38 @@
+{
+  "dashboard": {
+    "cards": [
+      {
+        "id": 1,
+        "title": "Total Active Shipments",
+        "value": "1,240",
+        "percentage": "5",
+        "icon": "shipment",
+        "isNegative": false
+      },
+      {
+        "id": 2,
+        "title": "In Transit",
+        "value": "850",
+        "percentage": "12",
+        "icon": "transit",
+        "isNegative": false
+      },
+      {
+        "id": 3,
+        "title": "Exceptions",
+        "value": "12",
+        "percentage": "2",
+        "icon": "exception",
+        "isNegative": true
+      },
+      {
+        "id": 4,
+        "title": "Revenue MTD",
+        "value": "$450k",
+        "percentage": "8",
+        "icon": "revenue",
+        "isNegative": false
+      }
+    ]
+  }
+}
