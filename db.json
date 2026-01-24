@@ -1,0 +1,303 @@
+{
+  "dashboard": {
+    "header": {
+      "title": "Dashboard Overview",
+      "description": "Real-time logistic metrics and fleet status"
+    },
+    "cards": [
+      {
+        "id": 1,
+        "title": "Total Active Shipments",
+        "value": "1,240",
+        "percentage": "5",
+        "icon": "shipment",
+        "isNegative": false
+      },
+      {
+        "id": 2,
+        "title": "In Transit",
+        "value": "850",
+        "percentage": "12",
+        "icon": "transit",
+        "isNegative": false
+      },
+      {
+        "id": 3,
+        "title": "Exceptions",
+        "value": "12",
+        "percentage": "2",
+        "icon": "exception",
+        "isNegative": true
+      },
+      {
+        "id": 4,
+        "title": "Revenue MTD",
+        "value": "$450k",
+        "percentage": "8",
+        "icon": "revenue",
+        "isNegative": false
+      }
+    ],
+    "regionData": [
+      {
+        "region": "North",
+        "valor": 64
+      },
+      {
+        "region": "South",
+        "valor": 85
+      },
+      {
+        "region": "East",
+        "valor": 45
+      },
+      {
+        "region": "West",
+        "valor": 55
+      }
+    ],
+    "volumeChart": {
+      "series": [
+        65,
+        85,
+        45,
+        60
+      ],
+      "categories": [
+        "North",
+        "South",
+        "East",
+        "West"
+      ]
+    },
+    "truckPositions": {
+      "blue": {
+        "x": 28,
+        "y": 35
+      },
+      "orange": {
+        "x": 55,
+        "y": 58
+      }
+    }
+  },
+  "report": {
+    "header": {
+      "title": "Operacional Report",
+      "description": "Detailed insights into logistics operations"
+    },
+    "cards": [
+      {
+        "titulo": "Total Volume",
+        "valor": "1,240",
+        "description": "+12% vs last month",
+        "icon": "shipment"
+      },
+      {
+        "titulo": "In Transit",
+        "valor": "450",
+        "description": "Active shipments",
+        "icon": "transit"
+      },
+      {
+        "titulo": "On-Time Rate",
+        "valor": "98.2%",
+        "description": "Within delivery window",
+        "icon": "ontime"
+      },
+      {
+        "titulo": "Exceptions",
+        "valor": "15",
+        "description": "Requires Attention",
+        "icon": "exception"
+      }
+    ],
+    "regionData": [
+      {
+        "region": "North",
+        "valor": 64
+      },
+      {
+        "region": "South",
+        "valor": 85
+      },
+      {
+        "region": "East",
+        "valor": 45
+      },
+      {
+        "region": "West",
+        "valor": 55
+      }
+    ],
+    "performanceChart": {
+      "series": [
+        12,
+        25,
+        18,
+        32,
+        21
+      ],
+      "categories": [
+        "May 01",
+        "May 08",
+        "May 15",
+        "May 22",
+        "May 30"
+      ]
+    },
+    "alerts": [
+      {
+        "type": "Delay",
+        "typeClass": "bg-red-100 text-red-600",
+        "icon": "🔴",
+        "shipmentId": "SHP-2991",
+        "message": "Customs clearance hold in Rotterdam",
+        "date": "2 hours ago",
+        "action": "Resolve"
+      },
+      {
+        "type": "Exception",
+        "typeClass": "bg-orange-100 text-orange-600",
+        "icon": "⚠️",
+        "shipmentId": "SHP-3022",
+        "message": "Address verification failed for recipient",
+        "date": "5 hours ago",
+        "action": "Resolve"
+      },
+      {
+        "type": "Update",
+        "typeClass": "bg-blue-100 text-blue-600",
+        "icon": "ℹ️",
+        "shipmentId": "SHP-1004",
+        "message": "Carrier rerouted due to weather",
+        "date": "1 day ago",
+        "action": "Dismiss"
+      }
+    ]
+  },
+  "tracking": {
+    "header": {
+      "title": "Tracking",
+      "description": "Real-time delivery monitoring"
+    },
+    "details": [
+      {
+        "type": "origin",
+        "label": "Origin",
+        "value": "Hamburg, DE",
+        "subtext": "Warehouse H-22"
+      },
+      {
+        "type": "destination",
+        "label": "Destination",
+        "value": "Lyon, FR",
+        "subtext": "Distribution center L-01"
+      },
+      {
+        "type": "carrier",
+        "label": "Carrier",
+        "value": "DHL Express",
+        "subtext": "Service: Express worldwide"
+      },
+      {
+        "type": "weight",
+        "label": "Weight",
+        "value": "450 kg",
+        "subtext": "12 Pallets"
+      }
+    ],
+    "history": [
+      {
+        "date": "Oct 24, 2025",
+        "time": "14:30",
+        "status": "Delivered",
+        "location": "Lyon, FR",
+        "description": "Package delivered",
+        "active": true,
+        "completed": true
+      },
+      {
+        "date": "Oct 23, 2025",
+        "time": "09:15",
+        "status": "Out for Delivery",
+        "location": "Lyon, FR",
+        "active": false,
+        "completed": true
+      },
+      {
+        "date": "Oct 22, 2025",
+        "time": "18:45",
+        "status": "In Transit",
+        "location": "Paris, FR",
+        "active": false,
+        "completed": true
+      },
+      {
+        "date": "Oct 21, 2025",
+        "time": "10:00",
+        "status": "Processed",
+        "location": "Hamburg, DE",
+        "active": false,
+        "completed": true
+      }
+    ],
+    "cargoDetails": [
+      {
+        "label": "Package Type",
+        "value": "Standard Pallet (EUR)"
+      },
+      {
+        "label": "Quantity",
+        "value": "12 Units"
+      },
+      {
+        "label": "Dimensions",
+        "value": "120 x 80 x 144 cm"
+      },
+      {
+        "label": "Total Volume",
+        "value": "1.38 CBM"
+      },
+      {
+        "label": "Commodity",
+        "value": "General Cargo"
+      },
+      {
+        "label": "Stackable",
+        "value": "No"
+      },
+      {
+        "label": "HS Code",
+        "value": "8517.12.00"
+      }
+    ],
+    "documents": [
+      {
+        "name": "Bill of Lading (BOL)",
+        "format": "PDF",
+        "size": "2.4 MB"
+      },
+      {
+        "name": "Commercial Invoice",
+        "format": "PDF",
+        "size": "1.1 MB"
+      },
+      {
+        "name": "Packing List",
+        "format": "PDF",
+        "size": "0.8 MB"
+      }
+    ],
+    "truckPositions": {
+      "blue": {
+        "x": 45.7597,
+        "y": 4.8422
+      },
+      "orange": {
+        "x": 45.7238,
+        "y": 4.8931
+      }
+    }
+  }
+}

@@ -1,7 +1,7 @@
 <div class="flex items-start justify-between mb-4">
     <div class="w-24">
         <h4 class="text-[15px] font-medium text-slate-400 leading-tight">
-            {{titulo()}}
+            {{title()}}
         </h4>
     </div>
     <div [class]="'p-2.5 rounded-xl ' + (isNegative() ? 'bg-red-50/80 text-red-500' : 
@@ -32,7 +32,7 @@
 
 <div class="flex items-center gap-2.5">
     <h2 class="text-3xl font-bold text-slate-800 tracking-tight">
-        {{valor()}}
+        {{value()}}
     </h2>
     <div [class]="'inline-flex items-center gap-1 px-2 py-0.5 rounded-md font-bold text-sm ' + 
                     (isNegative() ? 'bg-red-50 text-red-600' : 'bg-emerald-50 text-emerald-600')">
@@ -49,6 +49,6 @@
             <polyline points="16 7 22 7 22 13"></polyline>
         </svg>
         }
-        <span>{{porcentaje()}}%</span>
+        <span>{{percentage()}}%</span>
     </div>
 </div>
