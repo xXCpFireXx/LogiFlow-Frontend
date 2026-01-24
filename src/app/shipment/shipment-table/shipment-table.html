@@ -1,0 +1,160 @@
+<section>
+  <div class="mx-auto max-w-auto">
+    <app-card>
+
+      <div class="flex flex-col md:flex-row items-center justify-between space-y-3 md:space-y-0 md:space-x-4 pb-4">
+        <div class="w-full md:w-1/4">
+          <form class="flex items-center">
+            <label for="simple-search" class="sr-only">Search</label>
+            <div class="relative w-full">
+              <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                <svg aria-hidden="true" class="w-5 h-5 text-gray-500" fill="currentColor" viewbox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd"
+                    d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
+                    clip-rule="evenodd" />
+                </svg>
+              </div>
+              <input type="text" id="simple-search" (input)="updateSearch($event)"
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full pl-10 p-2 focus:ring-primary focus:border-primary"
+                placeholder="Search by ID, Customer, Origin..." required="">
+            </div>
+          </form>
+        </div>
+
+        <div
+          class="w-full md:w-auto flex flex-col md:flex-row space-y-2 md:space-y-0 items-stretch md:items-center justify-end md:space-x-3 shrink-0">
+          <div class="flex items-center space-x-3 w-full md:w-auto">
+            <button
+              class="w-full md:w-auto flex items-center justify-center py-2 px-4 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 transition-all focus:z-10 focus:ring-4 focus:ring-gray-200 cursor-pointer"
+              type="button">
+              <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true">
+                <path clip-rule="evenodd" fill-rule="evenodd"
+                  d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" />
+              </svg>
+              Export
+            </button>
+
+            <button
+              class="w-full md:w-auto flex items-center justify-center py-2 px-4 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 transition-all focus:z-10 focus:ring-4 focus:ring-gray-200 cursor-pointer"
+              type="button">
+              <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="h-4 w-4 mr-2" width="20" height="20"
+                viewBox="0 0 24 24" fill="currentColor">
+                <path clip-rule="evenodd" fill-rule="evenodd"
+                  d="M11 18q-.425 0-.712-.288T10 17t.288-.712T11 16h2q.425 0 .713.288T14 17t-.288.713T13 18zm-4-5q-.425 0-.712-.288T6 12t.288-.712T7 11h10q.425 0 .713.288T18 12t-.288.713T17 13zM4 8q-.425 0-.712-.288T3 7t.288-.712T4 6h16q.425 0 .713.288T21 7t-.288.713T20 8z" />
+              </svg>
+              Filters
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="overflow-x-auto min-h-full">
+        <table class="w-full text-sm text-left text-gray-500">
+          <thead class="text-xs text-gray-700 uppercase bg-gray-100">
+            <tr>
+              <th scope="col" class="px-4 py-3">ID</th>
+              <th scope="col" class="px-4 py-3">Status</th>
+              <th scope="col" class="px-4 py-3">Client</th>
+              <th scope="col" class="px-4 py-3">Origin</th>
+              <th scope="col" class="px-4 py-3">Destination</th>
+              <th scope="col" class="px-4 py-3">ETA</th>
+              <th scope="col" class="px-4 py-3">
+                <span class="sr-only">Actions</span>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (shipment of filteredShipments(); track shipment.id) {
+            <tr class="border-b border-gray-300 hover:bg-gray-50 transition-colors">
+              <th scope="row" class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap">
+                <a (click)="viewTracking(shipment)" class="cursor-pointer transition-all hover:text-blue-600">{{ shipment.trackingId }}</a>
+              </th>
+
+              <td class="px-4 py-3">
+                <app-status-badge [status]="shipment.status" />
+              </td>
+              <td class="px-4 py-3">{{ shipment.customer }}</td>
+              <td class="px-4 py-3">{{ shipment.origin }}</td>
+              <td class="px-4 py-3">{{ shipment.destination }}</td>
+              <td class="px-4 py-3">{{ shipment.eta | date:'MMM d, y' }}</td>
+
+              <td class="px-4 py-3">
+                <div class="flex items-center justify-end">
+
+                  <button (click)="toggleDropdown(shipment.id, $event)"
+                    class="inline-flex items-center p-0.5 text-sm font-medium text-center text-gray-500 hover:text-gray-800 rounded-lg focus:outline-none cursor-pointer"
+                    type="button">
+                    <svg class="w-5 h-5" aria-hidden="true" fill="currentColor" viewbox="0 0 20 20"
+                      xmlns="http://www.w3.org/2000/svg">
+                      <path d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z" />
+                    </svg>
+                  </button>
+
+                  @if (activeDropdownId() === shipment.id) {
+                  <div class="fixed w-44 bg-white rounded divide-y divide-gray-100 shadow-lg border border-gray-200 z-100"
+                    [style.left.px]="dropdownPosition().x" [style.top.px]="dropdownPosition().y">
+
+                    <ul class="py-1 text-sm text-gray-700">
+                      <li><a (click)="viewTracking(shipment)" class="cursor-pointer block py-2 px-4 hover:bg-gray-100">Track shipment</a></li>
+                      <li><a href="#" class="block py-2 px-4 hover:bg-gray-100">Edit details</a></li>
+                    </ul>
+                    <div class="py-1">
+                      <a href="#" class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100">Cancel</a>
+                    </div>
+                  </div>
+
+                  <div (click)="closeDropdown()" class="fixed inset-0 z-90 bg-transparent"></div>
+                  }
+                </div>
+              </td>
+              </tr>
+            } @empty {
+            <tr>
+              <td colspan="7" class="text-center py-4 text-gray-500">No shipments found.</td>
+            </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+
+      <nav
+        class="flex flex-col md:flex-row justify-between items-start md:items-center space-y-3 md:space-y-0 p-4 border-t border-gray-200"
+        aria-label="Table navigation">
+        <span class="text-sm font-normal text-gray-500">
+          Showing <span class="font-semibold text-gray-900">{{ shipments().length > 0 ? 1 : 0 }}-{{
+            filteredShipments().length }}</span> of <span class="font-semibold text-gray-900">{{ shipments().length
+            }}</span>
+        </span>
+        <ul class="inline-flex items-stretch -space-x-px">
+          <li>
+            <a href="#"
+              class="flex items-center justify-center h-full py-1.5 px-3 ml-0 text-gray-500 bg-white rounded-l-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700">
+              <span class="sr-only">Previous</span>
+              <svg class="w-5 h-5" aria-hidden="true" fill="currentColor" viewbox="0 0 20 20"
+                xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd"
+                  d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
+                  clip-rule="evenodd" />
+              </svg>
+            </a>
+          </li>
+          <li>
+            <a href="#"
+              class="flex items-center justify-center h-full py-1.5 px-3 leading-tight text-gray-500 bg-white rounded-r-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700">
+              <span class="sr-only">Next</span>
+              <svg class="w-5 h-5" aria-hidden="true" fill="currentColor" viewbox="0 0 20 20"
+                xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd"
+                  d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                  clip-rule="evenodd" />
+              </svg>
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+    </app-card>
+  </div>
+</section>

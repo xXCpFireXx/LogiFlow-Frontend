@@ -3,7 +3,10 @@
     <app-header-main-content [title]="header.title" [description]="header.description">
 
       <div class="flex items-center gap-3 mt-2 min-[1048px]:mt-0">
-        <span class="text-3xl sm:text-3xl font-medium text-slate-800 whitespace-nowrap">#LGF-8923</span>
+        <span class="text-3xl sm:text-3xl font-medium text-slate-800 whitespace-nowrap">
+          {{ currentShipment?.trackingId || '---' }}
+        </span>
+
         <app-status-badge [status]="shipmentStatus"></app-status-badge>
       </div>
 
@@ -12,11 +15,25 @@
 
   <nav class="flex flex-wrap items-center gap-3 w-full min-[1048px]:w-auto justify-start min-[1048px]:justify-end">
     <app-button-generic label="Download" variant="secondary" (btnClick)="onExport()">
-      <svg icon xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="transition-colors group-hover:text-[#137fec]"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+      <svg icon xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+        class="transition-colors group-hover:text-primary">
+        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+        <polyline points="7 10 12 15 17 10"></polyline>
+        <line x1="12" y1="15" x2="12" y2="3"></line>
+      </svg>
     </app-button-generic>
 
     <app-button-generic label="Share Tracking" variant="primary" (btnClick)="shareTracking()">
-      <svg icon xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="transition-colors group-hover:text-white"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line></svg>
+      <svg icon xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+        class="transition-colors group-hover:text-white">
+        <circle cx="18" cy="5" r="3"></circle>
+        <circle cx="6" cy="12" r="3"></circle>
+        <circle cx="18" cy="19" r="3"></circle>
+        <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+        <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+      </svg>
     </app-button-generic>
   </nav>
 </section>
@@ -24,14 +41,10 @@
 <app-tracking-summary [details]="details"></app-tracking-summary>
 
 <section class="grid grid-cols-1 min-[1048px]:grid-cols-12 gap-6 w-full mt-6 items-stretch">
-  <app-shipment-history
-    class="min-[1048px]:col-span-5 xl:col-span-4"
-    [history]="history">
+  <app-shipment-history class="min-[1048px]:col-span-5 xl:col-span-4" [history]="history">
   </app-shipment-history>
 
-  <app-tracking-map
-    class="min-[1048px]:col-span-7 xl:col-span-8"
-    [truckPositions]="truckPositions"
+  <app-tracking-map class="min-[1048px]:col-span-7 xl:col-span-8" [truckPositions]="truckPositions"
     [currentLocation]="currentStep.location">
   </app-tracking-map>
 </section>
@@ -39,8 +52,6 @@
 <section class="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-6 items-stretch">
   <app-cargo-details [cargoData]="cargoDetails"></app-cargo-details>
 
-  <app-tracking-documents
-    [docs]="documents"
-    (download)="downloadDocument($event)">
+  <app-tracking-documents [docs]="documents" (download)="downloadDocument($event)">
   </app-tracking-documents>
 </section>

@@ -4,14 +4,14 @@ import { Observable } from 'rxjs';
 import { DashboardData } from './dashboard.model';
 
 @Injectable({
-    providedIn: 'root'
+  providedIn: 'root',
 })
 export class DashboardService {
-    private apiUrl = 'http://localhost:3000/dashboard';
+  private apiUrl = 'http://localhost:3000/dashboard';
+  //private apiUrl = 'https://httpstat.us/500';
+  constructor(private http: HttpClient) {}
 
-    constructor(private http: HttpClient) { }
-
-    getDashboardData(): Observable<DashboardData> {
-        return this.http.get<DashboardData>(this.apiUrl);
-    }
+  getDashboardData(): Observable<DashboardData> {
+    return this.http.get<DashboardData>(this.apiUrl);
+  }
 }
