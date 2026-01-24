@@ -1,8 +1,9 @@
-import { Component, computed, input, signal } from '@angular/core';
+import { Component, computed, inject, input, signal } from '@angular/core';
 import { Shipment } from '../../models/Shipment';
 import { Card } from "../../shared/card/card";
 import { StatusBadge } from "../../shared/status-badge/status-badge";
-import { CommonModule, CurrencyPipe, DatePipe } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-shipment-table',
@@ -11,24 +12,20 @@ import { CommonModule, CurrencyPipe, DatePipe } from '@angular/common';
   styleUrl: './shipment-table.css',
 })
 export class ShipmentTable {
-  // Input: Lista original de envíos
+  private router = inject(Router);
+
   shipments = input.required<Shipment[]>();
 
-  // Estado: Término de búsqueda
   searchTerm = signal<string>('');
-
-  // Estado: Control del dropdown de acciones
   activeDropdownId = signal<string | null>(null);
+  dropdownPosition = signal({ x: 0, y: 0 });
 
-  // Lógica: Lista filtrada automáticamente
   filteredShipments = computed(() => {
     const term = this.searchTerm().toLowerCase();
     const list = this.shipments();
 
-    // Si no hay búsqueda, devuelve la lista completa
     if (!term) return list;
 
-    // Filtra por ID, Cliente, Origen o Destino
     return list.filter(shipment =>
       shipment.trackingId.toLowerCase().includes(term) ||
       shipment.customer.toLowerCase().includes(term) ||
@@ -37,16 +34,25 @@ export class ShipmentTable {
     );
   });
 
-  // Método para actualizar el término desde el input
+  // --- Lógica de Navegación (La pieza clave) ---
+
+  viewTracking(shipment: Shipment): void {
+    // Cerramos el dropdown si está abierto antes de navegar
+    this.closeDropdown();
+
+    // Navegamos enviando el objeto en el state
+    this.router.navigate(['/tracking'], {
+      state: { shipmentData: shipment }
+    });
+  }
+
+  // --- Lógica de UI existente ---
+
   updateSearch(event: Event) {
     const input = event.target as HTMLInputElement;
     this.searchTerm.set(input.value);
   }
 
-  // Agrega estas propiedades
-  dropdownPosition = signal({ x: 0, y: 0 });
-
-  // Actualiza tu método toggleDropdown
   toggleDropdown(id: string, event: MouseEvent) {
     event.stopPropagation();
 
@@ -55,8 +61,7 @@ export class ShipmentTable {
     } else {
       const button = event.currentTarget as HTMLElement;
       const rect = button.getBoundingClientRect();
-
-      // ANCHO DEL MENÚ (w-44 = 11rem = 176px)
+      // Ajuste para que el menú no se salga si está muy a la derecha
       const menuWidth = 176;
 
       this.dropdownPosition.set({
@@ -68,7 +73,6 @@ export class ShipmentTable {
     }
   }
 
-  // Método para cerrar al hacer click fuera (opcional pero recomendado)
   closeDropdown() {
     this.activeDropdownId.set(null);
   }
