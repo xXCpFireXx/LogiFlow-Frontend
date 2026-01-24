@@ -20,9 +20,19 @@ export const routes: Routes = [
           import('./dashboard/dashboard').then(m => m.Dashboard),
       },
       {
+        path: 'shipments',
+        loadComponent: () =>
+          import('./shipment/shipment').then(m => m.Shipment),
+      },
+      {
         path: 'tracking',
         loadComponent: () =>
           import('./tracking/tracking').then(m => m.Tracking),
+      },
+      {
+        path: 'clients',
+        loadComponent: () =>
+          import('./client/client').then(m => m.Client),
       },
       {
         path: 'report',
