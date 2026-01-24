@@ -7,6 +7,7 @@ import { DashboardData } from './dashboard.model';
   providedIn: 'root',
 })
 export class DashboardService {
+  // url como variable de entorno futuro back
   private apiUrl = 'http://localhost:3000/dashboard';
   //private apiUrl = 'https://httpstat.us/500';
   constructor(private http: HttpClient) {}
