@@ -1,8 +1,8 @@
 <section class="flex flex-col min-[1048px]:flex-row min-[1048px]:items-center justify-between w-full pb-5 gap-6">
   <header class="flex flex-col min-w-0 flex-1">
     <app-header-main-content
-      [title]="header.title"
-      [description]="header.description">
+      [title]="header().title"
+      [description]="header().description">
     </app-header-main-content>
   </header>
 
@@ -20,10 +20,10 @@
 
   <app-card class="lg:col-span-3 h-full flex flex-col [&>div]:h-full [&>div]:flex [&>div]:flex-col">
     <app-general-settings class="h-full block"
-      [dropdowns]="dropdowns"
-      [userProfile]="userProfile"
-      [securityConfig]="securityConfig"
-      [activeDropdown]="activeDropdown"
+      [dropdowns]="dropdowns()"
+      [userProfile]="userProfile()"
+      [securityConfig]="securityConfig()"
+      [activeDropdown]="activeDropdown()"
       (toggle)="toggleDropdown($event)"
       (selection)="handleSelection($event)">
     </app-general-settings>
