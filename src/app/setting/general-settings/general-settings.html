@@ -7,22 +7,23 @@
   </div>
 
   <div class="flex flex-col gap-6 flex-grow">
-    @for (drop of dropdowns; track drop.key) {
-      <app-input-select
-        [label]="drop.label"
-        [value]="drop.key === 'language' ? userProfile.language : userProfile.timezone"
-        [options]="drop.options"
-        [helperText]="drop.helperText"
-        [isOpen]="activeDropdown === drop.key"
-        (toggle)="toggle.emit(drop.key)"
-        (optionSelected)="selection.emit({ option: $event, key: drop.key })">
-      </app-input-select>
+    @for (drop of dropdowns(); track drop.key) {
+      @if (drop.key !== 'sessionTimeout') {
+        <app-input-select
+          [label]="drop.label"
+          [value]="drop.key === 'language' ? userProfile().language : userProfile().timezone"
+          [options]="drop.options"
+          [isOpen]="activeDropdown() === drop.key"
+          (toggle)="toggle.emit(drop.key)"
+          (optionSelected)="selection.emit({ option: $event, key: drop.key })">
+        </app-input-select>
+      }
     }
 
     <app-security-settings
-      [securityConfig]="securityConfig"
-      [userProfile]="userProfile"
-      [activeDropdown]="activeDropdown"
+      [securityConfig]="securityConfig()"
+      [userProfile]="userProfile()"
+      [activeDropdown]="activeDropdown()"
       (toggle)="toggle.emit($event)"
       (selection)="selection.emit($event)">
     </app-security-settings>
