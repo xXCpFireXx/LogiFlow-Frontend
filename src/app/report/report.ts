@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { Card } from '../shared/card/card';
 import { HeaderMainContent } from '../shared/header-main-content/header-main-content';
 import { CardReport } from './card-report/card-report';
@@ -9,6 +9,9 @@ import { BarStadistic } from "./bar-stadistic/bar-stadistic";
 import { TopRoutes } from "./top-routes/top-routes";
 import { RecentAlerts } from "./recent-alerts/recent-alerts";
 import { ButtonGeneric } from "../shared/button-generic/button-generic";
+import { ReportService } from './report.service';
+import { Router } from '@angular/router';
+import { RegionData, ReportCard, ReportData } from './report.model';
 
 type CardReports = {
   titulo: string,
@@ -24,46 +27,33 @@ type CardReports = {
   styleUrl: './report.css',
 })
 export class Report {
+  private reportService = inject(ReportService);
+  private router = inject(Router);
 
-  header: TitleHeaderMain = {
-    title: 'Operacional Report',
-    description: 'Detailed insights into logistics operations',
+  header = signal<TitleHeaderMain>({
+    title: '',
+    description: '',
+  })
+
+  regionData = signal<RegionData[]>([]);
+
+  cards = signal<ReportCard[]>([]);
+
+
+  ngOnInit(): void {
+    this.reportService.getReportData().subscribe({
+      next: (data: ReportData) => {
+        console.log('Dashboard data received:', data);
+        this.header.set(data.header);
+        this.cards.set(data.cards);
+        this.regionData.set(data.regionData);
+      },
+      error: (err: any) => {
+        console.error('API Error:', err);
+        // Usamos /500 porque es un fallo de data/servidor
+        this.router.navigate(['/500']);
+      },
+    });
   }
-
-  regionData: region[] = [
-    { region: 'North', valor: 64 },
-    { region: 'South', valor: 85 },
-    { region: 'East', valor: 45 },
-    { region: 'West', valor: 55 }
-  ];
-
-  cards = <CardReports[]>([
-    {
-      titulo: 'Total Volume',
-      valor: '1,240',
-      description: '+12% vs last month',
-      icon: 'shipment'
-    },
-    {
-      titulo: 'In Transit',
-      valor: '450',
-      description: 'Active shipments',
-      icon: 'transit'
-    },
-    {
-      titulo: 'On-Time Rate',
-      valor: '98.2%',
-      description: 'Within delivery window',
-      icon: 'ontime'
-    },
-
-    {
-      titulo: 'Exceptions',
-      valor: '15',
-      description: 'Requires Attention',
-      icon: 'exception'
-    }
-
-  ]);
 
 }

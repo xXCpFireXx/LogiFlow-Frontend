@@ -9,6 +9,7 @@ import { DashboardService } from './dashboard.service';
 import { DashboardCard, TruckPositions, HeaderData, DashboardData } from './dashboard.model';
 import { Router } from '@angular/router';
 
+
 @Component({
   selector: 'app-dashboard',
   imports: [CardDashboard, CardGeneric, HeaderMainContent, BardChartItem, LiveFleet],
@@ -30,6 +31,7 @@ export class Dashboard implements OnInit {
     title: '',
     description: '',
   });
+
 
   cards = signal<DashboardCard[]>([]);
 

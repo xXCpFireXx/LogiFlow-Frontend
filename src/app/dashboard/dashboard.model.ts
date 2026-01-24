@@ -1,4 +1,5 @@
 import { region } from '../models/Region';
+import { VolumeChart } from '../models/VolumeChart';
 
 export interface HeaderData {
     title: string;
@@ -14,10 +15,7 @@ export interface DashboardCard {
     isNegative: boolean;
 }
 
-export interface VolumeChart {
-    series: number[];
-    categories: string[];
-}
+
 
 export interface TruckPositions {
     blue: { x: number; y: number };
