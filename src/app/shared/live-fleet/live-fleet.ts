@@ -1,4 +1,4 @@
-import { Component, input, AfterViewInit, ElementRef, ViewChild, OnDestroy, PlatformRef, inject, PLATFORM_ID } from '@angular/core';
+import { Component, input, AfterViewInit, ElementRef, ViewChild, OnDestroy, inject, PLATFORM_ID, effect } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 
 import * as L from 'leaflet';
@@ -18,6 +18,18 @@ export class LiveFleet implements AfterViewInit, OnDestroy {
 
     @ViewChild('mapContainer') mapContainer!: ElementRef;
     public map?: L.Map;
+    private blueMarker?: L.Marker;
+    private orangeMarker?: L.Marker;
+
+    constructor() {
+        effect(() => {
+            const blue = this.truckBlue();
+            const orange = this.truckOrange();
+            if (this.map) {
+                this.updateMarkers(blue, orange);
+            }
+        });
+    }
 
     ngAfterViewInit() {
         if (isPlatformBrowser(this.platformId)) {
@@ -26,12 +38,8 @@ export class LiveFleet implements AfterViewInit, OnDestroy {
     }
 
     private initMap() {
-        // Coordinates approximate to match the mockup's mountain/lake look if using OSM
-        // Or just a specific view. Let's use a nice mountain area or just a default city.
-        // To match the "topographic" look, we can use a free topographic tile provider if preferred.
-        // For now, standard OSM is the most reliable free one.
         this.map = L.map(this.mapContainer.nativeElement, {
-            center: [39.06, -106.49], // Near Twin Lakes, Colorado (mountainous area)
+            center: [39.06, -106.49],
             zoom: 12,
             zoomControl: false,
             attributionControl: false
@@ -41,7 +49,16 @@ export class LiveFleet implements AfterViewInit, OnDestroy {
             maxZoom: 19,
         }).addTo(this.map);
 
-        // Custom Icons to match the mockup
+        this.updateMarkers(this.truckBlue(), this.truckOrange());
+
+        setTimeout(() => {
+            this.map?.invalidateSize();
+        }, 100);
+    }
+
+    private updateMarkers(blue: { x: number, y: number }, orange: { x: number, y: number }) {
+        if (!this.map) return;
+
         const blueIcon = L.divIcon({
             className: 'custom-div-icon',
             html: `<div class="bg-blue-500 p-2 rounded-full shadow-lg border-2 border-white text-white flex items-center justify-center" style="width: 40px; height: 40px;">
@@ -60,13 +77,17 @@ export class LiveFleet implements AfterViewInit, OnDestroy {
             iconAnchor: [20, 20]
         });
 
-        L.marker([39.08, -106.52], { icon: blueIcon }).addTo(this.map);
-        L.marker([39.05, -106.45], { icon: orangeIcon }).addTo(this.map);
+        if (this.blueMarker) {
+            this.blueMarker.setLatLng([blue.x, blue.y]);
+        } else if (blue.x !== 0 || blue.y !== 0) {
+            this.blueMarker = L.marker([blue.x, blue.y], { icon: blueIcon }).addTo(this.map);
+        }
 
-        // Asegurar que el mapa detecte el tamaño correcto del contenedor
-        setTimeout(() => {
-            this.map?.invalidateSize();
-        }, 100);
+        if (this.orangeMarker) {
+            this.orangeMarker.setLatLng([orange.x, orange.y]);
+        } else if (orange.x !== 0 || orange.y !== 0) {
+            this.orangeMarker = L.marker([orange.x, orange.y], { icon: orangeIcon }).addTo(this.map);
+        }
     }
 
     ngOnDestroy() {

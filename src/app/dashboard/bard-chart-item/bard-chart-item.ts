@@ -1,4 +1,4 @@
-import { Component, computed, input } from '@angular/core';
+import { Component, computed, input, effect, signal } from '@angular/core';
 import {
   NgApexchartsModule,
   ApexChart,
@@ -40,16 +40,25 @@ export type ChartOptions = {
   }
 })
 export class BardChartItem {
-  regions = input<any>();
+  regions = input<any[]>([]);
 
-  public options: ChartOptions;
+  public options = signal<Partial<ChartOptions>>({});
 
   constructor() {
-    this.options = {
+    effect(() => {
+      const data = this.regions();
+      if (data && data.length > 0) {
+        this.updateOptions(data);
+      }
+    });
+  }
+
+  private updateOptions(data: any[]) {
+    this.options.set({
       series: [
         {
           name: 'Volume',
-          data: [65, 85, 45, 60],
+          data: data.map(r => r.valor),
         },
       ],
       chart: {
@@ -74,7 +83,7 @@ export class BardChartItem {
       },
       dataLabels: { enabled: false },
       xaxis: {
-        categories: ['North', 'South', 'East', 'West'],
+        categories: data.map(r => r.region),
         axisBorder: { show: false },
         axisTicks: { show: false },
         labels: {
@@ -107,6 +116,6 @@ export class BardChartItem {
           formatter: (val) => val.toString()
         }
       },
-    };
+    });
   }
 }

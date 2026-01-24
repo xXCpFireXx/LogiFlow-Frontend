@@ -8,9 +8,10 @@ import { Component, input } from '@angular/core';
     styleUrl: './card-dashboard.css',
 })
 export class CardDashboard {
-    titulo = input<string>();
-    valor = input<string>();
-    porcentaje = input<string>();
+    id = input<string>();
+    title = input<string>();
+    value = input<string>();
+    percentage = input<string>();
     icon = input<string>();
     isNegative = input<boolean>(false);
 }
