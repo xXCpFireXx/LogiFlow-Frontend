@@ -4,11 +4,23 @@ import { MainLayout } from './core/layout/main-layout/main-layout';
 export const routes: Routes = [
   {
     path: 'login',
-    loadComponent: () => import('./login/login').then(m => m.Login),
+    loadComponent: () => import('./login/login').then((m) => m.Login),
   },
   {
     path: 'register',
-    loadComponent: () => import('./register/register').then(m => m.Register),
+    loadComponent: () => import('./register/register').then((m) => m.Register),
+  },
+  {
+    path: '404',
+    loadComponent: () =>
+      import('./shared/not-found-404-page/not-found-404-page').then((m) => m.NotFoundComponent),
+  },
+  {
+    path: '500',
+    loadComponent: () =>
+      import('./shared/internal-server-error-500-page/internal-server-error-500-page').then(
+        (m) => m.InternalServerError500Page,
+      ),
   },
   {
     path: '',
@@ -16,33 +28,27 @@ export const routes: Routes = [
     children: [
       {
         path: 'dashboard',
-        loadComponent: () =>
-          import('./dashboard/dashboard').then(m => m.Dashboard),
+        loadComponent: () => import('./dashboard/dashboard').then((m) => m.Dashboard),
       },
       {
         path: 'shipments',
-        loadComponent: () =>
-          import('./shipment/shipment').then(m => m.Shipment),
+        loadComponent: () => import('./shipment/shipment').then((m) => m.Shipment),
       },
       {
         path: 'tracking',
-        loadComponent: () =>
-          import('./tracking/tracking').then(m => m.Tracking),
+        loadComponent: () => import('./tracking/tracking').then((m) => m.Tracking),
       },
       {
         path: 'clients',
-        loadComponent: () =>
-          import('./client/client').then(m => m.Client),
+        loadComponent: () => import('./client/client').then((m) => m.Client),
       },
       {
         path: 'report',
-        loadComponent: () =>
-          import('./report/report').then(m => m.Report),
+        loadComponent: () => import('./report/report').then((m) => m.Report),
       },
       {
         path: 'setting',
-        loadComponent: () =>
-          import('./setting/setting').then(m => m.Setting),
+        loadComponent: () => import('./setting/setting').then((m) => m.Setting),
       },
       {
         path: '',
@@ -51,8 +57,13 @@ export const routes: Routes = [
       },
     ],
   },
+  // {
+  //   path: '**',
+  //   redirectTo: '',
+  // },
   {
     path: '**',
-    redirectTo: '',
+    loadComponent: () =>
+      import('./shared/not-found-404-page/not-found-404-page').then((m) => m.NotFoundComponent),
   },
 ];

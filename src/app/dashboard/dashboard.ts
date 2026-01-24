@@ -7,6 +7,7 @@ import { BardChartItem } from './bard-chart-item/bard-chart-item';
 import { LiveFleet } from '../shared/live-fleet/live-fleet';
 import { DashboardService } from './dashboard.service';
 import { DashboardCard, TruckPositions, HeaderData, DashboardData } from './dashboard.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
@@ -16,28 +17,36 @@ import { DashboardCard, TruckPositions, HeaderData, DashboardData } from './dash
 })
 export class Dashboard implements OnInit {
   private dashboardService = inject(DashboardService);
+  private router = inject(Router);
 
   truckPositions = signal<TruckPositions>({
     blue: { x: 0, y: 0 },
-    orange: { x: 0, y: 0 }
+    orange: { x: 0, y: 0 },
   });
 
   regionData = signal<region[]>([]);
 
   header = signal<HeaderData>({
     title: '',
-    description: ''
+    description: '',
   });
 
   cards = signal<DashboardCard[]>([]);
 
   ngOnInit(): void {
-    this.dashboardService.getDashboardData().subscribe((data: DashboardData) => {
-      console.log('Dashboard data received:', data);
-      this.header.set(data.header);
-      this.cards.set(data.cards);
-      this.regionData.set(data.regionData);
-      this.truckPositions.set(data.truckPositions);
+    this.dashboardService.getDashboardData().subscribe({
+      next: (data: DashboardData) => {
+        console.log('Dashboard data received:', data);
+        this.header.set(data.header);
+        this.cards.set(data.cards);
+        this.regionData.set(data.regionData);
+        this.truckPositions.set(data.truckPositions);
+      },
+      error: (err) => {
+        console.error('API Error:', err);
+        // Usamos /500 porque es un fallo de data/servidor
+        this.router.navigate(['/500']);
+      },
     });
   }
 }
