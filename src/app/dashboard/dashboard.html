@@ -1,7 +1,5 @@
 <div class="flex items-end justify-between w-full pb-5">
-  <app-header-main-content 
-    [title]="header.title" 
-    [description]="header.description">
+  <app-header-main-content [title]="header().title" [description]="header().description">
   </app-header-main-content>
 
   <div class="flex items-center gap-1">
@@ -19,22 +17,18 @@
 
 <div class="py-6 w-full">
   <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 w-full">
-    @for (item of cards; track item.titulo) {
-      <app-card class="w-full">
-        <app-card-dashboard 
-          [titulo]="item.titulo" 
-          [valor]="item.valor" 
-          [porcentaje]="item.porcentaje"
-          [icon]="item.icon" 
-          [isNegative]="item.isNegative ?? false">
-        </app-card-dashboard>
-      </app-card>
+    @for (item of cards(); track item.title) {
+    <app-card class="w-full">
+      <app-card-dashboard [title]="item.title" [value]="item.value" [percentage]="item.percentage" [icon]="item.icon"
+        [isNegative]="item.isNegative">
+      </app-card-dashboard>
+    </app-card>
     }
   </div>
 </div>
 
 <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 items-stretch">
-  
+
   <div class="lg:col-span-2 flex flex-col">
     <app-card class="h-full">
       <div class="flex justify-between items-start pb-8">
@@ -53,7 +47,7 @@
       </div>
 
       <div class="w-full grow min-h-87.5">
-        <app-bard-chart-item [regions]="regionData"></app-bard-chart-item>
+        <app-bard-chart-item [regions]="regionData()"></app-bard-chart-item>
       </div>
     </app-card>
   </div>
@@ -71,10 +65,8 @@
       </div>
 
       <div class="grow -mx-5 -mb-5 border-t border-gray-100 overflow-hidden rounded-b-2xl min-h-100">
-        <app-live-fleet 
-          class="h-full w-full"
-          [truckBlue]="truckPositions.blue" 
-          [truckOrange]="truckPositions.orange">
+        <app-live-fleet class="h-full w-full" [truckBlue]="truckPositions().blue"
+          [truckOrange]="truckPositions().orange">
         </app-live-fleet>
       </div>
     </app-card>
