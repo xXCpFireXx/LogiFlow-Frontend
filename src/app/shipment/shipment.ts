@@ -1,9 +1,10 @@
-import { Component, signal } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { HeaderMainContent } from '../shared/header-main-content/header-main-content';
 import { ButtonGeneric } from '../shared/button-generic/button-generic';
-import { SHIPMENT_HEADER, SHIPMENTS_MOCK } from './shipment.mock';
+import { SHIPMENT_HEADER } from './shipment.mock';
 import { ShipmentTable } from './shipment-table/shipment-table';
-import { Shipment as ShipmentModel } from '../models/Shipment';
+import { ShipmentService } from './shipment.service';
+import { toSignal } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-shipment',
@@ -12,12 +13,14 @@ import { Shipment as ShipmentModel } from '../models/Shipment';
   styleUrl: './shipment.css',
 })
 export class Shipment {
-  // 2. Convertimos las propiedades a Signals
-  // Usamos 'readonly' porque la referencia a la señal no cambia, solo su valor.
+
+  private shipmentService = inject(ShipmentService);
   readonly header = signal(SHIPMENT_HEADER);
 
-  // Tipamos explícitamente el array de shipments
-  readonly shipments = signal<ShipmentModel[]>(SHIPMENTS_MOCK);
+  readonly shipments = toSignal(
+    this.shipmentService.getAll(),
+    { initialValue: [] }
+  );
 
   onExport() {
     console.log('Exporting shipment data...');
