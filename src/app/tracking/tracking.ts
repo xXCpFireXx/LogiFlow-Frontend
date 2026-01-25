@@ -1,6 +1,6 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule, Location } from '@angular/common';
-import { Shipment } from '../models/Shipment';
+import { Shipment, TruckPositions } from '../models/Shipment';
 
 // Componentes
 import { HeaderMainContent } from '../shared/header-main-content/header-main-content';
@@ -46,10 +46,10 @@ export class Tracking implements OnInit {
   // Variables de Estado (Mocks por defecto)
   header = { ...TRACKING_HEADER };
   details = [...TRACKING_DETAILS];
-  history = [...TRACKING_HISTORY];
-  cargoDetails = [...CARGO_DETAILS];
-  documents = [...TRACKING_DOCUMENTS];
-  truckPositions = TRUCK_POSITIONS;
+  history = [...TRACKING_HISTORY]; // Se reemplazará con shipment.history
+  cargoDetails = [...CARGO_DETAILS]; // Se reemplazará con shipment.cargoDetails
+  documents = [...TRACKING_DOCUMENTS]; // Se reemplazará con shipment.documents
+  truckPositions: TruckPositions = TRUCK_POSITIONS; // Se reemplazará con shipment.truckPositions
 
   shipmentStatus = 'In Transit';
   currentShipment: Shipment | null = null;
@@ -64,13 +64,9 @@ export class Tracking implements OnInit {
       this.updateViewWithShipmentData(this.currentShipment);
     } else {
       console.warn('No shipment data found in state. Using mocks.');
-      // Aquí podrías disparar una petición HTTP si tienes un ID en la URL
     }
   }
 
-  /**
-   * Mapea el objeto Shipment (Backend) a la UI
-   */
   private updateViewWithShipmentData(shipment: Shipment): void {
     console.log('Rendering shipment:', shipment);
 
@@ -83,33 +79,38 @@ export class Tracking implements OnInit {
     // Actualizamos Estado
     this.shipmentStatus = shipment.status;
 
-    // Actualizamos las tarjetas de resumen
-    this.details = [
-      {
-        type: 'origin',
-        label: 'Origin',
-        value: shipment.origin || 'N/A',
-        subtext: 'Origin Location',
-      },
-      {
-        type: 'destination',
-        label: 'Destination',
-        value: shipment.destination || 'N/A',
-        subtext: 'Target Location',
-      },
-      {
-        type: 'carrier',
-        label: 'Carrier',
-        value: (shipment as any).carrier || 'LogiFlow Express',
-        subtext: 'Standard Service',
-      },
-      {
-        type: 'weight',
-        label: 'Weight',
-        value: (shipment as any).weight ? `${(shipment as any).weight} kg` : '---',
-        subtext: 'Total Weight',
-      },
-    ];
+    // 3. Detalles Superiores (Cards)
+    // Usamos shipment.details si existe, si no, construimos uno básico
+    if (shipment.details && shipment.details.length > 0) {
+      this.details = shipment.details;
+    } else {
+      this.details = [
+        { type: 'origin', label: 'Origin', value: shipment.origin, subtext: 'Origin Location' },
+        { type: 'destination', label: 'Destination', value: shipment.destination, subtext: 'Target Location' },
+        { type: 'carrier', label: 'Carrier', value: 'LogiFlow Exp', subtext: 'Standard' },
+        { type: 'weight', label: 'Weight', value: '---', subtext: 'Total Weight' },
+      ];
+    }
+
+    // 4. Historial (Timeline)
+    if (shipment.history && shipment.history.length > 0) {
+      this.history = shipment.history;
+    }
+
+    // 5. Detalles de Carga (Tabla inferior izquierda)
+    if (shipment.cargoDetails && shipment.cargoDetails.length > 0) {
+      this.cargoDetails = shipment.cargoDetails;
+    }
+
+    // 6. Documentos (Lista inferior derecha)
+    if (shipment.documents && shipment.documents.length > 0) {
+      this.documents = shipment.documents;
+    }
+
+    // 7. Mapa (Posiciones)
+    if (shipment.truckPositions) {
+      this.truckPositions = shipment.truckPositions;
+    }
   }
 
   // --- Actions ---

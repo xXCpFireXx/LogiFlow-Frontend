@@ -78,18 +78,8 @@
       }
     ],
     "volumeChart": {
-      "series": [
-        65,
-        85,
-        45,
-        60
-      ],
-      "categories": [
-        "North",
-        "South",
-        "East",
-        "West"
-      ]
+      "series": [65, 85, 45, 60],
+      "categories": ["North", "South", "East", "West"]
     },
     "truckPositions": {
       "blue": {
@@ -152,20 +142,8 @@
       }
     ],
     "performanceChart": {
-      "series": [
-        12,
-        25,
-        18,
-        32,
-        21
-      ],
-      "categories": [
-        "May 01",
-        "May 08",
-        "May 15",
-        "May 22",
-        "May 30"
-      ]
+      "series": [12, 25, 18, 32, 21],
+      "categories": ["May 01", "May 08", "May 15", "May 22", "May 30"]
     },
     "alerts": [
       {
@@ -197,130 +175,692 @@
       }
     ]
   },
-  "tracking": {
-    "header": {
-      "title": "Tracking",
-      "description": "Real-time delivery monitoring"
+  "shipments": [
+    {
+      "id": "shp-001",
+      "trackingId": "#SHP-2540",
+      "eta": "2025-01-20",
+      "origin": "New York, USA",
+      "destination": "Los Angeles, USA",
+      "customer": "Neal Matthews",
+      "status": "In Transit",
+      "details": [
+        {
+          "type": "origin",
+          "label": "Origin",
+          "value": "New York, USA",
+          "subtext": "JFK Cargo Terminal 4"
+        },
+        {
+          "type": "destination",
+          "label": "Destination",
+          "value": "Los Angeles, USA",
+          "subtext": "Distribution Center LAX-09"
+        },
+        {
+          "type": "carrier",
+          "label": "Carrier",
+          "value": "FedEx Logistics",
+          "subtext": "Service: Ground Freight"
+        },
+        { "type": "weight", "label": "Weight", "value": "1250 kg", "subtext": "5 Pallets" }
+      ],
+      "history": [
+        {
+          "date": "Jan 18, 2025",
+          "time": "08:30",
+          "status": "In Transit",
+          "location": "Denver, CO",
+          "description": "Departed transit hub",
+          "active": true,
+          "completed": false
+        },
+        {
+          "date": "Jan 16, 2025",
+          "time": "14:15",
+          "status": "Processed",
+          "location": "New York, NY",
+          "active": false,
+          "completed": true
+        },
+        {
+          "date": "Jan 15, 2025",
+          "time": "09:00",
+          "status": "Picked Up",
+          "location": "New York, NY",
+          "active": false,
+          "completed": true
+        }
+      ],
+      "cargoDetails": [
+        { "label": "Package Type", "value": "Standard Pallet" },
+        { "label": "Quantity", "value": "5 Units" },
+        { "label": "Dimensions", "value": "120 x 100 x 150 cm" },
+        { "label": "Total Volume", "value": "2.5 CBM" },
+        { "label": "Commodity", "value": "Electronics" },
+        { "label": "Stackable", "value": "No" },
+        { "label": "HS Code", "value": "8542.31.00" }
+      ],
+      "documents": [
+        { "name": "Commercial Invoice", "format": "PDF", "size": "1.2 MB" },
+        { "name": "Packing List", "format": "PDF", "size": "0.5 MB" }
+      ],
+      "truckPositions": {
+        "blue": { "x": 39.7392, "y": -104.9903 },
+        "orange": { "x": 39.75, "y": -104.95 }
+      }
     },
-    "details": [
-      {
-        "type": "origin",
-        "label": "Origin",
-        "value": "Hamburg, DE",
-        "subtext": "Warehouse H-22"
-      },
-      {
-        "type": "destination",
-        "label": "Destination",
-        "value": "Lyon, FR",
-        "subtext": "Distribution center L-01"
-      },
-      {
-        "type": "carrier",
-        "label": "Carrier",
-        "value": "DHL Express",
-        "subtext": "Service: Express worldwide"
-      },
-      {
-        "type": "weight",
-        "label": "Weight",
-        "value": "450 kg",
-        "subtext": "12 Pallets"
+    {
+      "id": "shp-002",
+      "trackingId": "#SHP-2541",
+      "eta": "2025-01-19",
+      "origin": "Berlin, Germany",
+      "destination": "Paris, France",
+      "customer": "Jamal Kerrod",
+      "status": "Delivered",
+      "details": [
+        { "type": "origin", "label": "Origin", "value": "Berlin, DE", "subtext": "Warehouse B-12" },
+        {
+          "type": "destination",
+          "label": "Destination",
+          "value": "Paris, FR",
+          "subtext": "Logistics Hub P-05"
+        },
+        {
+          "type": "carrier",
+          "label": "Carrier",
+          "value": "DHL Express",
+          "subtext": "Service: Next Day"
+        },
+        { "type": "weight", "label": "Weight", "value": "340 kg", "subtext": "2 Pallets" }
+      ],
+      "history": [
+        {
+          "date": "Jan 19, 2025",
+          "time": "10:30",
+          "status": "Delivered",
+          "location": "Paris, FR",
+          "description": "Signed by: J. Pierre",
+          "active": true,
+          "completed": true
+        },
+        {
+          "date": "Jan 19, 2025",
+          "time": "07:00",
+          "status": "Out for Delivery",
+          "location": "Paris, FR",
+          "active": false,
+          "completed": true
+        },
+        {
+          "date": "Jan 18, 2025",
+          "time": "22:00",
+          "status": "Arrived at Hub",
+          "location": "Paris, FR",
+          "active": false,
+          "completed": true
+        }
+      ],
+      "cargoDetails": [
+        { "label": "Package Type", "value": "Wooden Crate" },
+        { "label": "Quantity", "value": "2 Crates" },
+        { "label": "Dimensions", "value": "150 x 150 x 120 cm" },
+        { "label": "Total Volume", "value": "5.4 CBM" },
+        { "label": "Commodity", "value": "Auto Parts" },
+        { "label": "Stackable", "value": "Yes" },
+        { "label": "HS Code", "value": "8708.99.90" }
+      ],
+      "documents": [{ "name": "Proof of Delivery", "format": "PDF", "size": "0.4 MB" }],
+      "truckPositions": {
+        "blue": { "x": 48.8566, "y": 2.3522 },
+        "orange": { "x": 48.86, "y": 2.34 }
       }
-    ],
-    "history": [
-      {
-        "date": "Oct 24, 2025",
-        "time": "14:30",
-        "status": "Delivered",
-        "location": "Lyon, FR",
-        "description": "Package delivered",
-        "active": true,
-        "completed": true
-      },
-      {
-        "date": "Oct 23, 2025",
-        "time": "09:15",
-        "status": "Out for Delivery",
-        "location": "Lyon, FR",
-        "active": false,
-        "completed": true
-      },
-      {
-        "date": "Oct 22, 2025",
-        "time": "18:45",
-        "status": "In Transit",
-        "location": "Paris, FR",
-        "active": false,
-        "completed": true
-      },
-      {
-        "date": "Oct 21, 2025",
-        "time": "10:00",
-        "status": "Processed",
-        "location": "Hamburg, DE",
-        "active": false,
-        "completed": true
+    },
+    {
+      "id": "shp-003",
+      "trackingId": "#SHP-2542",
+      "eta": "2025-01-18",
+      "origin": "Madrid, Spain",
+      "destination": "Barcelona, Spain",
+      "customer": "Juanita Bell",
+      "status": "Incident",
+      "details": [
+        {
+          "type": "origin",
+          "label": "Origin",
+          "value": "Madrid, ES",
+          "subtext": "Central Hub M-01"
+        },
+        {
+          "type": "destination",
+          "label": "Destination",
+          "value": "Barcelona, ES",
+          "subtext": "Port Depot B-22"
+        },
+        {
+          "type": "carrier",
+          "label": "Carrier",
+          "value": "Correos Express",
+          "subtext": "Service: Standard"
+        },
+        { "type": "weight", "label": "Weight", "value": "800 kg", "subtext": "8 Pallets" }
+      ],
+      "history": [
+        {
+          "date": "Jan 17, 2025",
+          "time": "16:45",
+          "status": "Incident",
+          "location": "Zaragoza, ES",
+          "description": "Vehicle Breakdown - Delay Expected",
+          "active": true,
+          "completed": false
+        },
+        {
+          "date": "Jan 17, 2025",
+          "time": "08:00",
+          "status": "In Transit",
+          "location": "Madrid, ES",
+          "active": false,
+          "completed": true
+        }
+      ],
+      "cargoDetails": [
+        { "label": "Package Type", "value": "Cardboard Boxes" },
+        { "label": "Quantity", "value": "50 Boxes" },
+        { "label": "Dimensions", "value": "60 x 40 x 40 cm" },
+        { "label": "Total Volume", "value": "4.8 CBM" },
+        { "label": "Commodity", "value": "Textiles" },
+        { "label": "Stackable", "value": "Yes" },
+        { "label": "HS Code", "value": "6203.42.00" }
+      ],
+      "documents": [{ "name": "Incident Report", "format": "PDF", "size": "1.5 MB" }],
+      "truckPositions": {
+        "blue": { "x": 41.6488, "y": -0.8891 },
+        "orange": { "x": 41.65, "y": -0.88 }
       }
-    ],
-    "cargoDetails": [
-      {
-        "label": "Package Type",
-        "value": "Standard Pallet (EUR)"
-      },
-      {
-        "label": "Quantity",
-        "value": "12 Units"
-      },
-      {
-        "label": "Dimensions",
-        "value": "120 x 80 x 144 cm"
-      },
-      {
-        "label": "Total Volume",
-        "value": "1.38 CBM"
-      },
-      {
-        "label": "Commodity",
-        "value": "General Cargo"
-      },
-      {
-        "label": "Stackable",
-        "value": "No"
-      },
-      {
-        "label": "HS Code",
-        "value": "8517.12.00"
+    },
+    {
+      "id": "shp-004",
+      "trackingId": "#SHP-2543",
+      "eta": "2025-02-05",
+      "origin": "Tokyo, Japan",
+      "destination": "San Francisco, USA",
+      "customer": "Kenji Sato",
+      "status": "In Transit",
+      "details": [
+        { "type": "origin", "label": "Origin", "value": "Tokyo, JP", "subtext": "Port of Tokyo" },
+        {
+          "type": "destination",
+          "label": "Destination",
+          "value": "San Francisco, USA",
+          "subtext": "Pier 39 Logistics"
+        },
+        {
+          "type": "carrier",
+          "label": "Carrier",
+          "value": "Maersk",
+          "subtext": "Service: Ocean Freight"
+        },
+        { "type": "weight", "label": "Weight", "value": "5000 kg", "subtext": "1 Container (20ft)" }
+      ],
+      "history": [
+        {
+          "date": "Jan 22, 2025",
+          "time": "12:00",
+          "status": "In Transit",
+          "location": "Pacific Ocean",
+          "description": "Vessel en route",
+          "active": true,
+          "completed": false
+        },
+        {
+          "date": "Jan 15, 2025",
+          "time": "09:00",
+          "status": "Departure",
+          "location": "Tokyo, JP",
+          "active": false,
+          "completed": true
+        }
+      ],
+      "cargoDetails": [
+        { "label": "Package Type", "value": "20ft Container" },
+        { "label": "Quantity", "value": "1 Unit" },
+        { "label": "Dimensions", "value": "600 x 244 x 259 cm" },
+        { "label": "Total Volume", "value": "33.0 CBM" },
+        { "label": "Commodity", "value": "Consumer Electronics" },
+        { "label": "Stackable", "value": "Yes" },
+        { "label": "HS Code", "value": "8517.13.00" }
+      ],
+      "documents": [
+        { "name": "Bill of Lading", "format": "PDF", "size": "3.1 MB" },
+        { "name": "Customs Declaration", "format": "PDF", "size": "2.0 MB" }
+      ],
+      "truckPositions": {
+        "blue": { "x": 35.6762, "y": 139.6503 },
+        "orange": { "x": 35.68, "y": 139.7 }
       }
-    ],
-    "documents": [
-      {
-        "name": "Bill of Lading (BOL)",
-        "format": "PDF",
-        "size": "2.4 MB"
-      },
-      {
-        "name": "Commercial Invoice",
-        "format": "PDF",
-        "size": "1.1 MB"
-      },
-      {
-        "name": "Packing List",
-        "format": "PDF",
-        "size": "0.8 MB"
+    },
+    {
+      "id": "shp-005",
+      "trackingId": "#SHP-2544",
+      "eta": "2025-01-25",
+      "origin": "Sao Paulo, Brazil",
+      "destination": "Buenos Aires, Argentina",
+      "customer": "Maria Gonzalez",
+      "status": "Pending",
+      "details": [
+        {
+          "type": "origin",
+          "label": "Origin",
+          "value": "Sao Paulo, BR",
+          "subtext": "Guarulhos Cargo"
+        },
+        {
+          "type": "destination",
+          "label": "Destination",
+          "value": "Buenos Aires, AR",
+          "subtext": "Ezeiza Warehouse"
+        },
+        {
+          "type": "carrier",
+          "label": "Carrier",
+          "value": "LATAM Cargo",
+          "subtext": "Service: Air Freight"
+        },
+        { "type": "weight", "label": "Weight", "value": "200 kg", "subtext": "1 Pallet" }
+      ],
+      "history": [
+        {
+          "date": "Jan 24, 2025",
+          "time": "08:00",
+          "status": "Processing",
+          "location": "Sao Paulo, BR",
+          "description": "Awaiting customs clearance",
+          "active": true,
+          "completed": false
+        }
+      ],
+      "cargoDetails": [
+        { "label": "Package Type", "value": "Temperature Controlled Bin" },
+        { "label": "Quantity", "value": "1 Unit" },
+        { "label": "Dimensions", "value": "100 x 80 x 100 cm" },
+        { "label": "Total Volume", "value": "0.8 CBM" },
+        { "label": "Commodity", "value": "Pharmaceuticals" },
+        { "label": "Stackable", "value": "No" },
+        { "label": "HS Code", "value": "3004.90.00" }
+      ],
+      "documents": [{ "name": "Health Certificate", "format": "PDF", "size": "1.0 MB" }],
+      "truckPositions": {
+        "blue": { "x": -23.5505, "y": -46.6333 },
+        "orange": { "x": -23.56, "y": -46.64 }
       }
-    ],
-    "truckPositions": {
-      "blue": {
-        "x": 45.7597,
-        "y": 4.8422
-      },
-      "orange": {
-        "x": 45.7238,
-        "y": 4.8931
+    },
+    {
+      "id": "shp-006",
+      "trackingId": "#SHP-2545",
+      "eta": "2025-02-10",
+      "origin": "London, UK",
+      "destination": "Dubai, UAE",
+      "customer": "Alice Sterling",
+      "status": "In Transit",
+      "details": [
+        { "type": "origin", "label": "Origin", "value": "London, UK", "subtext": "Heathrow Cargo" },
+        {
+          "type": "destination",
+          "label": "Destination",
+          "value": "Dubai, UAE",
+          "subtext": "DXB Logistics City"
+        },
+        {
+          "type": "carrier",
+          "label": "Carrier",
+          "value": "Emirates SkyCargo",
+          "subtext": "Service: Air Freight"
+        },
+        { "type": "weight", "label": "Weight", "value": "850 kg", "subtext": "3 Pallets" }
+      ],
+      "history": [
+        {
+          "date": "Jan 26, 2025",
+          "time": "14:00",
+          "status": "In Transit",
+          "location": "Over Europe",
+          "description": "Flight in progress",
+          "active": true,
+          "completed": false
+        },
+        {
+          "date": "Jan 26, 2025",
+          "time": "09:00",
+          "status": "Departure",
+          "location": "London, UK",
+          "active": false,
+          "completed": true
+        }
+      ],
+      "cargoDetails": [
+        { "label": "Package Type", "value": "Pallet" },
+        { "label": "Quantity", "value": "3 Units" },
+        { "label": "Dimensions", "value": "120 x 80 x 120 cm" },
+        { "label": "Total Volume", "value": "3.5 CBM" },
+        { "label": "Commodity", "value": "Luxury Goods" },
+        { "label": "Stackable", "value": "Yes" },
+        { "label": "HS Code", "value": "4202.92.00" }
+      ],
+      "documents": [{ "name": "Air Waybill", "format": "PDF", "size": "1.1 MB" }],
+      "truckPositions": {
+        "blue": { "x": 51.47, "y": -0.45 },
+        "orange": { "x": 25.27, "y": 55.33 }
+      }
+    },
+    {
+      "id": "shp-007",
+      "trackingId": "#SHP-2546",
+      "eta": "2025-01-28",
+      "origin": "Sydney, Australia",
+      "destination": "Singapore, SG",
+      "customer": "Liam Chen",
+      "status": "Delivered",
+      "details": [
+        { "type": "origin", "label": "Origin", "value": "Sydney, AU", "subtext": "Port Botany" },
+        {
+          "type": "destination",
+          "label": "Destination",
+          "value": "Singapore, SG",
+          "subtext": "Changi Airfreight"
+        },
+        {
+          "type": "carrier",
+          "label": "Carrier",
+          "value": "Qantas Freight",
+          "subtext": "Service: Express"
+        },
+        { "type": "weight", "label": "Weight", "value": "450 kg", "subtext": "2 Pallets" }
+      ],
+      "history": [
+        {
+          "date": "Jan 25, 2025",
+          "time": "11:00",
+          "status": "Delivered",
+          "location": "Singapore, SG",
+          "description": "Received by L. Chen",
+          "active": true,
+          "completed": true
+        }
+      ],
+      "cargoDetails": [
+        { "label": "Package Type", "value": "Refrigerated Box" },
+        { "label": "Quantity", "value": "2 Units" },
+        { "label": "Dimensions", "value": "100 x 100 x 100 cm" },
+        { "label": "Total Volume", "value": "2.0 CBM" },
+        { "label": "Commodity", "value": "Seafood" },
+        { "label": "Stackable", "value": "No" },
+        { "label": "HS Code", "value": "0306.17.00" }
+      ],
+      "documents": [{ "name": "Inspection Report", "format": "PDF", "size": "2.2 MB" }],
+      "truckPositions": {
+        "blue": { "x": -33.86, "y": 151.2 },
+        "orange": { "x": 1.35, "y": 103.8 }
+      }
+    },
+    {
+      "id": "shp-008",
+      "trackingId": "#SHP-2547",
+      "eta": "2025-02-01",
+      "origin": "Mumbai, India",
+      "destination": "Toronto, Canada",
+      "customer": "Ravi Patel",
+      "status": "Incident",
+      "details": [
+        { "type": "origin", "label": "Origin", "value": "Mumbai, IN", "subtext": "Nhava Sheva" },
+        {
+          "type": "destination",
+          "label": "Destination",
+          "value": "Toronto, CA",
+          "subtext": "Pearson Cargo"
+        },
+        {
+          "type": "carrier",
+          "label": "Carrier",
+          "value": "Air Canada Cargo",
+          "subtext": "Service: Air"
+        },
+        { "type": "weight", "label": "Weight", "value": "1200 kg", "subtext": "6 Pallets" }
+      ],
+      "history": [
+        {
+          "date": "Jan 24, 2025",
+          "time": "15:00",
+          "status": "Incident",
+          "location": "Mumbai, IN",
+          "description": "Held by Customs - Documentation missing",
+          "active": true,
+          "completed": false
+        }
+      ],
+      "cargoDetails": [
+        { "label": "Package Type", "value": "Bales" },
+        { "label": "Quantity", "value": "12 Bales" },
+        { "label": "Dimensions", "value": "80 x 80 x 80 cm" },
+        { "label": "Total Volume", "value": "6.1 CBM" },
+        { "label": "Commodity", "value": "Textiles" },
+        { "label": "Stackable", "value": "Yes" },
+        { "label": "HS Code", "value": "5208.11.00" }
+      ],
+      "documents": [
+        { "name": "Commercial Invoice (Incomplete)", "format": "PDF", "size": "0.9 MB" }
+      ],
+      "truckPositions": {
+        "blue": { "x": 19.07, "y": 72.87 },
+        "orange": { "x": 43.65, "y": -79.38 }
+      }
+    },
+    {
+      "id": "shp-009",
+      "trackingId": "#SHP-2548",
+      "eta": "2025-01-30",
+      "origin": "Cape Town, SA",
+      "destination": "Amsterdam, NL",
+      "customer": "Johan Smit",
+      "status": "Pending",
+      "details": [
+        { "type": "origin", "label": "Origin", "value": "Cape Town, SA", "subtext": "CPT Cargo" },
+        {
+          "type": "destination",
+          "label": "Destination",
+          "value": "Amsterdam, NL",
+          "subtext": "Schiphol Hub"
+        },
+        {
+          "type": "carrier",
+          "label": "Carrier",
+          "value": "KLM Cargo",
+          "subtext": "Service: Fresh"
+        },
+        { "type": "weight", "label": "Weight", "value": "300 kg", "subtext": "20 Boxes" }
+      ],
+      "history": [
+        {
+          "date": "Jan 26, 2025",
+          "time": "08:00",
+          "status": "Pending",
+          "location": "Cape Town, SA",
+          "description": "Booking confirmed",
+          "active": true,
+          "completed": false
+        }
+      ],
+      "cargoDetails": [
+        { "label": "Package Type", "value": "Carton" },
+        { "label": "Quantity", "value": "20 Boxes" },
+        { "label": "Dimensions", "value": "40 x 30 x 30 cm" },
+        { "label": "Total Volume", "value": "0.72 CBM" },
+        { "label": "Commodity", "value": "Flowers" },
+        { "label": "Stackable", "value": "No" },
+        { "label": "HS Code", "value": "0603.11.00" }
+      ],
+      "documents": [{ "name": "Phytosanitary Cert", "format": "PDF", "size": "1.5 MB" }],
+      "truckPositions": {
+        "blue": { "x": -33.92, "y": 18.42 },
+        "orange": { "x": 52.36, "y": 4.9 }
+      }
+    },
+    {
+      "id": "shp-010",
+      "trackingId": "#SHP-2549",
+      "eta": "2025-02-15",
+      "origin": "Shanghai, CN",
+      "destination": "Vancouver, CA",
+      "customer": "Mei Ling",
+      "status": "In Transit",
+      "details": [
+        {
+          "type": "origin",
+          "label": "Origin",
+          "value": "Shanghai, CN",
+          "subtext": "Port of Shanghai"
+        },
+        {
+          "type": "destination",
+          "label": "Destination",
+          "value": "Vancouver, CA",
+          "subtext": "Port Metro"
+        },
+        { "type": "carrier", "label": "Carrier", "value": "COSCO", "subtext": "Service: Ocean" },
+        { "type": "weight", "label": "Weight", "value": "15000 kg", "subtext": "2 Containers" }
+      ],
+      "history": [
+        {
+          "date": "Jan 20, 2025",
+          "time": "06:00",
+          "status": "In Transit",
+          "location": "Pacific Ocean",
+          "description": "Vessel cruising speed",
+          "active": true,
+          "completed": false
+        }
+      ],
+      "cargoDetails": [
+        { "label": "Package Type", "value": "40ft Container" },
+        { "label": "Quantity", "value": "2 Units" },
+        { "label": "Dimensions", "value": "1219 x 244 x 259 cm" },
+        { "label": "Total Volume", "value": "135.0 CBM" },
+        { "label": "Commodity", "value": "Machinery" },
+        { "label": "Stackable", "value": "Yes" },
+        { "label": "HS Code", "value": "8479.89.90" }
+      ],
+      "documents": [{ "name": "Bill of Lading", "format": "PDF", "size": "3.0 MB" }],
+      "truckPositions": {
+        "blue": { "x": 31.23, "y": 121.47 },
+        "orange": { "x": 49.28, "y": -123.12 }
+      }
+    },
+    {
+      "id": "shp-011",
+      "trackingId": "#SHP-2550",
+      "eta": "2025-01-22",
+      "origin": "Mexico City, MX",
+      "destination": "Bogota, CO",
+      "customer": "Carlos Ruiz",
+      "status": "Delivered",
+      "details": [
+        {
+          "type": "origin",
+          "label": "Origin",
+          "value": "Mexico City, MX",
+          "subtext": "AICM Cargo"
+        },
+        {
+          "type": "destination",
+          "label": "Destination",
+          "value": "Bogota, CO",
+          "subtext": "El Dorado Cargo"
+        },
+        {
+          "type": "carrier",
+          "label": "Carrier",
+          "value": "Avianca Cargo",
+          "subtext": "Service: Regional"
+        },
+        { "type": "weight", "label": "Weight", "value": "600 kg", "subtext": "4 Pallets" }
+      ],
+      "history": [
+        {
+          "date": "Jan 22, 2025",
+          "time": "18:00",
+          "status": "Delivered",
+          "location": "Bogota, CO",
+          "description": "Delivered to warehouse",
+          "active": true,
+          "completed": true
+        }
+      ],
+      "cargoDetails": [
+        { "label": "Package Type", "value": "Pallet" },
+        { "label": "Quantity", "value": "4 Units" },
+        { "label": "Dimensions", "value": "120 x 100 x 140 cm" },
+        { "label": "Total Volume", "value": "6.7 CBM" },
+        { "label": "Commodity", "value": "Auto Parts" },
+        { "label": "Stackable", "value": "Yes" },
+        { "label": "HS Code", "value": "8708.30.00" }
+      ],
+      "documents": [{ "name": "Factura Comercial", "format": "PDF", "size": "0.8 MB" }],
+      "truckPositions": {
+        "blue": { "x": 19.43, "y": -99.13 },
+        "orange": { "x": 4.71, "y": -74.07 }
+      }
+    },
+    {
+      "id": "shp-012",
+      "trackingId": "#SHP-2551",
+      "eta": "2025-02-08",
+      "origin": "Seoul, KR",
+      "destination": "Seattle, USA",
+      "customer": "Min-Ho Park",
+      "status": "In Transit",
+      "details": [
+        { "type": "origin", "label": "Origin", "value": "Seoul, KR", "subtext": "Incheon Airport" },
+        {
+          "type": "destination",
+          "label": "Destination",
+          "value": "Seattle, USA",
+          "subtext": "Sea-Tac Cargo"
+        },
+        {
+          "type": "carrier",
+          "label": "Carrier",
+          "value": "Korean Air Cargo",
+          "subtext": "Service: Air"
+        },
+        { "type": "weight", "label": "Weight", "value": "2000 kg", "subtext": "10 Pallets" }
+      ],
+      "history": [
+        {
+          "date": "Jan 26, 2025",
+          "time": "12:00",
+          "status": "In Transit",
+          "location": "Incheon, KR",
+          "description": "Loading aircraft",
+          "active": true,
+          "completed": false
+        }
+      ],
+      "cargoDetails": [
+        { "label": "Package Type", "value": "Secure Box" },
+        { "label": "Quantity", "value": "10 Boxes" },
+        { "label": "Dimensions", "value": "50 x 50 x 50 cm" },
+        { "label": "Total Volume", "value": "1.25 CBM" },
+        { "label": "Commodity", "value": "Semiconductors" },
+        { "label": "Stackable", "value": "Yes" },
+        { "label": "HS Code", "value": "8541.40.00" }
+      ],
+      "documents": [{ "name": "Security Clearance", "format": "PDF", "size": "4.1 MB" }],
+      "truckPositions": {
+        "blue": { "x": 37.56, "y": 126.97 },
+        "orange": { "x": 47.6, "y": -122.33 }
       }
     }
-  },
+  ],
   "setting": {
     "header": {
       "title": "Settings",
@@ -330,11 +870,7 @@
       {
         "key": "language",
         "label": "System Language",
-        "options": [
-          "English (US)",
-          "Spanish (ES)",
-          "French (FR)"
-        ],
+        "options": ["English (US)", "Spanish (ES)", "French (FR)"],
         "helperText": "This will change the interface language for your dashboard."
       },
       {
@@ -352,12 +888,7 @@
     "securityConfig": {
       "key": "sessionTimeout",
       "label": "Automatic Session Timeout",
-      "options": [
-        "15 Minutes",
-        "30 Minutes",
-        "1 Hour",
-        "Never"
-      ],
+      "options": ["15 Minutes", "30 Minutes", "1 Hour", "Never"],
       "helperText": "For your security, the session will close after a period of inactivity."
     },
     "userProfile": {

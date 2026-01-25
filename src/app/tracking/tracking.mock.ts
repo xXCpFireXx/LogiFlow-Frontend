@@ -28,31 +28,31 @@ export const TRACKING_DETAILS: TrackingDetail[] = [
 ];
 
 export const TRACKING_HISTORY = [
-  {
-    date: 'Oct 24, 2025',
-    time: '14:30',
-    status: 'Delivered',
-    location: 'Lyon, FR',
-    description: 'Package delivered',
-    active: true,
-    completed: true,
-  },
-  {
-    date: 'Oct 23, 2025',
-    time: '09:15',
-    status: 'Out for Delivery',
-    location: 'Lyon, FR',
-    active: false,
-    completed: true,
-  },
-  {
-    date: 'Oct 22, 2025',
-    time: '18:45',
-    status: 'In Transit',
-    location: 'Paris, FR',
-    active: false,
-    completed: true,
-  },
+  // {
+  //   date: 'Oct 24, 2025',
+  //   time: '14:30',
+  //   status: 'Delivered',
+  //   location: 'Lyon, FR',
+  //   description: 'Package delivered',
+  //   active: true,
+  //   completed: true,
+  // },
+  // {
+  //   date: 'Oct 23, 2025',
+  //   time: '09:15',
+  //   status: 'Out for Delivery',
+  //   location: 'Lyon, FR',
+  //   active: false,
+  //   completed: true,
+  // },
+  // {
+  //   date: 'Oct 22, 2025',
+  //   time: '18:45',
+  //   status: 'In Transit',
+  //   location: 'Paris, FR',
+  //   active: false,
+  //   completed: true,
+  // },
   {
     date: 'Oct 21, 2025',
     time: '10:00',
