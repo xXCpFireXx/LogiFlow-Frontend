@@ -6,16 +6,18 @@
       "email": "cp@example.com",
       "password": "12345678",
       "activeShipment": 3376,
-      "status": "Active"
+      "status": "Active",
+      "avatarColor": "137fec"
     },
     {
       "id": "b681",
-      "fullName": "Camila",
+      "fullName": "Camila Acosta",
       "email": "jefasuprema@example.com",
       "password": "123456",
       "activeShipment": 4745,
       "status": "Active",
-      "role": "Admin"
+      "role": "Admin",
+      "avatarColor": "10b981"
     }
   ],
   "dashboard": {
