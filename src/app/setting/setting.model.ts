@@ -15,14 +15,16 @@ export interface SecurityConfig {
 }
 
 export interface UserProfile {
+  id?: string;
   fullName: string;
   email: string;
   role: string;
+  avatarColor?: string; // La propiedad clave
   language: string;
   timezone: string;
-  emailNotifications: boolean;
-  betaFeatures: boolean;
   sessionTimeout: string;
+  emailNotifications?: boolean;
+  betaFeatures?: boolean;
 }
 
 export interface SettingData {

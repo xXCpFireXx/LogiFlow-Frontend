@@ -2,7 +2,7 @@
   "users": [
     {
       "id": "b65e",
-      "fullName": "Cristian Alejandro",
+      "fullName": "Cristian Penagos",
       "email": "cp@example.com",
       "password": "12345678",
       "activeShipment": 3376,
@@ -361,9 +361,6 @@
       "helperText": "For your security, the session will close after a period of inactivity."
     },
     "userProfile": {
-      "fullName": "Cristian Penagos",
-      "email": "cris@logiflow.com",
-      "role": "LogiFlow Master",
       "language": "English (US)",
       "timezone": "Eastern Time (US & Canada) (UTC-05:00)",
       "emailNotifications": true,
