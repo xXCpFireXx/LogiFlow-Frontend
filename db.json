@@ -1,4 +1,23 @@
 {
+  "users": [
+    {
+      "id": "b65e",
+      "fullName": "Cristian Alejandro",
+      "email": "cp@example.com",
+      "password": "12345678",
+      "activeShipment": 3376,
+      "status": "Active"
+    },
+    {
+      "id": "b681",
+      "fullName": "Camila",
+      "email": "jefasuprema@example.com",
+      "password": "123456",
+      "activeShipment": 4745,
+      "status": "Active",
+      "role": "Admin"
+    }
+  ],
   "dashboard": {
     "header": {
       "title": "Dashboard Overview",
@@ -57,8 +76,18 @@
       }
     ],
     "volumeChart": {
-      "series": [65, 85, 45, 60],
-      "categories": ["North", "South", "East", "West"]
+      "series": [
+        65,
+        85,
+        45,
+        60
+      ],
+      "categories": [
+        "North",
+        "South",
+        "East",
+        "West"
+      ]
     },
     "truckPositions": {
       "blue": {
@@ -121,8 +150,20 @@
       }
     ],
     "performanceChart": {
-      "series": [12, 25, 18, 32, 21],
-      "categories": ["May 01", "May 08", "May 15", "May 22", "May 30"]
+      "series": [
+        12,
+        25,
+        18,
+        32,
+        21
+      ],
+      "categories": [
+        "May 01",
+        "May 08",
+        "May 15",
+        "May 22",
+        "May 30"
+      ]
     },
     "alerts": [
       {
@@ -287,7 +328,11 @@
       {
         "key": "language",
         "label": "System Language",
-        "options": ["English (US)", "Spanish (ES)", "French (FR)"],
+        "options": [
+          "English (US)",
+          "Spanish (ES)",
+          "French (FR)"
+        ],
         "helperText": "This will change the interface language for your dashboard."
       },
       {
@@ -305,7 +350,12 @@
     "securityConfig": {
       "key": "sessionTimeout",
       "label": "Automatic Session Timeout",
-      "options": ["15 Minutes", "30 Minutes", "1 Hour", "Never"],
+      "options": [
+        "15 Minutes",
+        "30 Minutes",
+        "1 Hour",
+        "Never"
+      ],
       "helperText": "For your security, the session will close after a period of inactivity."
     },
     "userProfile": {
