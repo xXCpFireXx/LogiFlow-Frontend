@@ -1,11 +1,12 @@
 import { Component, input, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { InputGeneric } from '../../shared/input-generic/input-generic';
+import { AppAvatar } from '../../shared/app-avatar/app-avatar';
 
 @Component({
   selector: 'app-profile-information',
   standalone: true,
-  imports: [CommonModule, InputGeneric],
+  imports: [CommonModule, InputGeneric, AppAvatar],
   templateUrl: './profile-information.html',
 })
 export class ProfileInformation {

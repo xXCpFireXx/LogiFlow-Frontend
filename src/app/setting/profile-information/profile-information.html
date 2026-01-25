@@ -6,15 +6,14 @@
     <h3 class="text-lg font-bold text-slate-800">Profile Information</h3>
   </div>
 
-  <div class="flex items-center gap-4">
-    <div class="w-15 h-15 rounded-full flex items-center justify-center overflow-hidden shadow-sm"
-       [style.backgroundColor]="userProfile()?.avatarColor ? '#' + userProfile().avatarColor : '#10b981'">
+  <div class="flex items-center gap-3">
+    <app-avatar
+      [fullName]="userProfile()?.fullName"
+      [avatarColor]="userProfile()?.avatarColor"
+      shape="circle"
+      size="w-15 h-15">
+    </app-avatar>
 
-      @if (userProfile()?.fullName) {
-        <img [src]="'https://ui-avatars.com/api/?name=' + userProfile().fullName + '&background=' + (userProfile().avatarColor || '10b981') + '&color=fff&format=svg'"
-             alt="Avatar">
-      }
-    </div>
     <div class="flex flex-col gap-1">
       <button (click)="onChangeAvatar()"
         class="text-blue-500 font-medium text-sm w-fit cursor-pointer outline-none transition-colors hover:text-blue-600">
