@@ -1,32 +1,40 @@
-import { Injectable, inject } from '@angular/core';
+import { Injectable, inject, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
 
 @Injectable({
-    providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
-    private http = inject(HttpClient);
-    private apiUrl = 'http://localhost:3000/users';
+  private http = inject(HttpClient);
+  private apiUrl = 'http://localhost:3000/users';
 
-    register(user: any): Observable<any> {
-        return this.http.post(this.apiUrl, user);
-    }
+  currentUser = signal<any>(JSON.parse(localStorage.getItem('user') || 'null'));
 
-    login(email: string, password: string): Observable<any> {
-        return this.http.get<any[]>(`${this.apiUrl}?email=${email}&password=${password}`).pipe(
-            map(users => {
-                if (users.length > 0) {
-                    return users[0];
-                } else {
-                    return null;
-                }
-            })
-        );
-    }
+  register(user: any): Observable<any> {
+    return this.http.post(this.apiUrl, user);
+  }
 
-    logout() {
-        localStorage.removeItem('user');
-    }
+  login(email: string, password: string): Observable<any> {
+    return this.http.get<any[]>(`${this.apiUrl}?email=${email}&password=${password}`).pipe(
+      map((users) => {
+        if (users.length > 0) {
+          const user = users[0];
+
+          this.currentUser.set(user);
+          localStorage.setItem('user', JSON.stringify(user));
+
+          return user;
+        } else {
+          return null;
+        }
+      }),
+    );
+  }
+
+  logout() {
+    this.currentUser.set(null);
+    localStorage.removeItem('user');
+  }
 }

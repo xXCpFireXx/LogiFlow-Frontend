@@ -19,8 +19,13 @@ export class Register {
   registerForm = this.fb.group({
     fullName: ['', Validators.required],
     email: ['', [Validators.required, Validators.email]],
-    password: ['', [Validators.required, Validators.minLength(6)]]
+    password: ['', [Validators.required, Validators.minLength(6)]],
   });
+
+  private getRandomColor(): string {
+    const colors = ['137fec', '6366f1', 'ec4899', '8b5cf6', '10b981', 'f59e0b'];
+    return colors[Math.floor(Math.random() * colors.length)];
+  }
 
   onSubmit() {
     if (this.registerForm.valid) {
@@ -28,14 +33,15 @@ export class Register {
         ...this.registerForm.value,
         activeShipment: Math.floor(Math.random() * 5000) + 1,
         status: 'Active',
-        role: 'Admin'
+        role: 'Admin',
+        avatarColor: this.getRandomColor(),
       };
 
       this.authService.register(userData).subscribe({
         next: () => {
           this.router.navigate(['/login']);
         },
-        error: (err) => console.error(err)
+        error: (err) => console.error(err),
       });
     }
   }

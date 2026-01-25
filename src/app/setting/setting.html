@@ -31,8 +31,8 @@
 
   <app-card class="lg:col-span-2 flex flex-col h-full">
     <app-profile-information class="h-full block"
-      [userProfile]="userProfile"
-      [icons]="icons"
+      [userProfile]="userProfile()"
+      [icons]="icons()"
       (changeAvatar)="onChangeAvatar()"
       (updatePassword)="onUpdatePassword()">
     </app-profile-information>

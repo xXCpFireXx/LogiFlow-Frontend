@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, input, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { InputGeneric } from '../../shared/input-generic/input-generic';
 
@@ -9,9 +9,8 @@ import { InputGeneric } from '../../shared/input-generic/input-generic';
   templateUrl: './profile-information.html',
 })
 export class ProfileInformation {
-  @Input() userProfile: any;
-  @Input() icons: any;
-
+  userProfile = input<any>();
+  icons = input<any>();
   @Output() changeAvatar = new EventEmitter<void>();
   @Output() updatePassword = new EventEmitter<void>();
 
