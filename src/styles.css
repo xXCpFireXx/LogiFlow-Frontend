@@ -1,6 +1,5 @@
 @import 'tailwindcss';
 @import 'leaflet/dist/leaflet.css';
-
 /* 1. Definición de variables base y lógica de Modo Oscuro */
 :root {
   /* Color de fondo por defecto (Light Mode) */
@@ -31,4 +30,14 @@
   --radius-lg: 0.5rem; /* rounded-lg */
   --radius-xl: 0.75rem; /* rounded-xl */
   --radius-full: 9999px; /* rounded-full */
+}
+
+@layer base {
+  html, body {
+    font-family: var(--font-display);
+
+    /* Opcional: Mejorar renderizado de texto */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
 }
