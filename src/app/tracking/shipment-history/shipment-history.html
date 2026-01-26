@@ -1,15 +1,15 @@
-<article class="min-[1048px]:col-span-5 xl:col-span-4 h-[500px] bg-white rounded-2xl border border-gray-100 shadow-sm p-6 flex flex-col">
-    <div class="flex items-center gap-2 mb-7 flex-shrink-0">
+<article class="min-[1048px]:col-span-5 xl:col-span-4 h-125 bg-white rounded-2xl border border-gray-100 shadow-sm p-6 flex flex-col">
+    <div class="flex items-center gap-2 mb-7 shrink-0">
       <div class="flex items-center justify-center text-blue-500 h-6">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M12 21q-3.45 0-6.012-2.287T3.05 13H5.1q.35 2.6 2.313 4.3T12 19q2.925 0 4.963-2.037T19 12t-2.037-4.962T12 5q-1.725 0-3.225.8T6.25 8H9v2H3V4h2v2.35q1.275-1.6 3.113-2.475T12 3q1.875 0 3.513.713t2.85 1.924t1.925 2.85T21 12t-.712 3.513t-1.925 2.85t-2.85 1.925T12 21m2.8-4.8L11 12.4V7h2v4.6l3.2 3.2z"/></svg>
       </div>
       <h3 class="text-xl font-bold text-slate-800 tracking-tight leading-none">Shipment History</h3>
     </div>
 
-    <div class="relative flex-grow custom-scrollbar">
+    <div class="relative grow custom-scrollbar">
       @for (step of history; track step.status; let i = $index) {
         <div class="relative flex gap-5 mb-8 last:mb-0">
-          <div class="relative flex flex-col items-center min-w-[32px]">
+          <div class="relative flex flex-col items-center min-w-8">
             <div [class]="step.active ?
               'h-8 w-8 rounded-full bg-white border-[3px] border-blue-500 shadow-lg shadow-blue-300 flex items-center justify-center z-20 animate-pulse-slow' :
               (step.completed ?
@@ -24,7 +24,7 @@
             </div>
 
             @if (i < history.length - 1) {
-              <div class="absolute top-9 bottom-[-28px] w-[2px] rounded-full"
+              <div class="absolute top-9 -bottom-7 w-0.5 rounded-full"
                 [class]="step.completed ? 'bg-blue-500' : 'bg-slate-100'">
               </div>
             }

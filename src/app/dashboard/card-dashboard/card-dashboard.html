@@ -4,9 +4,9 @@
             {{title()}}
         </h4>
     </div>
-    <div [class]="'p-2.5 rounded-xl ' + (isNegative() ? 'bg-red-50/80 text-red-500' : 
-                    icon() === 'transit' ? 'bg-indigo-50/80 text-indigo-500' : 
-                    icon() === 'revenue' ? 'bg-emerald-50/80 text-emerald-500' : 
+    <div [class]="'p-2.5 rounded-xl ' + (isNegative() ? 'bg-red-50/80 text-red-500' :
+                    icon() === 'transit' ? 'bg-indigo-50/80 text-indigo-500' :
+                    icon() === 'revenue' ? 'bg-emerald-50/80 text-emerald-500' :
                     'bg-blue-50/80 text-blue-500')">
         @if (icon() === 'shipment') {
         <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
@@ -34,7 +34,7 @@
     <h2 class="text-3xl font-bold text-slate-800 tracking-tight">
         {{value()}}
     </h2>
-    <div [class]="'inline-flex items-center gap-1 px-2 py-0.5 rounded-md font-bold text-sm ' + 
+    <div [class]="'inline-flex items-center gap-1 px-2 py-0.5 rounded-md font-bold text-sm ' +
                     (isNegative() ? 'bg-red-50 text-red-600' : 'bg-emerald-50 text-emerald-600')">
         @if (isNegative()) {
         <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
