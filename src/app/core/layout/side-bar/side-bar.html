@@ -1,13 +1,13 @@
 <div *ngIf="isOpen" (click)="closeSideBar.emit()"
-  class="fixed inset-0 z-40 bg-gray-900/50 backdrop-blur-sm sm:hidden transition-opacity">
+  class="fixed top-17 left-0 right-0 bottom-0 z-40 bg-gray-900/50 backdrop-blur-sm sm:hidden transition-opacity">
 </div>
 
 <aside id="default-sidebar" [class.translate-x-0]="isOpen"
-  class="fixed top-0 left-0 z-50 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0"
+  class="fixed top-17 sm:top-0 left-0 z-40 w-64 h-[calc(100vh-68px)] sm:h-screen transition-transform -translate-x-full sm:translate-x-0"
   aria-label="Sidenav">
   <div class="overflow-y-auto py-5 px-3 h-full bg-white border-r border-gray-200 flex flex-col">
 
-    <div class="flex items-center gap-3 mb-8 px-2">
+    <div class="hidden sm:flex items-center gap-3 mb-8 px-2">
       <div class="w-10 h-10 bg-[#e7f2fd] rounded-lg flex items-center justify-center">
         <svg aria-hidden="true" class="w-7 h-7 text-primary" fill="currentColor" viewBox="0 0 24 24"
           xmlns="http://www.w3.org/2000/svg">
