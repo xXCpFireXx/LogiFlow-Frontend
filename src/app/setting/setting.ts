@@ -10,6 +10,7 @@ import { ProfileInformation } from './profile-information/profile-information';
 import { SettingService } from './setting.service';
 import { SettingData, UserProfile } from './setting.model';
 import { Router } from '@angular/router';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-setting',
@@ -29,30 +30,40 @@ import { Router } from '@angular/router';
 export class Setting implements OnInit {
   private settingService = inject(SettingService);
   private router = inject(Router);
+  private authService = inject(AuthService);
 
-  header = signal<any>(SETTING_HEADER);
-  dropdowns = signal<any[]>(DROPDOWNS);
-  securityConfig = signal<any>(SECURITY_CONFIG);
-  userProfile = signal<UserProfile | any>({ ...USER_PROFILE_MOCK });
-  icons = signal<any>(ICONS);
+  header = signal<any>(null);
+  dropdowns = signal<any[]>([]);
+  securityConfig = signal<any>(null);
+  userProfile = signal<UserProfile | any>(this.authService.currentUser());
+  icons = signal<any>(null);
+
+  // Para la función de "Cancel", guardamos el estado original
+  private originalProfileState: any;
 
   activeDropdown = signal<string>('');
 
   ngOnInit(): void {
-    // Sincronización con el servidor mediante el servicio de configuración
     this.settingService.getSettingData().subscribe({
       next: (data: SettingData) => {
-        console.log('Settings data synchronized:', data);
         this.header.set(data.header);
         this.dropdowns.set(data.dropdowns);
         this.securityConfig.set(data.securityConfig);
-        this.userProfile.set(data.userProfile);
         this.icons.set(data.icons);
+
+        const loggedUser = this.authService.currentUser();
+
+        const finalProfile = {
+          ...loggedUser,
+          language: data.userProfile.language,
+          timezone: data.userProfile.timezone,
+          sessionTimeout: data.userProfile.sessionTimeout,
+        };
+
+        this.userProfile.set(finalProfile);
+        this.originalProfileState = { ...finalProfile }; // Guardamos copia para cancelar
       },
-      error: (err) => {
-        console.error('Settings API Error:', err);
-        this.router.navigate(['/500']);
-      },
+      error: (err) => this.router.navigate(['/500']),
     });
   }
 
@@ -77,8 +88,9 @@ export class Setting implements OnInit {
   }
 
   onCancel() {
-    this.userProfile.set({ ...USER_PROFILE_MOCK });
-    console.log('Changes cancelled, profile restored to mock state');
+    if (this.originalProfileState) {
+      this.userProfile.set({ ...this.originalProfileState });
+    }
   }
 
   onSave() {

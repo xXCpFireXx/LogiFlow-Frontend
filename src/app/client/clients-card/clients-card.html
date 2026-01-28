@@ -1,0 +1,30 @@
+<div class="flex flex-col h-full justify-between">
+  <div class="flex items-center justify-between">
+  <p class="text-sm font-medium text-gray-500 mb-1">{{ data().title }}</p>
+
+    @if (data().percentage !== undefined) {
+    <div class="flex items-center text-sm">
+
+      <span [class]="data().isNegative
+              ? 'text-red-700 bg-red-50'
+              : 'text-green-700 bg-green-50'" class="inline-flex items-center px-2 py-0.5 rounded-2xl font-bold text-sm">
+
+        @if (data().title !== 'Total Clients') {
+        <span class="font-extrabold text-sm">
+          {{ data().isNegative ? '-' : '+' }}
+        </span>
+        }
+
+        {{ data().percentage }}%
+      </span>
+
+    </div>
+    }
+  </div>
+
+  <div class="flex items-baseline gap-2">
+    <h3 class="text-3xl font-bold text-gray-900">{{ data().value }}</h3>
+  </div>
+
+
+</div>

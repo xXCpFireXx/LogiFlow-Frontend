@@ -1,0 +1,25 @@
+@if (user(); as u) {
+  <div class="flex items-center gap-2 group cursor-pointer">
+
+    <div class="text-right hidden sm:block">
+      <p class="text-sm font-bold text-gray-800 leading-none">{{ u.fullName }}</p>
+      <p class="text-[10px] text-gray-500 font-medium">{{ u.role }}</p>
+    </div>
+
+    <app-avatar
+      [fullName]="u.fullName"
+      [avatarColor]="u.avatarColor"
+      shape="square"
+      size="w-10 h-10">
+    </app-avatar>
+
+  </div>
+} @else {
+  <div class="flex items-center gap-2 animate-pulse">
+    <div class="text-right hidden sm:block">
+      <div class="h-3 w-20 bg-slate-200 rounded mb-1"></div>
+      <div class="h-2 w-12 bg-slate-100 rounded"></div>
+    </div>
+    <div class="w-10 h-10 bg-slate-200 rounded-2xl"></div>
+  </div>
+}
