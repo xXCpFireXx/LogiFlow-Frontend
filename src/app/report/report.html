@@ -1,8 +1,11 @@
-<div class="flex items-end justify-between w-full pb-5">
-  <app-header-main-content [title]="header().title" [description]="header().description"></app-header-main-content>
+<section class="flex flex-col min-[1048px]:flex-row min-[1048px]:items-center justify-between w-full pb-5 gap-6">
+  <header class="flex flex-col min-w-0">
+    <app-header-main-content [title]="header().title" [description]="header().description">
+    </app-header-main-content>
+  </header>
 
   <!--Botones Componente-->
-  <div class="flex items-center gap-3">
+  <nav class="flex flex-wrap items-center gap-3 w-full min-[1048px]:w-auto justify-start min-[1048px]:justify-end">
     <app-button-generic label="Last 30 Days" variant="secondary">
       <svg icon xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-slate-500">
@@ -25,8 +28,8 @@
         <line x1="12" y1="15" x2="12" y2="3"></line>
       </svg>
     </app-button-generic>
-  </div>
-</div>
+  </nav>
+</section>
 
 
 <!--Card-->

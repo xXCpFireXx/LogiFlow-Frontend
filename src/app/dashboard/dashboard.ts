@@ -8,17 +8,26 @@ import { LiveFleet } from '../shared/live-fleet/live-fleet';
 import { DashboardService } from './dashboard.service';
 import { DashboardCard, TruckPositions, HeaderData, DashboardData } from './dashboard.model';
 import { Router } from '@angular/router';
+import { ShipmentService } from '../shipment/shipment.service';
+import { ShipmentTable } from '../shipment/shipment-table/shipment-table';
+import { toSignal } from '@angular/core/rxjs-interop';
 
 
 @Component({
   selector: 'app-dashboard',
-  imports: [CardDashboard, CardGeneric, HeaderMainContent, BardChartItem, LiveFleet],
+  imports: [CardDashboard, CardGeneric, HeaderMainContent, BardChartItem, LiveFleet, ShipmentTable],
   templateUrl: './dashboard.html',
   styleUrl: './dashboard.css',
 })
 export class Dashboard implements OnInit {
   private dashboardService = inject(DashboardService);
+  private shipmentService = inject(ShipmentService);
   private router = inject(Router);
+
+  readonly shipments = toSignal(
+    this.shipmentService.getAll(),
+    { initialValue: [] }
+  );
 
   truckPositions = signal<TruckPositions>({
     blue: { x: 0, y: 0 },
