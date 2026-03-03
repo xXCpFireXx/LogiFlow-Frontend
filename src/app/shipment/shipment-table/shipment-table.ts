@@ -1,4 +1,4 @@
-import { Component, computed, inject, input, signal } from '@angular/core';
+import { Component, computed, inject, input, output, signal } from '@angular/core';
 import { Shipment } from '../../models/Shipment';
 import { Card } from "../../shared/card/card";
 import { StatusBadge } from "../../shared/status-badge/status-badge";
@@ -14,7 +14,17 @@ import { Router } from '@angular/router';
 export class ShipmentTable {
   private router = inject(Router);
 
+// --- Entradas (Inputs) de datos y paginación ---
   shipments = input.required<Shipment[]>();
+
+  // Nuevos inputs para la paginación (con valores por defecto por si acaso)
+  currentPage = input<number>(0);
+  totalItems = input<number>(0);
+  totalPages = input<number>(0);
+
+  // --- Salidas (Outputs) ---
+  // Evento que emitirá el número de la nueva página solicitada
+  pageChange = output<number>();
 
   searchTerm = signal<string>('');
   activeDropdownId = signal<string | null>(null);
@@ -34,7 +44,21 @@ export class ShipmentTable {
     );
   });
 
-  // --- Lógica de Navegación (La pieza clave) ---
+  // --- Lógica de Paginación ---
+
+  goToPreviousPage(event: Event) {
+    event.preventDefault(); // Evita que el enlace recargue la página
+    if (this.currentPage() > 0) {
+      this.pageChange.emit(this.currentPage() - 1);
+    }
+  }
+
+  goToNextPage(event: Event) {
+    event.preventDefault();
+    if (this.currentPage() < this.totalPages() - 1) {
+      this.pageChange.emit(this.currentPage() + 1);
+    }
+  }
 
   viewTracking(shipment: Shipment): void {
     // Cerramos el dropdown si está abierto antes de navegar
