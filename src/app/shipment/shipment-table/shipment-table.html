@@ -69,7 +69,8 @@
             @for (shipment of filteredShipments(); track shipment.id) {
             <tr class="border-b border-gray-300 hover:bg-gray-50 transition-colors">
               <th scope="row" class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap">
-                <a (click)="viewTracking(shipment)" class="cursor-pointer transition-all hover:text-blue-600">{{ shipment.trackingId }}</a>
+                <a (click)="viewTracking(shipment)" class="cursor-pointer transition-all hover:text-blue-600">{{
+                  shipment.trackingId }}</a>
               </th>
 
               <td class="px-4 py-3">
@@ -88,16 +89,19 @@
                     type="button">
                     <svg class="w-5 h-5" aria-hidden="true" fill="currentColor" viewbox="0 0 20 20"
                       xmlns="http://www.w3.org/2000/svg">
-                      <path d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z" />
+                      <path
+                        d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z" />
                     </svg>
                   </button>
 
                   @if (activeDropdownId() === shipment.id) {
-                  <div class="fixed w-44 bg-white rounded divide-y divide-gray-100 shadow-lg border border-gray-200 z-100"
+                  <div
+                    class="fixed w-44 bg-white rounded divide-y divide-gray-100 shadow-lg border border-gray-200 z-100"
                     [style.left.px]="dropdownPosition().x" [style.top.px]="dropdownPosition().y">
 
                     <ul class="py-1 text-sm text-gray-700">
-                      <li><a (click)="viewTracking(shipment)" class="cursor-pointer block py-2 px-4 hover:bg-gray-100">Track shipment</a></li>
+                      <li><a (click)="viewTracking(shipment)"
+                          class="cursor-pointer block py-2 px-4 hover:bg-gray-100">Track shipment</a></li>
                       <li><a href="#" class="block py-2 px-4 hover:bg-gray-100">Edit details</a></li>
                     </ul>
                     <div class="py-1">
@@ -109,7 +113,7 @@
                   }
                 </div>
               </td>
-              </tr>
+            </tr>
             } @empty {
             <tr>
               <td colspan="7" class="text-center py-4 text-gray-500">No shipments found.</td>
@@ -123,14 +127,15 @@
         class="flex flex-col md:flex-row justify-between items-start md:items-center space-y-3 md:space-y-0 p-4 border-t border-gray-200"
         aria-label="Table navigation">
         <span class="text-sm font-normal text-gray-500">
-          Showing <span class="font-semibold text-gray-900">{{ shipments().length > 0 ? 1 : 0 }}-{{
-            filteredShipments().length }}</span> of <span class="font-semibold text-gray-900">{{ shipments().length
-            }}</span>
+          Page <span class="font-semibold text-gray-900">{{ currentPage() + 1 }}</span>
+          of <span class="font-semibold text-gray-900">{{ totalPages() }}</span>
+          (Total: {{ totalItems() }} Shipments)
         </span>
         <ul class="inline-flex items-stretch -space-x-px">
           <li>
-            <a href="#"
-              class="flex items-center justify-center h-full py-1.5 px-3 ml-0 text-gray-500 bg-white rounded-l-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700">
+            <a href="#" (click)="goToPreviousPage($event)" [class.opacity-50]="currentPage() === 0"
+              [class.pointer-events-none]="currentPage() === 0"
+              class="flex items-center justify-center h-full py-1.5 px-3 ml-0 text-gray-500 bg-white rounded-l-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 transition-colors">
               <span class="sr-only">Previous</span>
               <svg class="w-5 h-5" aria-hidden="true" fill="currentColor" viewbox="0 0 20 20"
                 xmlns="http://www.w3.org/2000/svg">
@@ -141,8 +146,9 @@
             </a>
           </li>
           <li>
-            <a href="#"
-              class="flex items-center justify-center h-full py-1.5 px-3 leading-tight text-gray-500 bg-white rounded-r-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700">
+            <a href="#" (click)="goToNextPage($event)" [class.opacity-50]="currentPage() >= totalPages() - 1"
+              [class.pointer-events-none]="currentPage() >= totalPages() - 1"
+              class="flex items-center justify-center h-full py-1.5 px-3 leading-tight text-gray-500 bg-white rounded-r-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 transition-colors">
               <span class="sr-only">Next</span>
               <svg class="w-5 h-5" aria-hidden="true" fill="currentColor" viewbox="0 0 20 20"
                 xmlns="http://www.w3.org/2000/svg">
