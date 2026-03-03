@@ -10,7 +10,8 @@ import { DashboardCard, TruckPositions, HeaderData, DashboardData } from './dash
 import { Router } from '@angular/router';
 import { ShipmentService } from '../shipment/shipment.service';
 import { ShipmentTable } from '../shipment/shipment-table/shipment-table';
-import { toSignal } from '@angular/core/rxjs-interop';
+import { toObservable, toSignal } from '@angular/core/rxjs-interop';
+import { switchMap, tap, map } from 'rxjs';
 
 
 @Component({
@@ -24,8 +25,22 @@ export class Dashboard implements OnInit {
   private shipmentService = inject(ShipmentService);
   private router = inject(Router);
 
+  // --- Estado de la paginación para la tabla ---
+  currentPage = signal<number>(0);
+  pageSize = signal<number>(10);
+  totalItems = signal<number>(0);
+  totalPages = signal<number>(0);
+
+  // --- Pipeline Reactivo para la tabla de envíos ---
   readonly shipments = toSignal(
-    this.shipmentService.getAll(),
+    toObservable(this.currentPage).pipe(
+      switchMap((page) => this.shipmentService.getAllPaginated(page, this.pageSize())),
+      tap((response) => {
+        this.totalItems.set(response.total);
+        this.totalPages.set(response.totalPages);
+      }),
+      map((response) => response.data)
+    ),
     { initialValue: [] }
   );
 
@@ -59,5 +74,10 @@ export class Dashboard implements OnInit {
         this.router.navigate(['/500']);
       },
     });
+  }
+
+  // --- Evento para cambiar la página de la tabla ---
+  onPageChange(newPage: number) {
+    this.currentPage.set(newPage);
   }
 }
