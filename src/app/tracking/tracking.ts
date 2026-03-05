@@ -1,6 +1,8 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, OnInit, OnDestroy, inject, ChangeDetectorRef } from '@angular/core';
 import { CommonModule, Location } from '@angular/common';
 import { Shipment, TruckPositions } from '../models/Shipment';
+import { TrackingService } from './tracking.service';
+import { Subscription } from 'rxjs';
 
 // Componentes
 import { HeaderMainContent } from '../shared/header-main-content/header-main-content';
@@ -39,82 +41,119 @@ import {
   templateUrl: './tracking.html',
   styleUrl: './tracking.css',
 })
-export class Tracking implements OnInit {
-  // 1. Inyección de dependencias moderna (sin constructor)
+export class Tracking implements OnInit, OnDestroy {
   private readonly location = inject(Location);
+  private readonly trackingService = inject(TrackingService);
+  private readonly cdr = inject(ChangeDetectorRef);
+  private streamSub?: Subscription;
 
-  // Variables de Estado (Mocks por defecto)
   header = { ...TRACKING_HEADER };
   details = [...TRACKING_DETAILS];
-  history = [...TRACKING_HISTORY]; // Se reemplazará con shipment.history
-  cargoDetails = [...CARGO_DETAILS]; // Se reemplazará con shipment.cargoDetails
-  documents = [...TRACKING_DOCUMENTS]; // Se reemplazará con shipment.documents
-  truckPositions: TruckPositions = TRUCK_POSITIONS; // Se reemplazará con shipment.truckPositions
+  history = [...TRACKING_HISTORY];
+  cargoDetails = [...CARGO_DETAILS];
+  documents = [...TRACKING_DOCUMENTS];
+  truckPositions: any = TRUCK_POSITIONS;
 
   shipmentStatus = 'In Transit';
-  currentShipment: Shipment | null = null;
+  currentShipment: any = null;
+  trackingId: string = '';
+  currentLocation: string = 'Cargando...';
 
   ngOnInit(): void {
-    // 2. Recuperar el estado de forma segura usando Location
-    // Esto funciona siempre, no importa el ciclo de vida del router
-    const state = this.location.getState() as { shipmentData?: Shipment };
+    // Recuperar el estado de la redirección
+    const state = this.location.getState() as any;
 
     if (state?.shipmentData) {
       this.currentShipment = state.shipmentData;
-      this.updateViewWithShipmentData(this.currentShipment);
-    } else {
-      console.warn('No shipment data found in state. Using mocks.');
+
+      // se busca el id del mongo
+      const sId = this.currentShipment?._id || this.currentShipment?.id;
+
+      if (sId) {
+        this.shipmentStatus = this.currentShipment.status;
+        this.trackingId = this.currentShipment.trackingId || '---';
+
+        // Con este ID ya podemos ir a la base de datos
+        this.fetchRealData(sId);
+      } else {
+        console.error('No se encontró un ID en el envío seleccionado');
+      }
     }
   }
 
-  private updateViewWithShipmentData(shipment: Shipment): void {
-    console.log('Rendering shipment:', shipment);
+  private fetchRealData(id: string) {
+    // Historial
+    this.trackingService.getHistory(id).subscribe((h) => {
+      if (h && h.length > 0) {
+        this.history = h;
+        this.cdr.detectChanges();
+      }
+    });
 
-    // Actualizamos Header
-    this.header = {
-      title: 'Tracking',
-      description: `Monitoring shipment ${shipment.trackingId}`,
-    };
+    // Estado Actual
+    this.trackingService.getCurrentStatus(id).subscribe((data) => {
+      console.log('Datos recibidos de la BD:', data); // Revisa esto en la consola (F12)
+      this.updateView(data);
+    });
 
-    // Actualizamos Estado
-    this.shipmentStatus = shipment.status;
+    // Tiempo real
+    this.streamSub = this.trackingService.getRealTimeUpdates(id).subscribe((data) => {
+      this.updateView(data);
+    });
+  }
 
-    // 3. Detalles Superiores (Cards)
-    // Usamos shipment.details si existe, si no, construimos uno básico
-    if (shipment.details && shipment.details.length > 0) {
-      this.details = shipment.details;
-    } else {
-      this.details = [
-        { type: 'origin', label: 'Origin', value: shipment.origin, subtext: 'Origin Location' },
-        { type: 'destination', label: 'Destination', value: shipment.destination, subtext: 'Target Location' },
-        { type: 'carrier', label: 'Carrier', value: 'LogiFlow Exp', subtext: 'Standard' },
-        { type: 'weight', label: 'Weight', value: '---', subtext: 'Total Weight' },
-      ];
-    }
+  private updateView(data: any) {
+    if (!data) return;
 
-    // 4. Historial (Timeline)
-    if (shipment.history && shipment.history.length > 0) {
-      this.history = shipment.history;
-    }
+    // Log clave para ver el objeto
+    console.log('Objeto completo recibido de la BD:', data);
 
-    // 5. Detalles de Carga (Tabla inferior izquierda)
-    if (shipment.cargoDetails && shipment.cargoDetails.length > 0) {
-      this.cargoDetails = shipment.cargoDetails;
-    }
+    setTimeout(() => {
+      this.currentShipment = data;
+      this.trackingId = data.trackingId || this.trackingId;
+      this.shipmentStatus = data.status || this.shipmentStatus;
+      this.currentLocation = data.currentLocation || 'Sin ubicación';
 
-    // 6. Documentos (Lista inferior derecha)
-    if (shipment.documents && shipment.documents.length > 0) {
-      this.documents = shipment.documents;
-    }
+      // Buscamos la info de carga (primero cargo->bd y cargoDetails es el mock(angular))
+      const cargoRaw = data.cargo || data.cargoDetails;
 
-    // 7. Mapa (Posiciones)
-    if (shipment.truckPositions) {
-      this.truckPositions = shipment.truckPositions;
-    }
+      if (cargoRaw) {
+        // Si es un Array (lo que enviaba el Java viejo), lo usamos directo
+        if (Array.isArray(cargoRaw)) {
+          this.cargoDetails = cargoRaw;
+        }
+        // Si es un Objeto (lo que envía el Java nuevo), lo transformamos dinámicamente
+        else {
+          this.cargoDetails = Object.entries(cargoRaw as Record<string, any>)
+            .filter(([key, value]) => {
+              // No mostramos campos técnicos o nulos/vacíos
+              return value !== null && value !== '' && key !== '_class';
+            })
+            .map(([key, value]) => ({
+              label: key
+                .replace(/([A-Z])/g, ' $1')
+                .replace(/^./, (str) => str.toUpperCase())
+                .trim(),
+              value: String(value),
+            }));
+        }
+      }
+
+      // Documentos y camiones
+      this.documents = data.documents || [];
+      if (data.truckPositions) {
+        this.truckPositions = data.truckPositions;
+      }
+
+      this.cdr.detectChanges();
+    }, 0);
+  }
+
+  ngOnDestroy() {
+    this.streamSub?.unsubscribe();
   }
 
   // --- Actions ---
-
   onExport(): void {
     console.log('Exporting...', this.currentShipment);
   }
