@@ -92,7 +92,7 @@ export class Tracking implements OnInit, OnDestroy {
 
     // Estado Actual
     this.trackingService.getCurrentStatus(id).subscribe((data) => {
-      console.log('Datos recibidos de la BD:', data); // Revisa esto en la consola (F12)
+      // console.log('Datos recibidos de la BD:', data);
       this.updateView(data);
     });
 
