@@ -66,7 +66,7 @@
             </tr>
           </thead>
           <tbody>
-            @for (shipment of filteredShipments(); track shipment.id) {
+            @for (shipment of filteredShipments(); track $index) {
             <tr class="border-b border-gray-300 hover:bg-gray-50 transition-colors">
               <th scope="row" class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap">
                 <a (click)="viewTracking(shipment)" class="cursor-pointer transition-all hover:text-blue-600">{{
