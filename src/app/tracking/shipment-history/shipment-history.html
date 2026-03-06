@@ -35,6 +35,13 @@
               {{ step.status }}
             </h4>
             <p class="text-sm text-slate-400 font-medium mt-0.5">{{ step.location }}</p>
+
+            @if (step.description) {
+              <p class="text-sm text-slate-400 font-medium mt-0.5">
+                {{ step.description }}
+              </p>
+            }
+
             <p [class]="step.active ? 'text-[11px] text-blue-500 font-bold mt-1' : 'text-[11px] text-slate-400 mt-1 font-medium'">
               {{ step.date }} @if(step.time){, {{ step.time }}}
             </p>
