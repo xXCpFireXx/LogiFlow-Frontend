@@ -32,7 +32,7 @@
 
           <div class="flex flex-col pt-0.5 min-w-0">
             <h4 [class]="step.active ? 'text-[15px] font-bold text-slate-800 leading-tight' : 'text-[15px] font-bold text-slate-400 leading-tight'">
-              {{ step.status }}
+              {{ step.status.replace(/_/g, ' ') }}
             </h4>
             <p class="text-sm text-slate-400 font-medium mt-0.5">{{ step.location }}</p>
 
