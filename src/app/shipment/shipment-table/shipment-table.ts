@@ -40,7 +40,8 @@ export class ShipmentTable {
       shipment.trackingId.toLowerCase().includes(term) ||
       shipment.customer.toLowerCase().includes(term) ||
       shipment.origin.toLowerCase().includes(term) ||
-      shipment.destination.toLowerCase().includes(term)
+      shipment.destination.toLowerCase().includes(term) ||
+      shipment.status.replace(/_/g, ' ').toLowerCase().includes(term)
     );
   });
 
