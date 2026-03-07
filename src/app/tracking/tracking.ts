@@ -47,12 +47,19 @@ export class Tracking implements OnInit, OnDestroy {
   private readonly cdr = inject(ChangeDetectorRef);
   private streamSub?: Subscription;
 
+  isLoading = true;
+
   header = { ...TRACKING_HEADER };
-  details = [...TRACKING_DETAILS];
-  history = [...TRACKING_HISTORY];
-  cargoDetails = [...CARGO_DETAILS];
-  documents = [...TRACKING_DOCUMENTS];
-  truckPositions: any = TRUCK_POSITIONS;
+  details: any[] = [
+    { type: 'origin', label: 'Origin', value: 'Cargando...', subtext: '...' },
+    { type: 'destination', label: 'Destination', value: 'Cargando...', subtext: '...' },
+    { type: 'carrier', label: 'Carrier', value: 'Cargando...', subtext: '...' },
+    { type: 'weight', label: 'Weight', value: 'Cargando...', subtext: '...' },
+  ];
+  history: any[] = [];
+  cargoDetails: any[] = [];
+  documents: any[] = [];
+  truckPositions: any = null;
 
   shipmentStatus = 'In Transit';
   currentShipment: any = null;
@@ -105,14 +112,21 @@ export class Tracking implements OnInit, OnDestroy {
   private updateView(data: any) {
     if (!data) return;
 
-    // Log clave para ver el objeto
-    console.log('Objeto completo recibido de la BD:', data);
-
-    setTimeout(() => {
+    // setTimeout(() => {
       this.currentShipment = data;
       this.trackingId = data.trackingId || this.trackingId;
       this.shipmentStatus = data.status || this.shipmentStatus;
       this.currentLocation = data.currentLocation || 'Sin ubicación';
+
+      // Mapear Summary
+      if (data.details) {
+        this.details = [
+          { type: 'origin', ...data.details.origin },
+          { type: 'destination', ...data.details.destination },
+          { type: 'carrier', ...data.details.carrier },
+          { type: 'weight', ...data.details.weight },
+        ];
+      }
 
       // Buscamos la info de carga (primero cargo->bd y cargoDetails es el mock(angular))
       const cargoRaw = data.cargo || data.cargoDetails;
@@ -145,8 +159,9 @@ export class Tracking implements OnInit, OnDestroy {
         this.truckPositions = data.truckPositions;
       }
 
+      this.isLoading = false;
       this.cdr.detectChanges();
-    }, 0);
+    // }, 0);
   }
 
   ngOnDestroy() {
