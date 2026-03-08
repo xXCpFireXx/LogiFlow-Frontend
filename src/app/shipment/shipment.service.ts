@@ -20,11 +20,15 @@ export class ShipmentService {
 
   // OPCIÓN 2 (Recomendada): Si quieres mantener la información de paginación
   // para armar una tabla con páginas.
-  getAllPaginated(page: number = 0, size: number = 10): Observable<PaginatedResponse<Shipment>> {
+  getAllPaginated(page: number = 0, size: number = 15): Observable<PaginatedResponse<Shipment>> {
     return this.http.get<PaginatedResponse<Shipment>>(`${this.apiUrl}?page=${page}&size=${size}`);
   }
   // Obtener uno por ID
   getById(id: string): Observable<Shipment> {
     return this.http.get<Shipment>(`${this.apiUrl}/${id}`);
+  }
+
+  createShipment(shipmentData: any): Observable<any> {
+    return this.http.post(`${this.apiUrl}`, shipmentData);
   }
 }

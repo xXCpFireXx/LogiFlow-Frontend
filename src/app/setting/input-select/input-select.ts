@@ -12,7 +12,7 @@ export class InputSelect {
   @Input() value: string = '';
   @Input() options: string[] = [];
   @Input() helperText?: string;
-
+  @Input() disabled: boolean = false;
   @Input() isOpen: boolean = false;
 
   // Le avisamos al padre cuando el usuario quiere abrir/cerrar
