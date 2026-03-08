@@ -20,7 +20,7 @@ export class StatusBadge {
   });
 
   badgeClasses = computed(() => {
-    const base = 'px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider border ';
+    const base = 'inline-flex justify-center w-34 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider border whitespace-nowrap ';
     const colors: Record<string, string> = {
       // Shipments
       'PENDING': 'bg-amber-100 text-amber-600 border-amber-600',
